@@ -2,6 +2,7 @@
 #always open atom from cmd prompt -> windows+r -> cmd -> atom
 #open the "Atom Package manager" from cmd line : type "apm"
 #https://flight-manual.atom.io/ -> atom manual guide
+#https://www.digitalocean.com/community/tutorials/ssh-essentials-working-with-ssh-servers-clients-and-keys#:~:text=SSH%20keys%20are%20a%20matching,and%20never%20exposed%20to%20anyone. --> ssh working
 
 #installing atom for first time , then do below to execute scripts.
 #ctrl+shft+p -> type "view installed packages -> click install from left pane -> search for "SCRIPT" -> install SCRIPT "
@@ -36,11 +37,14 @@ print("Dileep is 'gud'.") #Dileep is 'gud'.
 print('Dileep is "gud".') #Dileep is "gud".
 
 '''
+A traceback is a record of where the interpreter ran into trouble when trying to execute your code.
 Variables are containers for storing data values.
 A variable is created the moment you first assign a value to it.
 strings in Python are arrays of bytes representing unicode characters.
 However, Python does not have a character data type, a single character is simply a string with a length of 1.
 Square brackets can be used to access elements of the string
+Variable names can contain only letters, numbers, and underscores.They can start with a letter or an underscore, but not with a number.For instance, you can call a variable message_1 but not 1_message.
+Be careful when using the lowercase letter l and the uppercase letter O because they could be confused with the numbers 1 and 0
 '''
 a=1
 b='name'
@@ -207,7 +211,7 @@ splitlines()	Splits the string at line breaks and returns a list
 startswith()	Returns true if the string starts with the specified value
 strip()	        Returns a trimmed version of the string
 swapcase()	    Swaps cases, lower case becomes upper case and vice versa
-title()	        Converts the first character of each word to upper case
+title()	        Converts the first character of each word to upper case and other chars to small .
 translate()	    Returns a translated string
 upper()	        Converts a string into upper case
 zfill()	        Fills the string with a specified number of 0 values at the beginning
@@ -277,6 +281,18 @@ print(b[0:len(b)]) #Hello, World!
 print(b[::-1]) #!dlroW ,olleH
 rev() #!dlroW ,olleH
 
+'''
+f STRINGS : [Format Strings]
+When you want to use a variable’s value inside a string .
+To insert a variable’s value into a string, place the letter f immediately before the opening quotation mark . Put braces around the name or names of any variable you want to use inside the string. Python will replace each variable with its value when the string is displayed.
+To use it : f"any_string {var_1} {var_2}"
+'''
+first_name="dileep"
+last_name="kumar"
+full_name=f"{first_name} {last_name}"
+print(full_name)                        #dileep kumar
+print("Hello !!,{full_name.title()}")   #Hello !!,Dileep Kumar -> missing "f (format)"
+print(f"Hello, {full_name.title()}!")   #Hello, Dileep Kumar!
 
 '''
 BOOLEANS
