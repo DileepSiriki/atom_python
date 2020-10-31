@@ -1,3 +1,6 @@
+#install sync-settings in atom 
+#GITHUB-TOKEN 4d4ff38b27cd2f780fb73e3dd16cf3380a81ac7e
+#GIST 94f56b62d8e4f8d1ddf82b3877ee8e12
 
 #always open atom from cmd prompt -> windows+r -> cmd -> atom
 #open the "Atom Package manager" from cmd line : type "apm"
