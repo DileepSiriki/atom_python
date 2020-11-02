@@ -1,4 +1,4 @@
-#install sync-settings in atom 
+#install sync-settings in atom
 #GITHUB-TOKEN 4d4ff38b27cd2f780fb73e3dd16cf3380a81ac7e
 #GIST 94f56b62d8e4f8d1ddf82b3877ee8e12
 
@@ -24,8 +24,7 @@ PYTHON PRACTICE
 PY 2.X VS PY 3.X : https://sebastianraschka.com/Articles/2014_python_2_3_key_diff.html
 single line comments can be written using a '#'
 Multiple line comments can be doen using """ comment """
-Since Python will ignore string literals that are not assigned to a variable,
-you can add a multiline string (triple quotes) in your code, and place your comment inside it
+Since Python will ignore string literals that are not assigned to a variable, you can add a multiline string (triple quotes) in your code, and place your comment inside it
 As long as the string is not assigned to a variable, Python will read the code, but then ignore it,and you have made a multiline comment.
 Python is an object oriented programming language.
 '''
@@ -131,6 +130,15 @@ print("Python is " + x)
 #PYthon is fantastic
 
 """
+NUMBERS :
+When you’re writing long numbers, you can group digits using underscores to make large numbers more readable
+A constant is like a variable whose value stays the same throughout the life of a program. Python doesn’t have built-in constant types, but Python programmers use all capital letters to indicate a variable should be treated as a constant and never be changed
+"""
+x=14_12_000
+print(x)        #1412000
+CONSTANT_NUMBER=500 #capital letters to indicate a constant
+
+"""
 DATA TYPES :
 Text Type       :	str
 Numeric Types   :	int, float, complex
@@ -139,6 +147,7 @@ Mapping Type    :	dict
 Set Types       :	set, frozenset
 Boolean Type    :	bool
 Binary Types    :	bytes, bytearray, memoryview
+If you mix an integer and a float in any other operation, you’ll get a float
 """
 #type() gives the variable data type
 str3='2'
@@ -285,10 +294,12 @@ print(b[::-1]) #!dlroW ,olleH
 rev() #!dlroW ,olleH
 
 '''
-f STRINGS : [Format Strings]
+f STRINGS : [Format Strings] :  f and F both do the same thing
 When you want to use a variable’s value inside a string .
 To insert a variable’s value into a string, place the letter f immediately before the opening quotation mark . Put braces around the name or names of any variable you want to use inside the string. Python will replace each variable with its value when the string is displayed.
 To use it : f"any_string {var_1} {var_2}"
+F-strings are faster than the two most commonly used string formatting mechanisms, which are % formatting and str.format()
+
 '''
 first_name="dileep"
 last_name="kumar"
@@ -296,6 +307,36 @@ full_name=f"{first_name} {last_name}"
 print(full_name)                        #dileep kumar
 print("Hello !!,{full_name.title()}")   #Hello !!,Dileep Kumar -> missing "f (format)"
 print(f"Hello, {full_name.title()}!")   #Hello, Dileep Kumar!
+
+val = 'Geeks'
+ue = "for"
+print("Hello %s %s %s" %(val,ue,val))      #old school formatting -> readable enough. However, once you start using several parameters and longer strings, your code will quickly become much less easily readable and leads to errors, like not displaying tuples or dictionaries correctly
+
+print("Hello {} , please go through {} {} {}".format(val,val,ue,val))   #str.format() -> you get the added perk of being able to pass objects and then reference parameters and methods in between the braces
+person = {'name': 'Eric', 'age': 74}
+print("Hello, {name}. You are {age}.".format(name=person['name'], age=person['age']))
+print("Hello, {name}. You are {age}. Your name {name} looks great.".format(**person))
+
+### VERY VERY IMPORTANT
+person = {'name': 'Eric', 'age': 74}
+print("hello, {1}. You are {0} of age".format(person['name'], person['age']))  #hello, 74. You are Eric of age
+print("hello, {0}. You are {1} of age".format(person['name'], person['age']))  # hello, Eric. You are 74 of age
+print("hello, {dileep}. You are {kumar} of age ".format(dileep=person['name'],kumar=person['age'])) ## hello, Eric. You are 74 of age
+
+val,ue="Geeks","for"
+print(f"{val}for{val} is a portal for {val}.")  #f strings
+print(f"{2+3}") #can do expressions
+print(f"{val.lower()}") #can call inbuilt methods directly
+comedian = {'name': 'Eric Idle', 'age': 74}
+print(f"The comedian is {comedian['name']}, aged {comedian['age']}.")
+foo="bar"
+print(f"{foo = }")   #foo = 'bar' -> preserves hite spaces
+
+import datetime
+today=datetime.datetime.today()
+print(today)
+print(f"{today:%B  %d, %Y}")
+
 
 '''
 BOOLEANS
@@ -306,8 +347,7 @@ Almost any value is evaluated to True if it has some sort of content.
 Any string is True, except empty strings.
 Any number is True, except 0.
 Any list, tuple, set, and dictionary are True, except empty ones.
-In fact, there are not many values that evaluates to False, except empty values,
-such as (), [], {}, "", the number 0, and the value None.
+In fact, there are not many values that evaluates to False, except empty values, such as (), [], {}, "", the number 0, and the value None.
 '''
 a = 200
 b = 33
