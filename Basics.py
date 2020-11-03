@@ -32,6 +32,7 @@ Python is an object oriented programming language.
 print("Dileep")
 print ("Dileep")
 print('Dileep')
+
 #printf('Dileep') # printf is not defined in py3.x
 
 # '' and "" are used to quote each other as shown below .
@@ -52,6 +53,8 @@ a=1
 b='name'
 c="is JOHN"
 print(a,b,c) #1 name is JOHN
+str='''dileep'''
+print(str)  #dILleep
 #print(abc) #Error
 #print(a+b+c) #unsupported operand type(s) for +: 'int' and 'str'
 print(b+c) #nameis JOHN
@@ -72,6 +75,7 @@ print(str1+"is a string") #string1is a string
 print(str1,"is a string") #string1 is a string
 print("Strings are %s and %s" %(str1,str2)) #Strings are string1 and string2
 print("Strings are %s and %s" %(str1,'dhoni')) #Strings are string1 and dhoni
+print(2,"Dileep") #2 Dileep
 #print(str2"Dileep") #Error as either + or , are absent .
 
 #assign values to multiple variables in one line
@@ -79,6 +83,10 @@ x, y, z = "Orange", "Banana", "Cherry"
 print(x)
 print(y)
 print(z)
+
+a=3,4
+print(a)        # (3,4)
+print(type(a))  #<class 'tuple'>
 
 #assign the same value to multiple variables in one line
 x = y = z = "Orange"
@@ -246,6 +254,39 @@ txt = "The rain in Spain stays mainly in the plain"
 x = "ain" not in txt
 print(x) #False
 
+name ="dileep"
+name1 = name.capitalize()
+name2 = name.upper()
+count = len(name)
+#print(name.count())
+print(name.count('e')) #2
+print(name[0])
+print(name,name1,name2,count)       #dileep Dileep DILEEP 6
+print("\\\\\\di") #\\\di -> provide double the number of slashes
+
+text="Dileep is a gud boy"
+#print("Hi ..text")
+print(text.find('is'))  #7
+print(text.find('is',12)) #-1
+
+a=123
+print(id(a))    #2113108859056 memory location
+
+a=20
+b=20
+print(id(a),id(b)) #2840306019216 2840306019216
+c=true
+print(c) #error
+d=True
+print(d) #True
+
+
+#str. title() capitalises every word of a sentence, whereas str. capitalize() capitalises just the first word of the entire string
+str="i am a Good boy"
+print(str.title())      #I Am A Good Boy ->capitalizes all 1st alphabets of every word and non-capitalize all other alphabets
+print(str.capitalize())     #I am a good boy -> capitalize the first alphabet of first word and non-capitalize all other words
+str="hi i'am good"
+print(str.title()) #Hi I'Am Good -> alsocapitalize alphabet after a colon
 
 #The format() method takes the passed arguments, formats them, and places them in the string where the placeholders {} are
 #Use the format() method to insert numbers into strings

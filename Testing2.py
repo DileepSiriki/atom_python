@@ -21,6 +21,13 @@ print("dileep")
 x="io"
 print(f"{x.title()}")
 
+print("hi",2+3)
+
+print(2,"hi",5mi)
+
+l=[1,2,3]
+print(l[2.0])
+
 a,b="di","od"
 c=f"{a}{b}"
 print(f"hi {a=} hii {b!=}")
@@ -46,3 +53,38 @@ import datetime
 today=datetime.datetime.today()
 print(today)
 print(f"{today:%B  %d, %Y}")
+
+
+str='''dileep'''
+print(str)
+str1='str'
+print(str1)
+
+tup2=(1,2)
+x,y=tup2
+print(x,y)
+
+b=true
+print(b)
+print("\\\\\\di")
+a='d'
+b='g'
+c=a+b
+print(c,type(c),type(b))
+
+print("name".isalnum())
+
+p=3,4
+print(p)
+str1=str('str')
+print(str)
+
+k=['a','b','c']
+ del k[1]
+print(a)
+m=k.pop()
+print(m)
+
+
+2="gae"
+print(2)
