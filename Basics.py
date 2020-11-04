@@ -21,6 +21,7 @@
 '''
 PYTHON PRACTICE
 ---------------
+PEP-8 Standards for python styling and intendation. https://pep8.org/  -> write code , copy and check in site for errors.  http://pep8online.com/
 PY 2.X VS PY 3.X : https://sebastianraschka.com/Articles/2014_python_2_3_key_diff.html
 single line comments can be written using a '#'
 Multiple line comments can be doen using """ comment """
@@ -53,8 +54,12 @@ a=1
 b='name'
 c="is JOHN"
 print(a,b,c) #1 name is JOHN
-str='''dileep'''
-print(str)  #dILleep
+d='dhoni'
+e="dhoni"
+f='''dhoni'''
+g="""dhoni"""
+print(d,e,f,g)  #dhoni dhoni dhoni dhoni -> all are valid
+
 #print(abc) #Error
 #print(a+b+c) #unsupported operand type(s) for +: 'int' and 'str'
 print(b+c) #nameis JOHN
@@ -141,10 +146,20 @@ print("Python is " + x)
 NUMBERS :
 When you’re writing long numbers, you can group digits using underscores to make large numbers more readable
 A constant is like a variable whose value stays the same throughout the life of a program. Python doesn’t have built-in constant types, but Python programmers use all capital letters to indicate a variable should be treated as a constant and never be changed
+###ORDER OF ARITHEMATIC OPERATIONS
+PEMDAS which stands for Parentheses Exponents Multiplication Division Addition Subtraction.
+That’s the order Python follows as well. The mistake people make with PEMDAS is to think this is a strict order, as in “Do P, then E, then M, then D,
+then A, then S.” The actual order is you do the multiplication and division (M&D) in one step, from left to right, then you do the
+addition and subtraction in one step from left to right. So, you could rewrite PEMDAS as PE(M&D)(A&S)
 """
 x=14_12_000
 print(x)        #1412000
 CONSTANT_NUMBER=500 #capital letters to indicate a constant
+print(round(20.009))    #20
+print("."*10 ,"looks good!!")   #.......... looks good!!
+print(f"{'.'*10} looks good!!") #.......... looks good!!
+a='.'
+print(f"{a*10} looks pretty !!")    #.......... looks pretty !!
 
 """
 DATA TYPES :
@@ -268,6 +283,14 @@ text="Dileep is a gud boy"
 #print("Hi ..text")
 print(text.find('is'))  #7
 print(text.find('is',12)) #-1
+
+a='z'
+b='y'
+c='x'
+print(a+b,end="     ")  #
+print(c)                #zy     x ->an end specified will not by default do a new line so it took a tab here as specified .
+print(a+b+c)            #zyx
+print(a+b+c,end=";")    #zyx;
 
 a=123
 print(id(a))    #2113108859056 memory location
@@ -554,3 +577,13 @@ print (c) #After converting tuple to dictionary : {'a': 1, 'f': 2, 'g': 3}
 print('G','F','G', sep='') #GFG
 print('09','12','2016', sep='-') #09-12-2016
 print('pratik','geeksforgeeks', sep='@') #pratik@geeksforgeeks
+
+'''
+TAKING INPUT FROM USER :
+raw_input() is used in python 2.x while input is used in python 3.x
+'''
+print("how old are you ?",end=" ")
+age=input("Age=")
+print("what's your name ?>",end="   ")
+name=input()
+print(f"You'r name is {name} and you are {age} years old !!!")

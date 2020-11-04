@@ -38,11 +38,16 @@ motorcycles.append('karizma')
 print(motorcycles)          #['ducati', 'yamaha', 'suzuki', 'karizma']
 motorcycles.insert(1, 'pulsar') # To insert at a certain position
 print(motorcycles)          #['ducati', 'pulsar', 'yamaha', 'suzuki', 'karizma']
-del motorcycles[2]          #once del is used , you can not access the element again , so use pop() to access it again.
+del motorcycles[2]          #once del is used , you can not access the element again , so use pop() to access it .
 print(motorcycles)          #['ducati', 'pulsar', 'suzuki', 'karizma']
+
+list = [3, 5, 7, 8, 9, 20]
+del list[0:3]
+print(list)     #[9, 20]
 
 #The pop() method removes the last item in a list, but it lets you work with that item after removing it. The term pop comes from thinking of a list as a stack of items and popping one item off the top of the stack
 #Remember that each time you use pop(), the item you work with is no longer stored in the list.
+#pop() is also permanent but the value can be caught to a variable.
 motorcycles = ['honda', 'yamaha', 'suzuki']
 print(motorcycles)
 popped_motorcycle = motorcycles.pop()
@@ -61,6 +66,7 @@ languages.remove(difficult) #assigning to a variable and then removing using var
 print(languages)        #['english UK']
 
 #ORDERING A LIST
+#sorting can be done only between elements os similar type . can not be done between int and string combination
 cars = ['bmw', 'audi', 'toyota', 'subaru']
 cars.sort()
 print(cars) #['audi', 'bmw', 'subaru', 'toyota']
@@ -92,6 +98,103 @@ cars.reverse()
 print(cars)     #['subaru', 'toyota', 'audi', 'bmw']
 print(len(cars)) #4
 
+a="dileep"
+list=list(a)
+print(list)     #['d', 'i', 'l', 'e', 'e', 'p']
+a="dileep  is a      good boy"
+list=list(a)
+print(list)     #['d', 'i', 'l', 'e', 'e', 'p', ' ', ' ', 'i', 's', ' ', 'a', ' ', ' ', ' ', ' ', ' ', ' ', 'g', 'o', 'o', 'd', ' ', 'b', 'o', 'y']
+
+s=[100,200,230,45]
+print(min(s),max(s),sum(s))     #45 230 575
+
+s=['1','2','3','4','5']
+s[2:4]='e'
+print(s)    #['1', '2', 'e', '5']
+s=['1','2','3','4','5']
+s[2:4]=[8,9]
+print(s)    #['1', '2', 8, 9, '5']  # the values are iterated upon available count of evaluates.
+s=['1','2','3','4','5','6','7']
+s[2:5]=[8,9]
+print(s)    #['1', '2', 8, 9, '6', '7'] #other fields will be deleted
+s=['1','2','3','4','5','6','7']
+s[2:2]=[8,9]
+print(s)    #['1', '2', 8, 9, '3', '4', '5', '6', '7']
+s+=['a','b']
+print(s)    #['1', '2', 8, 9, '3', '4', '5', '6', '7', 'a', 'b']
+s+=89
+print(s)    #error because integers are not iterable . so you should provide [89] instead of 89
+
+a=['a','b']
+b=a.append(30)
+print(b)    #None -> 30 gets appended but it will not reflect to b . we have to explicitly copy
+print(a)
+b=a
+print(f"b is {b}")  #b is ['a', 'b', 30]
+
+a=['3','5','8','1']
+b=a.sort()
+print(a,b)  #['1', '3', '5', '8'] None
+a=['3','5','8','1']
+b=sorted(a)
+print(a,b) #['3', '5', '8', '1'] ['1', '3', '5', '8']
+
+players=list(78)
+print(players) #int object is not iterable
+players=list('dhoni')
+print(players)  #['d', 'h', 'o', 'n', 'i']
+
+list=[0,1,2,3,4,5,6,7,8,9,3,4,5]    #list with duplicates
+#Method-1 :
+list1=[]
+for i in list :
+    if(i not in list1):
+        list1.append(i)
+print(f"List before {list} , list after {list1}")   #List before [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 3, 4, 5] , list after [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+#Method-2 :
+ints_list = [1, 2, 3, 4, 3, 2]
+ints_list1 = list(set(ints_list))
+print(ints_list1)  # [1, 2, 3, 4]
+
+#Method-3 :
+ints_list = [1, 2, 3, 4, 3, 2]
+ints_list2 = list(dict.fromkeys(ints_list))
+print(ints_list2)  # [1, 2, 3, 4]
+
+#Method-4 :
+ints_list = [1, 2, 3, 4, 3, 2]
+for x in ints_list:
+    if ints_list.count(x) > 1:
+        ints_list.remove(x)
+print(ints_list)  # [1, 2, 3, 4]
+
+'''
+SLICING
+Always copy a list using slice . if we directly copy a duplicate is not created and just a refrence is created so an operation
+on one set will do the same opration on another set .
+'''
+players = ['charles', 'martina', 'michael', 'florence', 'eli']
+print(players[0:3])
+print(players[:])       #['charles', 'martina', 'michael', 'florence', 'eli']
+print(players[:-1])     #['charles', 'martina', 'michael', 'florence']
+print(players[-3:])     #['michael', 'florence', 'eli']
+
+set1=[1,2,3,4,5]
+set2=set1
+print(set1,set2)        #[1, 2, 3, 4, 5] [1, 2, 3, 4, 5]
+set1.append(6)
+set2.append(7)
+print(set1,set2)        #[1, 2, 3, 4, 5, 6, 7] [1, 2, 3, 4, 5, 6, 7]
+
+set1=[1,2,3,4,5]
+set2=set1[:]            # COPYING USING SLICING
+print(set1,set2)        #[1, 2, 3, 4, 5] [1, 2, 3, 4, 5]
+set1.append(6)
+set2.append(7)
+print(set1,set2)        #[1, 2, 3, 4, 5, 6] [1, 2, 3, 4, 5, 7]
+
+
 '''
 NAMING CONVENTION :
 for cat in cats:
@@ -114,3 +217,6 @@ print(numbers)    #[1, 2, 3, 4, 5]
 
 even_numbers = list(range(2, 11, 2))
 print(even_numbers)  #[2, 4, 6, 8, 10]
+
+squares=[value**2 for value in range(10)]
+print(squares)  #[0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
