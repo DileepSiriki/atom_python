@@ -152,6 +152,76 @@ s="fih"
 s[1]='k'
 print(s)
 
-s=['1','2','3','4','5']
+s1=[]
+s=['1','dhoni','3','4','5',[3,4,5],6]
+
+print(s[5)
+
+s1=s.copy()
+print(s1)
+s[len(s):]=[6]
+s.append([8])
+print(s)
+
+
+
+for i in s :
+    s1.append(i)
+print(s1)
+s.pop()
+print(s,s1)
+print(f"{s[1].title()}")
+
+
 s[2:4]='e'
 print(s)
+
+a,b,c,d,e=(1),('1'),[1],['1'],(1,)
+print(type(a),type(b),type(c),type(d),type(e))
+
+a=(1,2,3,4,5,6)
+del a[2]
+print(a)
+a[len(a):]='f'
+print(a)
+
+b=('a','b','c','d')
+c=(7,8,9,'e','f','g')
+
+a=[1,2]
+b=[3,4]
+c=a.copy()
+print(c)
+c.pop()
+print(a,c)
+
+a={1,2,1,3}
+print(a,type(a))
+a.update('e')
+#a[1]='e'
+print(a)
+
+
+num=[1,2,3,4,5,6,7]
+#even=odd=[]
+even=[]
+odd=[]
+for i in num :
+    if( i%2 == 0 ):
+        #print(f"the even numbers are : {i}")
+        even.append(i)
+    else :
+        #print(f"{i} is odd")
+        odd.append(i)
+print(f"{even , odd}" ,sep="\n" )
+
+a,b=1,2
+if a<5 and b>0 :
+    print("yayy")
+
+a={'a':100 , 'b':200}
+print(a['b'])
+
+alien_0={"x_pos":0,"y_pos":2,"speed":'medium'}
+print(f"current position  of alien_0 is :{alien_0['x_pos'],alien_0['y_pos']}")
+if alien_0["speed"] == "medium" : alien_0["x_pos"]+=1 ;print(alien_0)

@@ -1,7 +1,20 @@
 '''
+IF statement:
+'''
+
+a,b=1,2
+if a<5 and b>0 : print("yayy") # -> && should not be used anymore .
+if a==1 or b==1 : print("super") # -> || should not be used anymore
+if a in range(5) : print("cool")
+if b not in range(2) : print("not so cool")
+
+
+
+'''
 The elif keyword is pythons way of saying "if the previous conditions were not true, then try this condition".
 The else keyword catches anything which isn't caught by the preceding conditions.
 if statements cannot be empty, but if you for some reason have an if statement with no content, put in the pass statement to avoid getting an error.
+the else block can be omitted and is not mandatory
 '''
 a = 200
 b = 33

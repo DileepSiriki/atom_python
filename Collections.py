@@ -4,14 +4,21 @@ Sequence Types  :	list, tuple, range
 Mapping Type    :	dict
 Set Types       :	set, frozenset
 
--> List is a collection which is ordered and changeable. Allows duplicate members.
--> Tuple is a collection which is ordered and unchangeable. Allows duplicate members.
--> Set is a collection which is unordered and unindexed. No duplicate members.
+-> [] List is a collection which is indexed , ordered and changeable. Allows duplicate members. we can add and remove elements .
+-> () Tuple is a collection which is indexed , ordered and unchangeable. Allows duplicate members. We can not add or remove items directly from a tuple
+-> {} Set is a collection which is unindexed , unordered and unmutable (but can add elements). No duplicate members and you cannot be sure in which order the items will appear.
 -> Dictionary is a collection which is unordered, changeable and indexed. No duplicate members.
--> Lists and tuples are ordered and can contain duplicates .
--> Sets are unordered and cannot contain duplicates. you cannot be sure in which order the items will appear.
+
+                    ORDERING     INDEXING    MUTATION    DUPLICATES  REPRESENTATION
+LISTS                 yes           yes         yes         yes         []
+TUPLES                yes           yes         no          yes         ()
+SETS                  no            no          partial     no          {}
+DICTIOANRIES          no            yes(keys)   yes         no          {Key:value}
+
+
 
 '''
+
 
 '''
 LISTS:
@@ -164,8 +171,24 @@ cars.reverse()
 print(cars)     #['subaru', 'toyota', 'audi', 'bmw']
 print(len(cars)) #4
 
-players=list(78)
+'''
+Always use iterables with lists , you can change already defind index with a non iterable but not create one with a non iterable .
+so chose [7] instead of 7 .
+'''
+a=[1,2]
+a[0]=5
+print(a)    #[5,2]
+a[2]=10
+print(a)    #error
+
+a=[1,2]
+a[1]=list('dhoni')
+print(a)    #[1, ['d', 'h', 'o', 'n', 'i']]
+
+players=list(78,90)
 print(players) #int object is not iterable
+players=list([78,90])
+print(players)  #[78,90]
 a="dileep"
 list=list(a)
 print(list)     #['d', 'i', 'l', 'e', 'e', 'p']
@@ -257,6 +280,23 @@ set1.append(6)
 set2.append(7)
 print(set1,set2)        #[1, 2, 3, 4, 5, 6] [1, 2, 3, 4, 5, 7]
 
+s=['1','dhoni','3','4','5']
+s[len(s):]=[6]
+print(s)      #['1', 'dhoni', '3', '4', '5', 6]
+s.append([1,2,3])
+print(s)       #['1', 'dhoni', '3', '4', '5', 6, [1, 2, 3]]
+
+list.extend(iterable)
+Extend the list by appending all the items from the iterable. Equivalent to a[len(a):] = iterable.
+list.clear()
+Remove all items from the list. Equivalent to del a[:]
+list.index(x[, start[, end]])
+Return zero-based index in the list of the first item whose value is equal to x. Raises a ValueError if there is no such item.
+list.count(x)
+Return the number of times x appears in the list
+list.copy()
+Return a shallow copy of the list. Equivalent to a[:]
+
 '''
 NAMING CONVENTION :
 for cat in cats:
@@ -283,6 +323,9 @@ print(even_numbers)  #[2, 4, 6, 8, 10]
 squares=[value**2 for value in range(10)]
 print(squares)  #[0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
 
+a=[1,2]
+b=[3,4]
+c=a+b   a.extend(b)     #joining two lists
 
 
 '''
@@ -302,10 +345,15 @@ x = tuple(y)
 print(x) #('apple', 'kiwi', 'cherry')
 del thistuple[1]
 del thistuple #deletes the complete touple
+
+a,b,c,d,e=(1),('1'),[1],['1'],(1,)
+print(type(a),type(b),type(c),type(d),type(e))  #<class 'int'> <class 'str'> <class 'list'> <class 'list'> <class 'tuple'>
+
 thistuple = ("apple",)
 print(type(thistuple)) #<class 'tuple'>
 thistuple = ("apple")
 print(type(thistuple)) #<class 'str'>
+
 tuple1 = ("a", "b" , "c")
 tuple2 = (1, 2, 3)
 
@@ -327,7 +375,7 @@ you cannot be sure in which order the items will appear.
 You cannot access items in a set by referring to an index, since sets are unordered the items has no index.
 Once a set is created, you cannot change its items, but you can add new items.
 
-add()	                Adds an element to the set
+add()	                Adds an element to the set , to add only one item . to add more use update .
 clear()	              	Removes all the elements from the set
 copy	              	Returns a copy of the set
 difference()	        Returns a set containing the difference between two or more sets
@@ -342,7 +390,7 @@ pop()	                Removes an element from the set
 remove()	            Removes the specified element
 symmetric_difference()	Returns a set with the symmetric differences of two sets
 union()	                Return a set containing the union of sets
-update()	            Update the set with the union of this set and others
+update()	            Update the set with the union of this set and others , used to add more than one item
 symmetric_difference_update()	inserts the symmetric differences from this set and another
 
 '''
@@ -360,6 +408,9 @@ print(x) #orange
 print(thisset) #{'apple', 'cherry', 'mango', 'grapes'}
 thisset.clear()
 del thisset
+
+a={1,2,1,3}
+print(a,type(a))    #{1, 2, 3} <class 'set'>
 
 #Both union() and update() will exclude any duplicate items
 set1 = {"a", "b" , "c"}
@@ -383,6 +434,7 @@ DICTIONARIES :
 --------------
 A dictionary is a collection which is unordered, changeable and indexed.
 In Python dictionaries are written with curly brackets, and they have keys and values
+A key’s value can be a number, a string, a list, or even another dictionary. In fact, you can use any object that you can create in Python as a value in a dictionary
 '''
 thisdict = {
   "brand": "Ford",
@@ -400,6 +452,7 @@ thisdict.pop("model") #remove items
 thisdict.popitem() #removes the last inserted item (in versions before 3.7, a random item is removed instead)
 del thisdict["year"] #remove specific item
 thisdict.clear() #empties the dictionary
+del thisdict["brand"]
 del thisdict #delete dict completely
 
 thisdict = {
@@ -413,12 +466,39 @@ for x in thisdict.keys():
   print(x)   #prints only keys , one per each line
 for x in thisdict.values():
   print(x) #prints only values, one per each line
+favorite_languages = {
+ 'jen': 'python',
+ 'sarah': 'c',
+ 'edward': 'ruby',
+ 'phil': 'python',
+ }
+print("The following languages have been mentioned:")
+for language in favorite_languages.values(): #-> prints duplicates as well
+ print(language.title())
+for language in set(favorite_languages.values()):   #-> skips the duplicates
+ print(language.title())
+
 for x, y in thisdict.items():
   print(x, y) #prints both keys and values , one per each line
 thisdict = dict(brand="Ford", model="Mustang", year=1964)
 # note that keywords are not string literals
 # note the use of equals rather than colon for the assignment
 print(thisdict)
+
+a={9:1,2:2,6:3,4:8}
+for k in sorted(a.keys()): print(k) #2 4 6 9 (each in a new line)
+a={9:1,2:2,6:3,4:8,9:3}
+print(a)    #{9: 3, 2: 2, 6: 3, 4: 8} -> remove duplicates
+
+
+dic={'a':100,'b':200} ;  print(dic,dic['b'])
+dic['c']=300 ; print(dic)   #add value in a dict
+dic['a']=50 ; print(dic)    #change value of a dict
+
+#If there’s a chance the key you’re asking for might not exist, consider using the get() method instead of the square bracket notation.
+alien_0 = {'color': 'green', 'speed': 'slow'}
+point_value = alien_0.get('points', 'No point value assigned.')
+print(point_value)   #No point value assigned
 
 
 #NESTED DICTIONARIES:
@@ -440,3 +520,12 @@ myfamily = {
   "child2" : child2,
   "child3" : child3
 }
+
+#NESTING OF DICTS :
+
+alien_0 = {'color': 'green', 'points': 5}
+alien_1 = {'color': 'yellow', 'points': 10}
+alien_2 = {'color': 'red', 'points': 15}
+aliens = [alien_0, alien_1, alien_2]
+for alien in aliens:
+ print(alien)
