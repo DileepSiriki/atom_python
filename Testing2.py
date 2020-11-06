@@ -225,3 +225,32 @@ print(a['b'])
 alien_0={"x_pos":0,"y_pos":2,"speed":'medium'}
 print(f"current position  of alien_0 is :{alien_0['x_pos'],alien_0['y_pos']}")
 if alien_0["speed"] == "medium" : alien_0["x_pos"]+=1 ;print(alien_0)
+
+a,b,c=true,True,TRue
+print(type(a,b,c))
+
+def printing(name):
+    print(f"my name is {name}")
+printing('dileep')
+
+print(type(2))
+
+
+class person:
+    def __init__(self,name,age):
+        self.name=name
+        self.age=age
+    def sit(self):
+        print(f"I am {self.name} and i am {self.age} old !!")
+
+p1=person('dileep',27)
+p2=person('dhoni',40)
+print(p1.name)
+
+
+
+
+details=[{'no':1111,'pin':111,'bal':30000},{'no':2222,'pin':222,'bal':30000},{'no':3333,'pin':333,'bal':30000}]
+
+for detail in details :
+    print("welcome to SBI-ATM !!!")
