@@ -254,3 +254,28 @@ details=[{'no':1111,'pin':111,'bal':30000},{'no':2222,'pin':222,'bal':30000},{'n
 
 for detail in details :
     print("welcome to SBI-ATM !!!")
+
+
+import sys
+print(sys.path)
+for module in sys.modules:
+    print(module,sep="\n")
+print(sys.modules)
+
+from .Testing import pizza
+pizza(8,'a','b','c')
+
+import Testing
+Testing.pizza(8,'a','b')
+
+print('a'+'b')
+a='c'
+b='d'
+
+print(a*5,b)
+print(a,'bcd')
+
+a='dileep'
+a=a[0:2]+'m'+a[3:300] ; print(a)
+a[2]='k'
+print(a)

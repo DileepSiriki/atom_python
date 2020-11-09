@@ -2,25 +2,40 @@
 #GITHUB-TOKEN 4d4ff38b27cd2f780fb73e3dd16cf3380a81ac7e
 #GIST 94f56b62d8e4f8d1ddf82b3877ee8e12
 
-#always open atom from cmd prompt -> windows+r -> cmd -> atom
-#open the "Atom Package manager" from cmd line : type "apm"
-#https://flight-manual.atom.io/ -> atom manual guide
-#https://www.digitalocean.com/community/tutorials/ssh-essentials-working-with-ssh-servers-clients-and-keys#:~:text=SSH%20keys%20are%20a%20matching,and%20never%20exposed%20to%20anyone. --> ssh working
+'''
+ATOM SPECIFICATIONS:
+--------------------------
+Always open atom from cmd prompt -> windows+r -> cmd -> atom
+Open the "Atom Package manager" from cmd line : type "apm"
+https://flight-manual.atom.io/ -> atom manual guide
+https://www.digitalocean.com/community/tutorials/ssh-essentials-working-with-ssh-servers-clients-and-keys#:~:text=SSH%20keys%20are%20a%20matching,and%20never%20exposed%20to%20anyone. --> ssh working
 
-#installing atom for first time , then do below to execute scripts.
-#ctrl+shft+p -> type "view installed packages -> click install from left pane -> search for "SCRIPT" -> install SCRIPT "
-#use "apm install ####" command to install packages from cmd prompt -> https://hackernoon.com/setting-up-atom-as-a-python-ide-a-how-to-guide-o6dd37ff
-#Packages to install -> script , hydrogen , linter , linter-python (click on heading and do the below setting steps mentioned in chrome) , autocomplete python , atom file icons ,
-#select a piece of code and then press ctrl+shft+b to run  the script.
-#ctrl+, opens settings.
-#GITHUB and GIT settings at https://www.hongkiat.com/blog/manage-git-github-atom/
-#End of ATOM specifications .
+installing atom for first time , then do below to execute scripts.
+ctrl+shft+p -> type "view installed packages -> click install from left pane -> search for "SCRIPT" -> install SCRIPT "
+use "apm install ####" command to install packages from cmd prompt -> https://hackernoon.com/setting-up-atom-as-a-python-ide-a-how-to-guide-o6dd37ff
+Packages to install -> script , hydrogen , linter , linter-python (click on heading and do the below setting steps mentioned in chrome) , autocomplete python , atom file icons ,
+select a piece of code and then press ctrl+shft+b to run  the script.
+ctrl+, opens settings.
+GITHUB and GIT settings at https://www.hongkiat.com/blog/manage-git-github-atom/
+'''
 
+'''
+SHEBANG #! :
+-----------------------
+The #! syntax used in scripts to indicate an interpreter for execution under UNIX / Linux operating systems.
+It is a file that specifies which program should be called to run the script
+Most Linux shell and perl / python script starts with the following line
+# char represents a comment but it is overridden by #! (! char after # to tell it as a shebang)
+It is nothing but the absolute path to the Bash interpreter.All scripts under Linux execute using the interpreter specified on a first line
+If you do not specify an interpreter line, the default is usually the /bin/sh. But, it is recommended that you set #!/bin/bash line.
+#!/usr/bin/env -> locates  out automatically the first shell to run the program found in the user's $PATH, typically /bin/sh.
+If you execute program as "python abc.py" shebang is not needed to be specified . But if you do as ./abc.py it is needed.
+'''
 
 #This is a single line comment .
 '''
-PYTHON PRACTICE
----------------
+PYTHON PRACTICE :
+----------------------------
 PEP-8 Standards for python styling and intendation. https://pep8.org/  -> write code , copy and check in site for errors.  http://pep8online.com/
 PY 2.X VS PY 3.X : https://sebastianraschka.com/Articles/2014_python_2_3_key_diff.html
 single line comments can be written using a '#'
@@ -45,6 +60,8 @@ A traceback is a record of where the interpreter ran into trouble when trying to
 Variables are containers for storing data values.
 A variable is created the moment you first assign a value to it.
 strings in Python are arrays of bytes representing unicode characters.
+Strings are IMMUTABLE . So you can not do " x='dileep' ; x[2]='d' "
+    So you can do a='dileep' ; a=a[0:2]+'m'+a[3:300] ; print(a) or create a new variable .
 However, Python does not have a character data type, a single character is simply a string with a length of 1.
 Square brackets can be used to access elements of the string
 Variable names can contain only letters, numbers, and underscores.They can start with a letter or an underscore, but not with a number.For instance, you can call a variable message_1 but not 1_message.
@@ -600,5 +617,3 @@ print(f"\nHello, {name}!")
 #Prompting for integers
 age=int(input(Your age please : ""))
 print(age)
-
-    
