@@ -60,6 +60,7 @@ A traceback is a record of where the interpreter ran into trouble when trying to
 Variables are containers for storing data values.
 A variable is created the moment you first assign a value to it.
 strings in Python are arrays of bytes representing unicode characters.
+Python does not have a character data type, a single character is simply a string with a length of 1 .
 Strings are IMMUTABLE . So you can not do " x='dileep' ; x[2]='d' "
     So you can do a='dileep' ; a=a[0:2]+'m'+a[3:300] ; print(a) or create a new variable .
 However, Python does not have a character data type, a single character is simply a string with a length of 1.

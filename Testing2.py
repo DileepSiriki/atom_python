@@ -11,6 +11,7 @@ print(dir(mc))
 
 
 mes="dil"
+print('mes''eep')
 print("mes")
 
 name="dILleep"
@@ -279,3 +280,20 @@ a='dileep'
 a=a[0:2]+'m'+a[3:300] ; print(a)
 a[2]='k'
 print(a)
+
+
+
+
+class dog:
+    breed="animal"
+    def __init__(self,name,age):
+        self.n=name
+        self.a=age
+
+obj1=dog('jan',19)
+print(obj1)
+print(obj1.n,obj1.a)
+
+a=11;print(type(a))
+b=str(11) ; print(type(b)) ; c=int(b);print(type(c))
+===9-========================================llllllllllllllllll
