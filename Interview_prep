@@ -14,3 +14,40 @@ Elevate courses pending
 ITA
 
 Extra leave apply
+===========================
+
+1. go tofreenom .com
+2. create a domain
+3. select one and click get now and then checkout (change to 12 months)
+4. open a new tab and open infinityfree.com
+5. create a login and then verify emain with gmail link 
+6. click create an account
+7. go to "use a custom domain " and enter  the domain we have created in freenom.com
+8. copy the name servers and goto freenom.com and click on use DNS and then use your own DNS 
+9. pate your name servers in name server check boxs.
+10. click continue in freenom and now login with gmail 
+11. verify with the gmaillink 
+12. enter details and then click on i have read instructions and then click checkout
+13. go to services,then my domain and then manage domain point cursor to management tools and then name servers and the enter all 5 name servers (just changing numbers from 1 to 5 )
+14. now refresh and then continue and then manage and then open cpanel (ontrol panel) .
+15. in cpanel search for softaculous , used to install wordpress
+16. now in wordpress give username and password (dileep, l*****,  admin@dileep.ga) nd continue
+
+Congratulations, the software was installed successfully
+
+WordPress has been successfully installed at :
+http://dileep.ga
+Administrative URL : http://dileep.ga/wp-admin/
+
+We hope the installation process was easy.
+
+17. go to http://dileep.ga/wp-admin/ to make chANGES 
+18. in wordpress dashboard , go toappearences and the themes . click install and then activate it. no install a plugin to customise , so goto plugins in dashboard and click add new 
+19. type astra in searchbar and click install/activate . now in installed plugins , click astra and then below "see libraries " and now click elememntor .
+20. now chose the site you need . and then clcick import site
+
+
+
+18.go to pagespeed insights tocheck connection (just checkng)
+
+
