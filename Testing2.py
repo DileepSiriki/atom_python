@@ -297,3 +297,47 @@ print(obj1.n,obj1.a)
 a=11;print(type(a))
 b=str(11) ; print(type(b)) ; c=int(b);print(type(c))
 ===9-========================================llllllllllllllllll
+
+
+s="dileep"
+print(s[::-1])
+
+k=len(s)
+for c in s :
+    print(s[k-1],end="")
+    k=k-1
+print('\n')
+
+k=list(s)
+print(''.join(reversed(k)))
+
+#fact(5)=5*4*3*2*1
+sum=0
+def factorial(x):
+    while(x >= 2):
+        print(f"computing fact of {x}")
+        sum=sum+(x*factorial(x-1))
+        print(sum)
+
+factorial(5)
+
+
+def fact(x):
+    if(x==1) :
+        return x
+    else :
+        return x * fact(x-1)
+k=fact(5)
+print(k)
+
+
+from datetime import datetime
+now=datetime.now();print(now)
+print(now.strftime("%m-%y %H%S"))
+
+import datetime
+import time
+while True:
+    a=datetime.datetime.now()
+    print(a.strftime("%H-%M-%S"))
+    time.sleep(1)

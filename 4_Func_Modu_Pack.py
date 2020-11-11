@@ -1,4 +1,7 @@
 '''
+FUNCTIONS are 2 types :
+    1. Normal using def keyword
+    2. Anonymous using lambda keyword (functions that do not have a name)
 In Python a function is defined using the def keyword
 A parameter is the variable listed inside the parentheses in the function definition. parameter, It is a piece of information the function needs to do its job
 An argument is the value that are sent to the function when it is called. So it is a is a piece of information that’s passed from a function call to a function
@@ -147,8 +150,14 @@ def myfunction():
 A lambda function is a small anonymous function.
 A lambda function can take any number of arguments, but can only have one expression.
 Use lambda functions when an anonymous function is required for a short period of time.
-lambda arguments : expression
+Lambda functions are used along with built-in functions like filter(), map() etc
+SYNTAX :    lambda arguments : expression
 '''
+print(lambda a : a) #<function <lambda> at 0x000002999977CF70>
+
+x = lambda a : a
+print(x('dileep'))  #dileep
+
 #A lambda function that adds 10 to the number passed in as an argument, and print the result:
 x = lambda a : a + 10
 print(x(5))
@@ -156,6 +165,22 @@ x = lambda a, b : a * b
 print(x(5, 6))
 x = lambda a, b, c : a + b + c
 print(x(5, 6, 2))
+
+'''
+The filter() function in Python takes in a function and a list as arguments. The function is called with all the items in the list .
+A new list is returned which contains items for which the function evaluates to True
+'''
+my_list=[1,2,3,4,5,6,7]
+new_list = list(filter(lambda x: (x%2 == 0) , my_list))
+print(new_list)     #[2, 4, 6]
+
+'''
+The map() function in Python takes in a function and a list. The function is called with all the items in the list
+A new list is returned which contains items returned by that function for each item.
+'''
+my_list = [1, 5, 4, 6, 8, 11, 3, 12]
+new_list = list(map(lambda x: x * 2 , my_list))
+print(new_list)     #[2, 10, 8, 12, 16, 22, 6, 24]
 
 '''
 A module is a file ending in .py that contains the code you want to import into your program .

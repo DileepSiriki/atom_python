@@ -43,6 +43,7 @@ Multiple line comments can be doen using """ comment """
 Since Python will ignore string literals that are not assigned to a variable, you can add a multiline string (triple quotes) in your code, and place your comment inside it
 As long as the string is not assigned to a variable, Python will read the code, but then ignore it,and you have made a multiline comment.
 Python is an object oriented programming language.
+Never use keywords to define variables or colletions e.g : str,list,dict,int etc ; -> this gives error "list object is not callable "
 '''
 #Below all statements are same . print can have "" or '' .
 print("Dileep")
