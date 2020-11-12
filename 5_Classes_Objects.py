@@ -6,6 +6,12 @@ When you write a class, you define the general  behavior that a whole category o
 ATTRIBUTES :
 Attributes are the variables that belong to class.
 Attributes are always public and can be accessed using dot (.) operator. Eg.: Myclass.Myattribute
+    1. __doc__       #Class documentation string
+    2. __dict__      #Dictionary containing class  namespace
+    3. __name__      #Class name
+    4. __module__    #Module in which class is defined
+    5. __main__      #
+    6. __base__      #All base classes 
 
 OBJECTS :
 Almost everything in Python is an object, with its properties and methods.
@@ -123,6 +129,21 @@ del p1           #Delete an object
 #p1.myfunc()     # name 'p1' is not defined
 
 '''
+DEFAULT VALUES FOR ATTRIBUTES :
+When an instance is created, attributes can be defined without being passed in as parameters.
+These attributes can be defined in the __init__() method, where they are assigned a default value
+class Car:
+
+ def __init__(self, make):
+ """Initialize attributes to describe a car."""
+    self.make = make
+    self.odometer_reading = 0
+
+mODIFYING ATTRIBUTE VALUES :
+You can change an attribute’s value in three ways:
+you can change the value directly through an instance, set the value through a method, or increment the value
+
+=================================
 WRONG USE :
 class Dog:
 
@@ -161,6 +182,7 @@ class Dog:
 ['play dead']
 
 '''
+
 
 '''
 INHERITANCE :

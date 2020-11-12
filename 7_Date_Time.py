@@ -64,7 +64,7 @@ while True:
   print("\r", end="", flush=True)
   time.sleep(1)
 
-    
+
 '''
 FORMATTING DATETIME :
 The way date and time is represented may be different in different places, organizations etc.
@@ -82,3 +82,40 @@ now = datetime.now()    # current date and time
 t = now.strftime("%H:%M:%S") ; print("time:", t)
 s1 = now.strftime("%m/%d/%Y, %H:%M:%S") ; print("s1:", s1)
 s2 = now.strftime("%d/%m/%Y, %H:%M:%S") ; print("s2:", s2)
+x
+
+'''
+FLUSHING :
+https://www.geeksforgeeks.org/python-sys-stdout-flush/
+Not working properly in Atom . execute below codes one by one .
+'''
+import sys
+import time
+
+for i in range(10):
+    print(i)
+    time.sleep(1)
+
+
+import sys
+import time
+
+for i in range(10):
+    print(i,end=' ')
+    time.sleep(1)
+
+
+import sys
+import time
+
+for i in range(10):
+    print(i, end =' ')
+    sys.stdout.flush()
+    time.sleep(1)
+
+import sys
+import time
+
+for i in range(10):
+    print(i, end =' ', flush = True)
+    time.sleep(1)

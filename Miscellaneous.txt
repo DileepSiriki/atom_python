@@ -1,0 +1,133 @@
+
+
+HIGH LEVEL vs LOW LEVEL LANGUAGES :
+#########################################################
+1. The main difference is that, Programmers can easily understand or interpret or compile the high level language in comparison of machine.
+2. On the other hand, Machine can easily understand the low level language in comparison of human beings.
+3. Examples of high level languages are C, C++, Java, Python & M/C langugage is in form of 0's and 1's .
+4. High is programmer friendly , memory efficient , easy to understand and debug , portable and can run on any platform
+5. Low is machine friendly , memory inefficient , tough to understand and debug , not portable and machine dependent .
+6. TRANSLATORS are used to convert high to low level . They are COMPILERS & INTERPRETORS .
+
+
+                  ============================                               ============================
+                  ||      HIGH - LEVEL      ||  --> [# TRANSLATORS #] -->   ||      LOW - LEVEL        ||
+                  ============================             |                 ============================
+                          (Programmer)                     |                       (Machine)
+                          SOURCE CODE                      V                      MACHINE CODE
+                                                           V
+---------------------------------------------------------------------------------------------------------------------------------
+|                                                                                                                               |
+|           1                     2                  3                4                5              6              7          |
+|       ==========          =============         ========         =========         ======         =====          ======       |
+|     | SOURCE CODE | ==> | PRE-PROCESSOR | ==> | COMPILER | ==> | ASSEMBLER | ==> | LINKER | ==> | LOADER | ==> | MEMORY |     |
+|       ==========          =============         ========         =========         ======         ======         ======       |
+|                                                                                                                               |
+---------------------------------------------------------------------------------------------------------------------------------
+
+  1. SOURCE CODE :  --> IN HHIGH LEVEL LANGUAGE
+    It a text listing of commands to be compiled or assembled into an executable computer program.
+    In computing, source code is any collection of code, with or without comments, written using a human-readable programming language. It is  usually as plain text.
+    The source code of a program is specially designed to facilitate the work of computer programmers, who specify the actions to be performed by a computer mostly by writing source code.
+
+  2. PRE-PROCESSOR :
+    It is a program that processes its input data to produce output that is used as input to another program.  It is a part of a compiler.
+    The output is said to be a preprocessed form of the input data, which is often used by some subsequent programs like compilers.
+    Some preprocessors are only capable of performing relatively simple textual substitutions and macro expansions, while others have the power of full-fledged programming languages
+    The most common use of the word preprocessor nowadays is the C preprocessor. It is the layer that understand these strange commands beginning by # in C language: #define, #include, etc;
+    They expand any macros (#define #incldue in c) or (def , class in python) wherever possible .
+
+  3. COMPILERS & INTERPRETORS :
+     These are TRANSLATORS used to convert high level language to low level language .
+
+                    COMPILER                                        ||                  INTERPRETORS
+    -------------------------------------------------------------------------------------------------------------------------------------
+      1. Translates entire program at a time.                       ||   1. Translates one statement at a time.
+      2. Doesn't stop execution even after multiple errors.         ||   2. Stops execution after encountering even a single error.
+      3. Time to analyze source is high but overall time is low.    ||   3. Time to analyze source is low but overall time is high.
+      4. Debugging is tough as all errors are shown at once.        ||   4. Debugging is easy since execution is stopped at the first instance of error.
+      5. Converts to object or binary code first b4 execution       ||   5. Executes instructions directly .
+      6. Source_code -> COMPILERS ->  M/C code -> Output            ||   6. Source_code -> INTERPRETORS -> Output
+      7. We can run the code again and again once compiled          ||   7. Code should be interpreted again for a different inputs from beginning .
+      8. Memory inefficient due to intermediate .exe files          ||   8. Memory efficient as there is no intermediate code.
+                E.x ::   C , c++                                                       E.x :: Python , Ruby , Perl, PHP
+
+      CODE REUSABILITY :
+      ------------------
+         A -> [{code} -> {001 101}] to B ->[{001 101}]                       A -> [{code} -> {001 101}] to B -> [{code} -> {001 101}]
+                                    to C ->[{001 101}]                                                  to C -> [{code} -> {001 101}]
+                                    to D ->[{001 101}]                                                  to D -> [{code} -> {001 101}]
+
+         ## A compiled code generates an .exe  executable file that can be sent to any number of people  and they can run it without
+            compiling again . while an interpreted code needs to be sent as it is and the other user has to interpret it again .
+            So to change the working of code we need source code for compilers but not in case of interpreters as the source code is always there with everyone.
+         ## CROSS COMPILERS are those that run on a platform and can be able to produce M/C or executable code for other platforms .
+         ## JAVA is first compiled and then interpreted . It is compiled to object code or java byte code s at runtime and JVM interprets object code into
+            M/c code. Java code is written in .java files (also known as source file), which is compiled by javac , a Java compiler into class files.
+            What javac (Java compiler, which comes along JDK) does is pseudo compilation, it doesn't convert Java source code into native code, which can directly be executed by CPU, real compilation into native code is done by another program called Just in Time compiler, also known as JIT.
+            This is actually an optimization done on JVM by Java platform engineers.
+            https://javarevisited.blogspot.com/2014/06/is-java-interpreted-or-compiled-programming-language.html#axzz6daTCrZuO
+        ## Both compilers and interpreters convert source code (text files) into tokens, both may generate a parse tree, and both may generate immediate instructions.
+            The basic difference is that a compiler system, including a (built in or separate) linker, generates a stand alone machine code program, while an interpreter system instead performs the actions described by the high level program.
+
+
+            COMPILER's source code is HIGH LEVEL language and is converted to M/C code ( Print("abc") to [001 100] )
+            ASSEMBLER's source code is ASSEMBLY language and is converted to M/C code (MOV AL, 1h  to [001 100])
+            Assemblers are replaced by compilers/interpreters as assembly language is not used much now a days .
+
+            Load a value into register 8, taken from the memory cell 68 cells after the location listed in register 3:
+              [  op  |  rs |  rt | address/immediate]
+                 35     3     8           68           decimal
+               100011 00011 01000 00000 00001 000100   binary
+
+           Jumping to the address 1024:
+              [  op  |        target address        ]
+                  2                 1024               decimal
+               000010 00000 00000 00000 10000 000000   binary
+
+
+4. ASSEMBLER :
+   Assembly code is converted into executable machine code by a utility program referred to as an assembler.
+   It is any low-level programming language in which there is a very strong correspondence between the instructions in the language and the architecture's machine code instructions.
+   Because assembly depends on the machine code instructions, every assembly language is designed for exactly one specific computer architecture.
+   Assembly language may also be called symbolic machine code
+   An assembler program creates object code by translating combinations of mnemonics and syntax for operations and addressing modes into their numerical equivalents.
+   This representation typically includes an operation code ("opcode") as well as other control bits and data.
+   The assembler also calculates constant expressions and resolves symbolic names for memory locations and other entities
+
+                  MOV AL, 1h        ; Load AL with immediate value 1
+                  MOV CL, 2h        ; Load CL with immediate value 2
+                  MOV DL, 3h        ; Load DL with immediate value 3
+                  MOV EAX, [EBX]	  ; Move the 4 bytes in memory at the address contained in EBX into EAX
+                  MOV [ESI+EAX], CL ; Move the contents of CL into the byte at address ESI+EAX
+                  MOV DS, DX        ; Move the contents of DX into segment register DS
+ The above is an assembly language and is converted to M/C language by assembler .
+
+5. LINKER :
+   It is a computer system program that takes one or more object files (generated by a compiler or an assembler) and combines them into a single executable file, library file, or another "object" file.
+   Computer programs typically are composed of several parts or modules; these parts/modules need not all be contained within a single object file, and in such cases refer to each other by means of symbols as addresses into other modules, which are mapped into memory addresses when linked for execution.
+   Typically, an object file can contain three kinds of symbols:
+
+        1.   defined "external" symbols, sometimes called "public" or "entry" symbols, which allow it to be called by other modules,
+        2.   undefined "external" symbols, which reference other modules where these symbols are defined, and
+        3.   local symbols, used internally within the object file to facilitate relocation.
+
+                      [ library     -1 ]   \               /    [ library     -2 ]
+                      [ Object file -1 ]    -   [LINKER]  -     [ Object file -2 ]
+                      [ dll file       ]   /               \    [.exe file       ]
+
+         ->  Object files and static libraries are assembled into a new library or executable .
+
+6. LOADER :
+    loader is the part of an operating system that is responsible for loading programs and libraries.
+    It is one of the essential stages in the process of starting a program, as it places programs into memory and prepares them for execution.
+    Once loading is complete, the operating system starts the program by passing control to the loaded program code.
+    In order to load the operating system itself, as part of booting, a specialized boot loader is used. In many operating systems
+
+
+
+COMPILE TIME vs RUN TIME :
+========================================
+
+PROGRAMMING vs SCRIPTING vs MARKUP LANGUAGES :
+========================================
