@@ -85,6 +85,12 @@ HIGH LEVEL vs LOW LEVEL LANGUAGES :
                   2                 1024               decimal
                000010 00000 00000 00000 10000 000000   binary
 
+Source_code -> [[lexical-analyzer] -> [syntax-analyzer] -> [symantci-analyzer]] -> intermediate-code-generation -> Target-code .
+                -------------------------------------------------------------
+                                        |
+                                        V
+                                    COMPILER (generates syntax errors and symantic erros )
+
 
 4. ASSEMBLER :
    Assembly code is converted into executable machine code by a utility program referred to as an assembler.
@@ -117,6 +123,7 @@ HIGH LEVEL vs LOW LEVEL LANGUAGES :
                       [ dll file       ]   /               \    [.exe file       ]
 
          ->  Object files and static libraries are assembled into a new library or executable .
+         ->  Dynamic Link Library (DLL) is Microsoft's implementation of the shared library concept. A DLL file contains code and data that can be used by multiple programs at the same time, hence it promotes code reuse and modularization.
 
 6. LOADER :
     loader is the part of an operating system that is responsible for loading programs and libraries.
@@ -128,6 +135,49 @@ HIGH LEVEL vs LOW LEVEL LANGUAGES :
 
 COMPILE TIME vs RUN TIME :
 ========================================
+Compile time and runtime are two distinctly different times during the active life of a computer program.
+Compile-time is the time at which the source code is converted into an executable code.
+Run time is the time at which the executable code is started running. (on either a physical or virtual computer)
 
-PROGRAMMING vs SCRIPTING vs MARKUP LANGUAGES :
-========================================
+Compile-time errors are the errors that occurred when we write the wrong syntax . When all the errors are removed from the program, then the compiler will generate the executable file.
+        1. SYNTAX ERRORS -> int a,b: instead of int a,b
+        2. SEMANTIC ERRORS ->  a+b=c instead of c=a+b
+The runtime errors are the errors that occur during the execution and after compilation. These errors are not easy to detect as the compiler does not point to these errors.
+        1. DIVISION BY ZERO ERRORS  -> int a = b/0
+
+
+PROGRAMMING vs SCRIPTING vs MARKUP LANGUAGES :  (All scripting languages are programming languages)
+==================================================
+programming languages use a compiler to convert the high-level programming languages into machine language,
+on the other hand, scripting languages use an interpreter. to convert the high-level programming languages into machine language,
+Programming languages are designed to facilitate a full-fledged code and software development whereas scripting languages are specifically designed to make coding faster and much simpler.
+Coding with programming languages is relatively difficult as many lines of code are required for a single function. Creating a code function with a scripting language is easier as it requires only a few short and specific lines to be written.
+Programming languages are divided into five subcategories: First generation, Second generation, Third generation, Fourth generation, and Fifth generation. Scripting languages have only two subcategories: Server-side scripting languages and client-side scripting language
+
+  Another point to be noted is that while classifying a language as scripting language or programming language, the environment on which it would execute :
+    1. we can design an interpreter for C language and use it as a scripting language,
+    2. we can design a compiler for JavaScript and use it as a non-scripting(compiled language).
+    3. A live example of this is V8, the JavaScript engine of Google Chrome, which compiles the JavaScript code into machine code, rather than interpreting it.
+
+  Applications of Scripting Languages :
+    1. To automate certain tasks in a program
+    2. Extracting information from a data set
+    3. Less code intensive as compared to traditional programming languages
+
+  Applications of Programming Languages :
+    1. They typically run inside a parent program like scripts
+    2. More compatible while integrating code with mathematical models
+    3. Languages like JAVA can be compiled and then used on any platform
+
+    PROG  : C, C++, C#, Java, Basic, COBOL, and Pascal,
+    SCRIP : JavaScript, Perl, PHP, Python, Ruby, Rexx, Ruby, GameMonkey
+    MARK  : HTML , XML
+
+  A markup language is a computer language that uses tags to define elements within a document.
+  It is human-readable, meaning markup files contain standard words, rather than typical programming syntax.
+  HTML is a markup language used for creating webpages. The contents of each webpage are defined by HTML tags.
+  Basic page tags, such as <head>, <body>, and <div> define sections of the page, while tags such as <table>, <form>, <image>, and <a> define elements within the page
+  XML is used for storing structured data, rather than formatting information on a page. While HTML documents use predefined tags (like the examples above), XML files use custom tags to define elements.
+
+COMMUNICATION PROTOCOLS : (TCP/IP , UDP etc; )
+=================================================

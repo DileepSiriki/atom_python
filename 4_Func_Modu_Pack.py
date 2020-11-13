@@ -6,6 +6,7 @@ In Python a function is defined using the def keyword
 A parameter is the variable listed inside the parentheses in the function definition. parameter, It is a piece of information the function needs to do its job
 An argument is the value that are sent to the function when it is called. So it is a is a piece of information that’s passed from a function call to a function
 DOCSTRING  describes what the function does. Docstrings are enclosed in triple quotes, which Python looks for when it generates documentation for the functions in your programs
+The docstrings can be accessed using the __doc__ method of the object or using the help function
 
 Special Symbols Used for passing arguments:-
 1.)*args (Non-Keyword Arguments)
@@ -24,6 +25,7 @@ def my_function():
   """ Basic function calling . This is called a DOCSTRING""" #-> DOCSTRING
   print("Hello from a function")
 my_function()
+print("USING THE DOC STRING :",my_function.__doc__)
 
 
 '''

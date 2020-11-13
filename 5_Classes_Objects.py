@@ -3,15 +3,43 @@ Python is an object oriented programming language.
 In object-oriented programming you write classes that represent real-world things and situations, and you create objects based on these classes.
 When you write a class, you define the general  behavior that a whole category of objects can have.
 
-ATTRIBUTES :
+ATTRIBUTES : https://www.tutorialspoint.com/What-does-built-in-class-attribute-dict-do-in-Python
 Attributes are the variables that belong to class.
 Attributes are always public and can be accessed using dot (.) operator. Eg.: Myclass.Myattribute
-    1. __doc__       #Class documentation string
+    1. __doc__       #Class documentation string    https://www.geeksforgeeks.org/python-docstrings/
+
+    def my_function():
+      """ Basic function calling . This is called a DOCSTRING""" #-> DOCSTRING
+      print("Hello from a function")
+    my_function()
+    print("USING THE DOC STRING :",my_function.__doc__)
+
     2. __dict__      #Dictionary containing class  namespace
     3. __name__      #Class name
     4. __module__    #Module in which class is defined
     5. __main__      #
-    6. __base__      #All base classes 
+    6. __base__      #All base classes
+
+PYTHON-2.x
+#!/usr/bin/python
+class Employee:
+   'Common base class for all employees'
+   empCount = 0
+   def __init__(self, name, salary):
+      self.name = name
+      self.salary = salary
+      Employee.empCount += 1
+   def displayCount(self):
+      print "Total Employee %d" % Employee.empCount
+   def displayEmployee(self):
+      print "Name : ", self.name, ", Salary: ", self.salary
+print "Employee.__doc__:", Employee.__doc__
+print "Employee.__name__:", Employee.__name__
+print "Employee.__module__:", Employee.__module__
+print "Employee.__bases__:", Employee.__bases__
+print "Employee.__dict__:", Employee.__dict__
+
+
 
 OBJECTS :
 Almost everything in Python is an object, with its properties and methods.
@@ -182,6 +210,21 @@ class Dog:
 ['play dead']
 
 '''
+
+'''
+ROLE OF UNDERSCORES IN PYTHON : Go thorugh the below site carefully .
+https://www.datacamp.com/community/tutorials/role-underscore-python
+Below examples are not working in atom
+'''
+# Python automatically stores the value of the last expression in the interpreter to a particular variable called "_." You can also assign these value to another variable if you want
+print(5+4)
+print(_)
+a=_ ; print(a)
+
+#Underscore(_) is also used to ignore the values. If you don't want to use specific values while unpacking, just assign that value to underscore(_).
+
+
+
 
 
 '''
