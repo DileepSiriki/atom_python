@@ -1,0 +1,77 @@
+
+KERNAL :
+
+Kernel is hart of Linux O/S. It manages resource of Linux O/S. Resources means facilities available in Linux.
+For eg. Facility to store data, print data on printer, memory, file management etc . Kernel decides who will use this resource, for how long and when. 
+It runs your programs (or set up to execute binary files) It's Memory resident portion of Linux. It performance following task :-
+● I/O management
+● Process management
+● Device management
+● File management
+● Memory management
+
+SHELL : ( a macro processor that executes commands)
+
+In computing, a shell is a computer program which exposes an operating system's services to a human user or other program .
+In general, operating system shells use either a command-line interface (CLI) or graphical user interface (GUI), depending on a computer's role and particular operation
+It is named a shell because it is the outermost layer around the operating system.
+A command-line interface (CLI) is an operating system shell that uses alphanumeric characters typed on a keyboard to provide instructions and data to the operating system.
+Including various services to their users, including file management, process management (running and terminating applications), batch processing, and operating system monitoring and configuration.
+MICROSOFT WINDOWS -> Windows Shell and Power shell
+LINUX/UNIX  -> Bourne again Shell (bash) , unix shell , Bourne shell (sh)
+
+
+UNINX SHELL : 
+
+A Unix shell is a command-line interpreter or shell that provides a command line user interface for Unix-like operating systems. The shell is both an interactive command language and a scripting language, and is used by the operating system to control the execution of the system using shell scripts.[
+A Unix shell is both a command interpreter and a programming language. 
+As a command interpreter, the shell provides the user interface to the rich set of gnu utilities. The programming language features allow these utilities to be combined
+Unix shells provide filename wildcarding, piping, here documents, command substitution, variables and control structures for condition-testing and iteration.
+
+Computer understand the language of 0's and 1's called binary language,
+In early days of computing, instruction are provided using binary language, which is difficult for all of us, to read and write. 
+So in O/s there is special program called Shell. Shell accepts your instruction or commands in English and translate it into computers native binary language.
+
+  command/shell_script -> Linux shell -> Binary equalent of command -> KERNAL 
+  $ls ; $date -> BASH -> 10001101 -> LINUX KERNAL 
+  
+  OS = KERNAL + SHELL [KERNAL handles everything and shell helps us interact with it .]
+  
+
+SHELL SCRIPTING :	(called BATCH files in MS-DOS)
+
+A shell script is a computer program designed to be run by the Unix shell, a command-line interpreter
+The biggest advantage of writing a shell script is that the commands and syntax are exactly the same as those directly entered at the command-line. The programmer does not have to switch to a totally different syntax, as they would if the script were written in a different language, or if a compiled language were used.
+Disadvantages -> rm -rf */ and rm -rf * / (deletes everything including root ) and also that commands vary by  a single wod -> cd cc df etc;
+
+======================================
+
+1. help :  a. command --help  -> help is a bash built-in, providing help for bash commands only. 
+           b. man command    -> A little less descriptive than info but straight to point .
+           c. info command   -> describe all about the command in detail. Its like lots and lots of pages of information will be there for a single command.
+                            
+2. more -> When the text passed to it is too large to fit on one screen, it pages it. You can scroll down but not up.
+           press enter or spacebar to navigate and q to exit.
+           more /path/to/logile.txt
+           more -10 /path/.. to set numberof lines a page should contain
+           more +10 /path/... to start from a specific line (here 10)
+           cat /path/to/logfilr.txt | more
+           ls --help | more
+           
+3. less -> you can scroll both up and down .
+          less /path/... -> now enter /<string> to highlight the string needed.
+          less -N -> display line numbers (not available in more )
+          The main difference between more and less is that less command is faster because it does not load the entire file at once and allows navigation though file using page up/down keys
+
+4. cat  -> textfile.txt 
+           cat > textfile.txt -> opens a file to write content . press ctrl+D to save and exit 
+                              -> if you do it to an already existing file , prevous contents will be deleted .
+           cat textfile.txt -> opens a file 
+           
+5. echo  ->  echo <string> -> display string on screen
+             echo $var -> display value of variable if any
+             echo <text> > textfile ->remove old contents in textfile and write <text> to it .
+             echo <text> >> textfile -> append <text> to the textfile .
+             echo * is is similar to ls command 
+             
+
