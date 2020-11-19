@@ -74,4 +74,173 @@ Disadvantages -> rm -rf */ and rm -rf * / (deletes everything including root ) a
              echo <text> >> textfile -> append <text> to the textfile .
              echo * is is similar to ls command 
              
+INODE :  https://helpdeskgeek.com/linux-tips/what-are-inodes-in-linux-and-how-are-they-used/
+An inode is a data structure that stores various information about a file in Linux, such as the access mode (read, write, execute permissions), ownership, file type, file size, group, number of links, etc. Each inode is identified by an integer number. An inode is assigned to a file when it is created .
+
+6. ls ->    List files with colour schemes (blue to folders , black to files etc;)
+            ls -R -> Recursive list , to list files even inside a directory .
+            ls -a || la --all -> list files starting with a "."
+            ls -l -> use vertical listing
+            ls -i -> show the inodes 
+            ls -s -> print size allocated
+            ls -S -> sort by size and print
+            ls by default sorts by name , do "ls --sort=word -opt"
+            ls -l | sort and ls -l | sort -r to sort in reverse 
+                        
+            ls -al -> detailed list of files and permissions , storage etc;
+            drwxr-xr-x                      7               esrkdlp           rnd             4096         Jun 11  2019       workspace
+            [filetype-permissions] - [# od hardlinks] - [Owner-Creator] - [Owber-group] - [Size in bytes] - [Date-Time] - [Name of file/dir]
+            " - " -> file
+            " d " -> directory
+  
+ 
+7. cd -> Chnage to a directory
+
+8. pwd -> Present working directory
+
+9. mkdir -> Make a directory
+            mkdir abc     -> create a dir in current directory
+            mkdir /test/abc     -> create a directory in /test directory 
+            mkdir dir1 dir2 dir3 -> create multiple directories at a time 
+            rmdir abc     -> removes a directory
+            
+
+10. cp -> cp stands for copy. This command is used to copy files or group of files or directory. It creates an exact image of a file on a disk with different file             name. copies each source file to the destination directory with the same name, created if not existed but if already existed then it will be overwritten,           so be careful !!.
+          cp Src_file Dest_file
+          cp Src_file1 Src_file2 Src_file3 Dest_directory  
+              (For this case last argument must be a directory name. For the above command to work, Dest_directory must exist because cp command won’t create it.)
+          cp -R Src_directory Dest_directory
+              (cp behavior depend upon whether Dest_directory is exist or not.
+              If the Dest_directory doesn’t exist, cp creates it and copies content of Src_directory recursively as it is. 
+              But if Dest_directory exists then copy of Src_directory becomes sub-directory under Dest_directory)
+          cp -i -> interactive (asks confirmation)
+          cp -f -> forcbly copy
+          cp -b -> create a backup of destination  before copying 
+          cp -n -> To not overwrite an existing filr 
+          
+          IF [-i -n -f] ALL THREE ARGUMENTS ARE PRESENT , THE FINAL OPTIONS TAKES PRESIDENCE.
+          
+11. mv -> mv stands for move. mv is used to move one or more files or directories from one place to another in file system like UNIX. It has two distinct functions:
+          - It rename a file or folder/directory .
+          - It moves group of files to different directory.
+          If the destination file doesn’t exist, it will be created. 
+          If the destination file exist, then it will be overwrite and the source file will be deleted. By default, mv doesn’t prompt for overwriting So be careful 
+          SIMILAR OPTIONS TO cp COMMAND.
+          
+12. ln ->
+        HARD/SOFT links : https://ostechnix.com/explaining-soft-link-and-hard-link-in-linux-with-examples/
+        A symbolic or soft link is an actual link to the original file, whereas a hard link is a mirror copy of the original file. If you delete the original file,         the soft link has no value, because it points to a non-existent file. But in the case of hard link, it is entirely opposite. Even if you delete the original         file, the hard link will still has the data of the original file. Because hard link acts as a mirror copy of the original file. A link in UNIX is a pointer         to a file. Creating links is a kind of shortcuts to access a file. Links allow more than one file name to refer to the same file, elsewhere.
+        
+        There are two types of links  :
+         1. Soft Link or Symbolic links -> Symbolic links are not updated (they merely contain a string which is the pathname of its target)
+                $ ln  [original filename] [link name] 
+                  can cross the file system,
+                  allows you to link between directories,
+                  has different inode number and file permissions than original file,
+                  permissions will not be updated,
+                  has only the path of the original file, not the contents.
+                
+         2. Hard Links -> hard links always refer to the source, even if moved or removed
+                $ ln  -s [original filename] [link name]
+                  can't cross the file system boundaries (i.e. A hardlink can only work on the same filesystem),
+                  can't link directories,
+                  has the same inode number and permissions of original file,
+                  permissions will be updated if we change the permissions of source file,
+     
+        esekilxv8818 [15:15] [/home/esrkdlp] -> mkdir links
+        esekilxv8818 [15:15] [/home/esrkdlp] -> cd links
+        esekilxv8818 [15:16] [/home/esrkdlp/links] -> echo "sample text" > abc.txt
+        esekilxv8818 [15:16] [/home/esrkdlp/links] -> ls
+        abc.txt
+        esekilxv8818 [15:16] [/home/esrkdlp/links] -> ln -s abc.txt efg.txt
+        esekilxv8818 [15:16] [/home/esrkdlp/links] -> ls
+        abc.txt  efg.txt
+        esekilxv8818 [15:16] [/home/esrkdlp/links] -> cat abc.txt 
+        sample text
+        esekilxv8818 [15:16] [/home/esrkdlp/links] -> cat efg.txt 
+        sample text
+        esekilxv8818 [15:16] [/home/esrkdlp/links] -> ls -lia
+        total 16
+        2990710331 drwxr-xr-x  2 esrkdlp rnd  4096 Nov 19 15:16 .
+        3028884948 drwxr-xr-x 74 esrkdlp rnd 12288 Nov 19 15:15 ..
+        2990710332 -rw-r--r--  1 esrkdlp rnd    12 Nov 19 15:16 abc.txt
+        2990710333 lrwxrwxrwx  1 esrkdlp rnd     7 Nov 19 15:16 efg.txt -> abc.txt
+        esekilxv8818 [15:17] [/home/esrkdlp/links] -> rm abc 
+        abc.txt  efg.txt@ 
+        esekilxv8818 [15:17] [/home/esrkdlp/links] -> rm abc.txt 
+        rm: remove regular file `abc.txt'? y
+        esekilxv8818 [15:17] [/home/esrkdlp/links] -> ls
+        efg.txt
+        esekilxv8818 [15:17] [/home/esrkdlp/links] -> cat efg.txt 
+        cat: efg.txt: No such file or directory
+      
+Do a similar steps for hardlinks checking.If you copy a file, it will just duplicate the content. So if you modify the content of a one file (either original or hard link), it has no effect on the other one. However if you create a hard link to a file and change the content of either of the files, the change will be be seen on both.
+           
+13. sort -> SORT command is used to sort a file, arranging the records in a particular order.
+            Lines starting with a number will appear before lines starting with a letter.
+            Lines starting with a letter that appears earlier in the alphabet will appear before lines starting with a letter that appears later in the alphabet.
+            Lines starting with a lowercase letter will appear before lines starting with the same letter in uppercase.
+            sort abc.txt
+            sort -o abc.txt def.txt ->send the output to destination def.txt
+            sort -r abc.txt -> sort in reverse order
+            sort -c abc.txt -> check if file is sorted
+            sort -u abc.txt -> sort and remoce duplicates 
+            sort -n abc.txt -> numerical sort
+            sort -k xn abc.txt -> sort using the column number x (useful for tables)
+
+
+14. rm ->  rm stands for remove here. rm command is used to remove objects such as files, directories, symbolic links and so on from the file system like UNIX. To be more precise, rm removes references to objects from the filesystem, where those objects might have had multiple references (for example, a file with two different names). By default, it does not remove directories.
+
+            rm file1 file2 
+            rm -i file -> interactive remove
+            rm -f file -> forece remove
+            rm -r file -> recursive remove
+            rm -rf dir -> recursive remove directory
+
+15. chmod ->  chmod {u|g|o|a} {+|-|=} {r|w|x} {filename} 
+                  drwxr-xr-x  -> [type][(owner)(group)(others)]
+                  WHO   ###    u -> User who owns the file ; g -> Group file owner  ;  o -> User classified as other ;  a -> All of above (u+g+o)
+                  WHAT  ###    + -> Set permission         ; - -> Remove permission ;  = -> set and remove others 
+                  WHICH ###    r -> Read permission        ; w -> Write permission  ;  x -> Execute permission
+                  
+                  0: (000) No permission.
+                  1: (001) Execute permission.
+                  2: (010) Write permission.
+                  3: (011) Write and execute permissions.
+                  4: (100) Read permission.
+                  5: (101) Read and execute permissions.
+                  6: (110) Read and write permissions.
+                  7: (111) Read, write, and execute permissions.
+             
+              1. chmod u=rw,og=r new_file.txt (wipe out previous and set)
+              2. chmod a+x new_script.sh  (add an extra. a+x is similar to +x )
+              3. chmod -R o-r *.page (for subdirectories and files ending in .page)
+              4. chmod 664 *.page
+              
+16. sudo ->  You only need root/sudo privileges, only if the command involves files or directories not owned by the user or group running the commands
+             By default, the password you entered for sudo is retained for 15 minutes per terminal. This eliminates the need of entering the password time and again
+             Sudo program allows regular users to run programs with the security privileges of the superuser or root.
+             Sudo maintains a log of each command run. System administrators can trackback the person responsible for undesirable changes in the system.
+             
+17. history ->  To fetch the history of typed in commands 
+18. clear   ->  Clears the screen and gives a clean window .
+19. apt-get ->  In Linux/UNIX, installation files are distributed as packages. But the package contains only the program itself. 
+                Any dependent components will have to be installed separately which are usually available as packages themselves.
+                sudo apt-get update -> update all packages installed in our system.
+20. 
+
+              
+            
+              
+ 
+ 
+        
+        
+        
+        
+        
+        
+        
+
+             
 
