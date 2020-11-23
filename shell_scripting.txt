@@ -2,7 +2,7 @@
 KERNAL :
 
 Kernel is hart of Linux O/S. It manages resource of Linux O/S. Resources means facilities available in Linux.
-For eg. Facility to store data, print data on printer, memory, file management etc . Kernel decides who will use this resource, for how long and when. 
+For eg. Facility to store data, print data on printer, memory, file management etc . Kernel decides who will use this resource, for how long and when.
 It runs your programs (or set up to execute binary files) It's Memory resident portion of Linux. It performance following task :-
 ● I/O management
 ● Process management
@@ -21,22 +21,22 @@ MICROSOFT WINDOWS -> Windows Shell and Power shell
 LINUX/UNIX  -> Bourne again Shell (bash) , unix shell , Bourne shell (sh)
 
 
-UNINX SHELL : 
+UNINX SHELL :
 
 A Unix shell is a command-line interpreter or shell that provides a command line user interface for Unix-like operating systems. The shell is both an interactive command language and a scripting language, and is used by the operating system to control the execution of the system using shell scripts.[
-A Unix shell is both a command interpreter and a programming language. 
+A Unix shell is both a command interpreter and a programming language.
 As a command interpreter, the shell provides the user interface to the rich set of gnu utilities. The programming language features allow these utilities to be combined
 Unix shells provide filename wildcarding, piping, here documents, command substitution, variables and control structures for condition-testing and iteration.
 
 Computer understand the language of 0's and 1's called binary language,
-In early days of computing, instruction are provided using binary language, which is difficult for all of us, to read and write. 
+In early days of computing, instruction are provided using binary language, which is difficult for all of us, to read and write.
 So in O/s there is special program called Shell. Shell accepts your instruction or commands in English and translate it into computers native binary language.
 
-  command/shell_script -> Linux shell -> Binary equalent of command -> KERNAL 
-  $ls ; $date -> BASH -> 10001101 -> LINUX KERNAL 
-  
+  command/shell_script -> Linux shell -> Binary equalent of command -> KERNAL
+  $ls ; $date -> BASH -> 10001101 -> LINUX KERNAL
+
   OS = KERNAL + SHELL [KERNAL handles everything and shell helps us interact with it .]
-  
+
 
 SHELL SCRIPTING :	(called BATCH files in MS-DOS)
 
@@ -46,34 +46,44 @@ Disadvantages -> rm -rf */ and rm -rf * / (deletes everything including root ) a
 
 ======================================
 
-1. help :  a. command --help  -> help is a bash built-in, providing help for bash commands only. 
+1. help :  a. command --help  -> help is a bash built-in, providing help for bash commands only.
            b. man command    -> A little less descriptive than info but straight to point .
            c. info command   -> describe all about the command in detail. Its like lots and lots of pages of information will be there for a single command.
-                            
+           d. man command | less
+
 2. more -> When the text passed to it is too large to fit on one screen, it pages it. You can scroll down but not up.
            press enter or spacebar to navigate and q to exit.
            more /path/to/logile.txt
-           more -10 /path/.. to set numberof lines a page should contain
+           more -10 /path/.. to set number of lines a page should contain
            more +10 /path/... to start from a specific line (here 10)
            cat /path/to/logfilr.txt | more
            ls --help | more
-           
+
 3. less -> you can scroll both up and down .
           less /path/... -> now enter /<string> to highlight the string needed.
           less -N -> display line numbers (not available in more )
           The main difference between more and less is that less command is faster because it does not load the entire file at once and allows navigation though file using page up/down keys
 
-4. cat  -> textfile.txt 
-           cat > textfile.txt -> opens a file to write content . press ctrl+D to save and exit 
+4. cat  -> textfile.txt
+           cat > textfile.txt -> opens a file to write content . press ctrl+D to save and exit
                               -> if you do it to an already existing file , prevous contents will be deleted .
-           cat textfile.txt -> opens a file 
-           
+           cat textfile.txt -> opens a file
+
+           The touch command is a standard command used in UNIX/Linux operating system which is used to create, change and modify timestamps of a file.
+           Basically, there are two different commands to create a file in the Linux system which is as follows:
+           cat command: It is used to create the file with content.
+           touch command: It is used to create a file without any content. The file created using touch command is empty. This command can be used when the user doesn’t have data to store at the time of file creation.
+
+cat command: It is used to create the file with content.
+touch command: It is used to create a file without any content. The file created using touch command is empty. This command can be used when the user doesn’t have data to store at the time of file creation.
+
+
 5. echo  ->  echo <string> -> display string on screen
              echo $var -> display value of variable if any
              echo <text> > textfile ->remove old contents in textfile and write <text> to it .
              echo <text> >> textfile -> append <text> to the textfile .
-             echo * is is similar to ls command 
-             
+             echo * is is similar to ls command
+
 INODE :  https://helpdeskgeek.com/linux-tips/what-are-inodes-in-linux-and-how-are-they-used/
 An inode is a data structure that stores various information about a file in Linux, such as the access mode (read, write, execute permissions), ownership, file type, file size, group, number of links, etc. Each inode is identified by an integer number. An inode is assigned to a file when it is created .
 
@@ -81,72 +91,72 @@ An inode is a data structure that stores various information about a file in Lin
             ls -R -> Recursive list , to list files even inside a directory .
             ls -a || la --all -> list files starting with a "."
             ls -l -> use vertical listing
-            ls -i -> show the inodes 
+            ls -i -> show the inodes
             ls -s -> print size allocated
             ls -S -> sort by size and print
             ls by default sorts by name , do "ls --sort=word -opt"
-            ls -l | sort and ls -l | sort -r to sort in reverse 
-                        
+            ls -l | sort and ls -l | sort -r to sort in reverse
+
             ls -al -> detailed list of files and permissions , storage etc;
             drwxr-xr-x                      7               esrkdlp           rnd             4096         Jun 11  2019       workspace
             [filetype-permissions] - [# od hardlinks] - [Owner-Creator] - [Owber-group] - [Size in bytes] - [Date-Time] - [Name of file/dir]
             " - " -> file
             " d " -> directory
-  
- 
+
+
 7. cd -> Chnage to a directory
 
 8. pwd -> Present working directory
 
 9. mkdir -> Make a directory
             mkdir abc     -> create a dir in current directory
-            mkdir /test/abc     -> create a directory in /test directory 
-            mkdir dir1 dir2 dir3 -> create multiple directories at a time 
+            mkdir /test/abc     -> create a directory in /test directory
+            mkdir dir1 dir2 dir3 -> create multiple directories at a time
             rmdir abc     -> removes a directory
-            
+
 
 10. cp -> cp stands for copy. This command is used to copy files or group of files or directory. It creates an exact image of a file on a disk with different file             name. copies each source file to the destination directory with the same name, created if not existed but if already existed then it will be overwritten,           so be careful !!.
           cp Src_file Dest_file
-          cp Src_file1 Src_file2 Src_file3 Dest_directory  
+          cp Src_file1 Src_file2 Src_file3 Dest_directory
               (For this case last argument must be a directory name. For the above command to work, Dest_directory must exist because cp command won’t create it.)
           cp -R Src_directory Dest_directory
               (cp behavior depend upon whether Dest_directory is exist or not.
-              If the Dest_directory doesn’t exist, cp creates it and copies content of Src_directory recursively as it is. 
+              If the Dest_directory doesn’t exist, cp creates it and copies content of Src_directory recursively as it is.
               But if Dest_directory exists then copy of Src_directory becomes sub-directory under Dest_directory)
           cp -i -> interactive (asks confirmation)
           cp -f -> forcbly copy
-          cp -b -> create a backup of destination  before copying 
-          cp -n -> To not overwrite an existing filr 
-          
+          cp -b -> create a backup of destination  before copying
+          cp -n -> To not overwrite an existing filr
+
           IF [-i -n -f] ALL THREE ARGUMENTS ARE PRESENT , THE FINAL OPTIONS TAKES PRESIDENCE.
-          
+
 11. mv -> mv stands for move. mv is used to move one or more files or directories from one place to another in file system like UNIX. It has two distinct functions:
           - It rename a file or folder/directory .
           - It moves group of files to different directory.
-          If the destination file doesn’t exist, it will be created. 
-          If the destination file exist, then it will be overwrite and the source file will be deleted. By default, mv doesn’t prompt for overwriting So be careful 
+          If the destination file doesn’t exist, it will be created.
+          If the destination file exist, then it will be overwrite and the source file will be deleted. By default, mv doesn’t prompt for overwriting So be careful
           SIMILAR OPTIONS TO cp COMMAND.
-          
+
 12. ln ->
         HARD/SOFT links : https://ostechnix.com/explaining-soft-link-and-hard-link-in-linux-with-examples/
         A symbolic or soft link is an actual link to the original file, whereas a hard link is a mirror copy of the original file. If you delete the original file,         the soft link has no value, because it points to a non-existent file. But in the case of hard link, it is entirely opposite. Even if you delete the original         file, the hard link will still has the data of the original file. Because hard link acts as a mirror copy of the original file. A link in UNIX is a pointer         to a file. Creating links is a kind of shortcuts to access a file. Links allow more than one file name to refer to the same file, elsewhere.
-        
+
         There are two types of links  :
          1. Soft Link or Symbolic links -> Symbolic links are not updated (they merely contain a string which is the pathname of its target)
-                $ ln  [original filename] [link name] 
+                $ ln  [original filename] [link name]
                   can cross the file system,
                   allows you to link between directories,
                   has different inode number and file permissions than original file,
                   permissions will not be updated,
                   has only the path of the original file, not the contents.
-                
+
          2. Hard Links -> hard links always refer to the source, even if moved or removed
                 $ ln  -s [original filename] [link name]
                   can't cross the file system boundaries (i.e. A hardlink can only work on the same filesystem),
                   can't link directories,
                   has the same inode number and permissions of original file,
                   permissions will be updated if we change the permissions of source file,
-     
+
         esekilxv8818 [15:15] [/home/esrkdlp] -> mkdir links
         esekilxv8818 [15:15] [/home/esrkdlp] -> cd links
         esekilxv8818 [15:16] [/home/esrkdlp/links] -> echo "sample text" > abc.txt
@@ -155,9 +165,9 @@ An inode is a data structure that stores various information about a file in Lin
         esekilxv8818 [15:16] [/home/esrkdlp/links] -> ln -s abc.txt efg.txt
         esekilxv8818 [15:16] [/home/esrkdlp/links] -> ls
         abc.txt  efg.txt
-        esekilxv8818 [15:16] [/home/esrkdlp/links] -> cat abc.txt 
+        esekilxv8818 [15:16] [/home/esrkdlp/links] -> cat abc.txt
         sample text
-        esekilxv8818 [15:16] [/home/esrkdlp/links] -> cat efg.txt 
+        esekilxv8818 [15:16] [/home/esrkdlp/links] -> cat efg.txt
         sample text
         esekilxv8818 [15:16] [/home/esrkdlp/links] -> ls -lia
         total 16
@@ -165,17 +175,17 @@ An inode is a data structure that stores various information about a file in Lin
         3028884948 drwxr-xr-x 74 esrkdlp rnd 12288 Nov 19 15:15 ..
         2990710332 -rw-r--r--  1 esrkdlp rnd    12 Nov 19 15:16 abc.txt
         2990710333 lrwxrwxrwx  1 esrkdlp rnd     7 Nov 19 15:16 efg.txt -> abc.txt
-        esekilxv8818 [15:17] [/home/esrkdlp/links] -> rm abc 
-        abc.txt  efg.txt@ 
-        esekilxv8818 [15:17] [/home/esrkdlp/links] -> rm abc.txt 
+        esekilxv8818 [15:17] [/home/esrkdlp/links] -> rm abc
+        abc.txt  efg.txt@
+        esekilxv8818 [15:17] [/home/esrkdlp/links] -> rm abc.txt
         rm: remove regular file `abc.txt'? y
         esekilxv8818 [15:17] [/home/esrkdlp/links] -> ls
         efg.txt
-        esekilxv8818 [15:17] [/home/esrkdlp/links] -> cat efg.txt 
+        esekilxv8818 [15:17] [/home/esrkdlp/links] -> cat efg.txt
         cat: efg.txt: No such file or directory
-      
+
 Do a similar steps for hardlinks checking.If you copy a file, it will just duplicate the content. So if you modify the content of a one file (either original or hard link), it has no effect on the other one. However if you create a hard link to a file and change the content of either of the files, the change will be be seen on both.
-           
+
 13. sort -> SORT command is used to sort a file, arranging the records in a particular order.
             Lines starting with a number will appear before lines starting with a letter.
             Lines starting with a letter that appears earlier in the alphabet will appear before lines starting with a letter that appears later in the alphabet.
@@ -184,25 +194,25 @@ Do a similar steps for hardlinks checking.If you copy a file, it will just dupli
             sort -o abc.txt def.txt ->send the output to destination def.txt
             sort -r abc.txt -> sort in reverse order
             sort -c abc.txt -> check if file is sorted
-            sort -u abc.txt -> sort and remoce duplicates 
+            sort -u abc.txt -> sort and remoce duplicates
             sort -n abc.txt -> numerical sort
             sort -k xn abc.txt -> sort using the column number x (useful for tables)
 
 
 14. rm ->  rm stands for remove here. rm command is used to remove objects such as files, directories, symbolic links and so on from the file system like UNIX. To be more precise, rm removes references to objects from the filesystem, where those objects might have had multiple references (for example, a file with two different names). By default, it does not remove directories.
 
-            rm file1 file2 
+            rm file1 file2
             rm -i file -> interactive remove
             rm -f file -> forece remove
             rm -r file -> recursive remove
             rm -rf dir -> recursive remove directory
 
-15. chmod ->  chmod {u|g|o|a} {+|-|=} {r|w|x} {filename} 
+15. chmod ->  chmod {u|g|o|a} {+|-|=} {r|w|x} {filename}
                   drwxr-xr-x  -> [type][(owner)(group)(others)]
                   WHO   ###    u -> User who owns the file ; g -> Group file owner  ;  o -> User classified as other ;  a -> All of above (u+g+o)
-                  WHAT  ###    + -> Set permission         ; - -> Remove permission ;  = -> set and remove others 
+                  WHAT  ###    + -> Set permission         ; - -> Remove permission ;  = -> set and remove others
                   WHICH ###    r -> Read permission        ; w -> Write permission  ;  x -> Execute permission
-                  
+
                   0: (000) No permission.
                   1: (001) Execute permission.
                   2: (010) Write permission.
@@ -211,36 +221,118 @@ Do a similar steps for hardlinks checking.If you copy a file, it will just dupli
                   5: (101) Read and execute permissions.
                   6: (110) Read and write permissions.
                   7: (111) Read, write, and execute permissions.
-             
+
               1. chmod u=rw,og=r new_file.txt (wipe out previous and set)
               2. chmod a+x new_script.sh  (add an extra. a+x is similar to +x )
               3. chmod -R o-r *.page (for subdirectories and files ending in .page)
               4. chmod 664 *.page
-              
+
 16. sudo ->  You only need root/sudo privileges, only if the command involves files or directories not owned by the user or group running the commands
              By default, the password you entered for sudo is retained for 15 minutes per terminal. This eliminates the need of entering the password time and again
              Sudo program allows regular users to run programs with the security privileges of the superuser or root.
              Sudo maintains a log of each command run. System administrators can trackback the person responsible for undesirable changes in the system.
-             
-17. history ->  To fetch the history of typed in commands 
-18. clear   ->  Clears the screen and gives a clean window .
-19. apt-get ->  In Linux/UNIX, installation files are distributed as packages. But the package contains only the program itself. 
+
+17. history ->  To fetch the history of typed in commands.
+
+18. clear   ->  Clears the screen and gives a clean window.
+
+19. apt-get ->  ADVANCED PACKAGING TOOL
+                In Linux/UNIX, installation files are distributed as packages. But the package contains only the program itself.
                 Any dependent components will have to be installed separately which are usually available as packages themselves.
+                Its main task is to retrieve the information and packages from the authenticated sources for installation, upgrade and removal of packages along with their dependencies.
                 sudo apt-get update -> update all packages installed in our system.
-20. 
 
-              
-            
-              
- 
- 
-        
-        
-        
-        
-        
-        
-        
+                update  : This command is used to synchronize the package index files from their sources again. You need to perform an update before you upgrade or dist-upgrade.
+                          apt-get update
+                upgrade : This command is used to install the latest versions of the packages currently installed on the user’s system from the sources enumerated in /etc/apt/sources.list. The installed packages which have new packages available are retrieved and installed
+                          apt-get upgrade
+                install : This command is used to install or upgrade packages. It is followed by one or more package names the user wishes to install. All the dependencies of the desired packages will also be retrieved and installed.
+                          apt-get install [...PACKAGES]
+                remove  : This is similar to install, with the difference being that it removes the packages instead of installing. It does not remove any configuration files created by the package.
+                          apt-get remove [...PACKAGES]
 
-             
+20. wc : It is used to find out number of lines, number of words count, byte and characters count in the files specified in the file arguments.
+                $ wc state.txt capital.txt
+                5   7  63 state.txt
+                5   5  45 capital.txt
+                10  12 108 total
 
+21. who am i ## whoami ## who: To show the user information .
+                who am i gives more info than whoami . Also the date and time is printed .
+                who is used to show who is logged in at the moment . gives multiple names
+
+22. Head :  print the top N number of data of the given input. By default, it prints the first 10 lines of the specified files. If more than one file name is provided then data from each file is preceded by its file name.
+            head -n 5 state.txt -> print n lines
+            head -c 6 state.txt -> print n bytes
+            head -n 20 state.txt | tail -10  -> Print line between M and N lines
+            head -n -15  -> cut the last 15 lines
+
+23. Tail : print the last N number of data of the given input. By default it prints the last 10 lines of the specified files. If more than one file name is provided then data from each file is precedes by its file name.
+           similar options as head command.
+
+24. grep : The grep filter searches a file for a particular pattern of characters, and displays all lines that contain that pattern
+           grep -i regex file -> case insesitive searches
+           grep -c regex file -> count of matches
+           grep -w regex file -> search the whole word instead of a regular expression
+           grep -n regex file -> show line numbers
+           grep -v regex file -> lines not matching with regex
+
+25. diff and cmp :
+
+26. bg :
+
+27. ps and kill and jobs : https://www.linux.com/training-tutorials/and-ampersand-and-linux/
+          jobs shows you the processes running in your current terminal, whether be it in the background or foreground. It also shows you a number associated with each job
+
+          The fg brings a job from the background to the foreground so you can interact with it. You tell fg which process you want to bring to the foreground with a percentage symbol (%) followed by the number associated with the job that jobs gave you:
+
+              $ fg %1 # brings the cp job to the foreground
+              cp -i -R original/dir/* backup/dir/
+
+          The bg command pushes a job to the background and resumes it again if it was paused:
+
+              $ bg %1
+              [1]+ cp -i -R original/dir/* backup/dir/ &
+
+          You can get the PID of any running process with the ps (short for processes) command. So, using
+
+              ps | grep cp
+
+              kill -s STOP 14444  -> you can stop the background copying
+              kill -s CONT 14444  -> To start the paused process again, you can use the CONT signal
+              pgrep = ps + pgrep
+
+
+========================================================================
+========================================================================
+
+What is Processes ?.
+    Process is any kind of program or task carried out by your PC. For e.g. $ ls -lR , is
+    command or a request to list files in a directory and all subdirectory in your current
+    directory. It is a process. A process is program (command given by user) to
+    perform some Job. In Linux when you start process, it gives a number (called PID
+    or process-id), PID starts from 0 to 65535.
+
+TTY : (command tty)
+    terminal = tty = text input/output environment
+    Teletypewriter originally and now also means any terminal on Linux/Unix systems. It also means any serial port on Unix/Linux systems.
+    ps aux | grep tty
+
+PTS :
+    Stands for pseudo terminal slave.
+    A pts is the slave part of a pty.
+    A pty (pseudo terminal device) is a terminal device which is emulated by an other program (example: xterm, screen, or ssh are such programs).
+    /dev/pts contains entries corresponding to devices. /dev/pts is a special directory that is created dynamically by the Linux kernel. The contents of the directory vary with time and reflect the state of the running system.
+
+In laymen terms the primary difference between TTY and PTS is the type of connection to the computer.
+TTY ports are direct connections to the computer such as a keyboard/mouse or a serial connection to the device.
+PTS connections are SSH connections or telnet connections. All of these connections can connect to a shell which will allow you to issue commands to the computer.
+
+
+Output Redirection :
+1. ">"  : To redirect output of a command to a file as in    -> "ls -lrt > file" .
+          If the file doesn't exist it is created automatically .
+          Old data if any is lost .
+2. ">>" : Similar to ">" redirection but the data is appended rather than over riding .   -> "ls -lrt >> file"
+          The data is written to end of file and old data stays as it is .
+3. "<"  : To take input from a file instead of keyboard   -> "cat < file"

@@ -6,7 +6,7 @@ AWS
 GAWK
 shell scripting -> book & LINUX commands
 moshell
-
+regular expressions
 
 Elevate courses pending
 ITA
