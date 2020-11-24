@@ -1,49 +1,5 @@
 
-KERNAL :
-
-Kernel is hart of Linux O/S. It manages resource of Linux O/S. Resources means facilities available in Linux.
-For eg. Facility to store data, print data on printer, memory, file management etc . Kernel decides who will use this resource, for how long and when.
-It runs your programs (or set up to execute binary files) It's Memory resident portion of Linux. It performance following task :-
-● I/O management
-● Process management
-● Device management
-● File management
-● Memory management
-
-SHELL : ( a macro processor that executes commands)
-
-In computing, a shell is a computer program which exposes an operating system's services to a human user or other program .
-In general, operating system shells use either a command-line interface (CLI) or graphical user interface (GUI), depending on a computer's role and particular operation
-It is named a shell because it is the outermost layer around the operating system.
-A command-line interface (CLI) is an operating system shell that uses alphanumeric characters typed on a keyboard to provide instructions and data to the operating system.
-Including various services to their users, including file management, process management (running and terminating applications), batch processing, and operating system monitoring and configuration.
-MICROSOFT WINDOWS -> Windows Shell and Power shell
-LINUX/UNIX  -> Bourne again Shell (bash) , unix shell , Bourne shell (sh)
-
-
-UNINX SHELL :
-
-A Unix shell is a command-line interpreter or shell that provides a command line user interface for Unix-like operating systems. The shell is both an interactive command language and a scripting language, and is used by the operating system to control the execution of the system using shell scripts.[
-A Unix shell is both a command interpreter and a programming language.
-As a command interpreter, the shell provides the user interface to the rich set of gnu utilities. The programming language features allow these utilities to be combined
-Unix shells provide filename wildcarding, piping, here documents, command substitution, variables and control structures for condition-testing and iteration.
-
-Computer understand the language of 0's and 1's called binary language,
-In early days of computing, instruction are provided using binary language, which is difficult for all of us, to read and write.
-So in O/s there is special program called Shell. Shell accepts your instruction or commands in English and translate it into computers native binary language.
-
-  command/shell_script -> Linux shell -> Binary equalent of command -> KERNAL
-  $ls ; $date -> BASH -> 10001101 -> LINUX KERNAL
-
-  OS = KERNAL + SHELL [KERNAL handles everything and shell helps us interact with it .]
-
-
-SHELL SCRIPTING :	(called BATCH files in MS-DOS)
-
-A shell script is a computer program designed to be run by the Unix shell, a command-line interpreter
-The biggest advantage of writing a shell script is that the commands and syntax are exactly the same as those directly entered at the command-line. The programmer does not have to switch to a totally different syntax, as they would if the script were written in a different language, or if a compiled language were used.
-Disadvantages -> rm -rf */ and rm -rf * / (deletes everything including root ) and also that commands vary by  a single wod -> cd cc df etc;
-
+BASIC LINUX COMMANDS & USAGE :
 ======================================
 
 1. help :  a. command --help  -> help is a bash built-in, providing help for bash commands only.
@@ -102,6 +58,7 @@ An inode is a data structure that stores various information about a file in Lin
             [filetype-permissions] - [# od hardlinks] - [Owner-Creator] - [Owber-group] - [Size in bytes] - [Date-Time] - [Name of file/dir]
             " - " -> file
             " d " -> directory
+            " c " -> character files (Device files that are not files but have file like access to hardware.)
 
 
 7. cd -> Chnage to a directory
@@ -302,16 +259,97 @@ Do a similar steps for hardlinks checking.If you copy a file, it will just dupli
               kill -s CONT 14444  -> To start the paused process again, you can use the CONT signal
               pgrep = ps + pgrep
 
+28: which : prints the executable path .
+
 
 ========================================================================
 ========================================================================
 
-What is Processes ?.
-    Process is any kind of program or task carried out by your PC. For e.g. $ ls -lR , is
-    command or a request to list files in a directory and all subdirectory in your current
-    directory. It is a process. A process is program (command given by user) to
-    perform some Job. In Linux when you start process, it gives a number (called PID
-    or process-id), PID starts from 0 to 65535.
+
+SHELL SCRIPTING :
+=======================
+
+KERNAL :
+----------
+Kernel is hart of an O/S say linux .. It manages resource of Linux O/S. Resources means facilities available in Linux.
+It is reasonable for communication between Hardware and Software.
+For eg. Facility to store data, print data on printer, memory, file management etc . Kernel decides who will use this resource, for how long and when.
+It runs your programs (or set up to execute binary files) It's Memory resident portion of Linux. It performance following task :-
+● I/O management
+● Process management
+● Device management
+● File management
+● Memory management
+
+|---------------------------------------------------------------------|-------------------------|
+|                            ===============================          |                         |
+|    --------              ||   --------   ---    -------   ||        |        ---------        |
+|  | HARDWARE |   <<-->>   ||  | KERNAL | | OS | | SHELL |  ||      <<-->    || TERMINAL |      |
+|    --------              ||   --------   ---    -------   ||        |        ----------       |
+|                            ===============================          |             ^           |
+|---------------------------------------------------------------------|----------   |  ---------|
+|                    Applications , cd , ls , grep , compilers etc ;                V           |    <<-->>  | USER-1 |
+|-----------------------------------------------------------------------------------------------|    <<-->>  | USER-2 |
+
+
+
+LINUX is a KERNAL , not an OS . Its a clone of UNIX KERNAL .
+LINUX KERNAL + GNU SOFTWARE = OPERATING SYSTEM (say Ubuntu / Redhat)
+Everything in LINUX is a file even a printer and a mouse .
+
+UNIX OS  : HP-UX , IBM AIX , SUN SOLARIS , MAC OS X .(Paid services)
+LINUX OS : REDHAT , DEBIAN , UBUNTU. (Free and open source but some priced versions are available )
+
+
+POSIX :
+-------
+Portable Operating System interface is a family of standards specified by IEEE for maintaining compatibility between operating systems.
+
+
+SHELL : ( a macro processor that executes commands) :
+-----------------------------------------------------
+In computing, a shell is a computer program which exposes an operating system's services to a human user or other program .
+In general, operating system shells use either a command-line interface (CLI) or graphical user interface (GUI), depending on a computer's role and particular operation
+It is named a shell because it is the outermost layer around the operating system.
+A command-line interface (CLI) is an operating system shell that uses alphanumeric characters typed on a keyboard to provide instructions and data to the operating system.
+Including various services to their users, including file management, process management (running and terminating applications), batch processing, and operating system monitoring and configuration.
+MICROSOFT WINDOWS -> Windows Shell and Power shell
+LINUX/UNIX  -> Bourne again Shell (bash) , unix shell , Bourne shell (sh)
+
+
+UNINX SHELL :
+-------------
+A Unix shell is a command-line interpreter or shell that provides a command line user interface for Unix-like operating systems. The shell is both an interactive command language and a scripting language, and is used by the operating system to control the execution of the system using shell scripts.[
+A Unix shell is both a command interpreter and a programming language.
+As a command interpreter, the shell provides the user interface to the rich set of gnu utilities. The programming language features allow these utilities to be combined
+Unix shells provide filename wildcarding, piping, here documents, command substitution, variables and control structures for condition-testing and iteration.
+
+Computer understand the language of 0's and 1's called binary language,
+In early days of computing, instruction are provided using binary language, which is difficult for all of us, to read and write.
+So in O/s there is special program called Shell. Shell accepts your instruction or commands in English and translate it into computers native binary language.
+
+   --------------------        ------------       ---------------------------       -------
+  | command/shell_script | -> | Linux shell | -> | Binary equalent of command | -> | KERNAL |
+   --------------------        ------------       ---------------------------       -------
+
+  $ls ; $date -> BASH -> 10001101 -> LINUX KERNAL
+
+  OS = KERNAL + SHELL [KERNAL handles everything and shell helps us interact with it .]
+
+
+SHELL SCRIPTING :	(called BATCH files in MS-DOS) ;
+--------------------------------------------------
+A shell script is a computer program designed to be run by the Unix shell, a command-line interpreter
+The biggest advantage of writing a shell script is that the commands and syntax are exactly the same as those directly entered at the command-line. The programmer does not have to switch to a totally different syntax, as they would if the script were written in a different language, or if a compiled language were used.
+Disadvantages -> rm -rf */ and rm -rf * / (deletes everything including root ) and also that commands vary by  a single wod -> cd cc df etc;
+
+
+PROCESS :
+----------
+Process is any kind of program or task carried out by your PC.
+For e.g. $ ls -lR , is command or a request to list files in a directory and all subdirectory in your current  directory. It is a process.
+A process is program (command given by user) to perform some Job. In Linux when you start process, it gives a number (called PID or process-id), PID starts from 0 to 65535.
+A DAEMON is a system related background process which requests services like printer daemon requesting printing instructions .
 
 TTY : (command tty)
     terminal = tty = text input/output environment
@@ -330,9 +368,80 @@ PTS connections are SSH connections or telnet connections. All of these connecti
 
 
 Output Redirection :
+--------------------
 1. ">"  : To redirect output of a command to a file as in    -> "ls -lrt > file" .
           If the file doesn't exist it is created automatically .
           Old data if any is lost .
 2. ">>" : Similar to ">" redirection but the data is appended rather than over riding .   -> "ls -lrt >> file"
           The data is written to end of file and old data stays as it is .
 3. "<"  : To take input from a file instead of keyboard   -> "cat < file"
+
+
+VARIABLES IN LINUX : (they are case -sensitive)
+--------------------
+1) System variables - Created and maintained by Linux itself. This type of variable defined in CAPITAL CASE LETTERS.
+2) User defined variables - Created and maintained by user. This type of variable defined in LOWER CASE LETTERS.
+You can see system variables by giving command like $ set. Just type in "set" command .
+Also we can print them using " $ echo $USERNAME ".
+
+$ set -> prints all variables
+$ set dileep=1994 -> No spaces before after = .
+$ echo dileep -> prints "dileep" , use $dileep instead .
+$ echo $dileep -> 1994
+
+
+EXECUTING A SHELL SCRIPT: (#!/usr/bin/env bash) -> the code for all commands is available in /bin folder .
+some commands are shell-built_in like cd , others are written as programs in /bin . To check , execute "which <command>"
+https://swcarpentry.github.io/shell-novice/06-script/index.html
+-------------------------
+1. write a file file.sh with the required code
+
+2. You can execute it as "bash file.sh" or "sh file.sh" or "/bin/sh file.sh"
+        sh filename.sh means to execute the file using the system’s basic default shell. Many years ago, that meant the Bourne shell, but in the POSIX era, the Bourne shell was eliminated and the much more powerful Korn shell, ksh, was given sh as a link (alias). But the Korn shell was new enough that it had not lost its copyright and required a fee, Bourne Again Shell, bash, and Z Shell, zsh, were developed as free substitutes.
+        bash filename.sh is just naming bash directly. If you have some other shell installed as sh, you can do this to ensure that you’ll get bash and nothing else.
+
+3. Alternatively , you can give the file executable permissions and execute it as "./file.sh" . (chmod +x file.sh)
+       ./filename.sh means to execute the file on the shell you are using now, whatever it is. It will run it in whichever shell is invoked by the shebang (#!) line at the beginning of the script . Also helps OS by saying that file is in current directory and hence need not search for files available in  PATH variable .
+
+4. We can even rename "file.sh" to just "file" to give it more of an elite look, and because bash honestly doesn't care what you name your files or what extensions you give it
+        Then you can execute directly as "./file"
+
+5. We can remove "./", by moving file into a directory that's part of the bash environment's executable PATH .
+        Then you can execute simply by doing "file"
+
+
+==> To execute a linux command, do "$(command)" as in $echo "current dir is $(pwd)"
+    Also you can use `date`. As in -> echo " today is `date` " .
+
+
+$ echo 3 + 5 -> prints 3 + 5
+$ expr 3+5   -> prints 3+5 , use spaces .
+$ expr 3 + 5 -> 8
+$ echo "Todays date is `date`"  -> Todays date is TUE NOV 24 16:17:12 IST 2020
+$ echo `expr 3 + 5`    -> 8
+$ echo ` 2 + 3`   -> error
+
+COMMAND LINE ARGUMENTS :
+------------------------
+Consider a command : myfile foo bar
+Here $# will be 2 (Since foo and bar only two Arguments), Please note At a time such 9 arguments can be used from $0..$9.
+You can also refer all of them by using $* (which expand to `$0,$1,$2...$9`).
+
+echo "Total number of command line argument are $#"
+echo "$0 is script name"
+echo "$1 is first argument"
+echo $2 is second argument"
+echo "All of them are :- $*"
+
+-> bash file.sh 1 2 3 4 5
+$# = 5 ; $* = 1 2 3 4 5
+-> ./file.sh 1 2 3 4 5
+$# = 5 ; $* = 1 2 3 4 5
+
+EXIT STATUS : ($?)
+-------------
+By default in Linux if particular command is executed, it return two type of values, (Values are used to see whether command is successful or not)
+if return value is zero (0), command is successful,
+if return value is nonzero (>0), command is not successful
+or some sort of error executing command/shell script.
+This value is know as Exit Status of that command. To determine this exit Status we use $? variable of shell.

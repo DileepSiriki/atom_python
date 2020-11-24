@@ -6,7 +6,7 @@
 ATOM SPECIFICATIONS:
 --------------------------
 Install git on local.
-Always open atom from cmd prompt -> windows+r -> cmd -> atom (set path variable to include /atom/bin)
+Always open atom from cmd prompt -> windows+r -> cmd -> atom (set path variable to include  C:\Users\DileepKumar\AppData\Local\atom\bin; )
 Open the "Atom Package manager" from cmd line : type "apm"
 https://flight-manual.atom.io/ -> atom manual guide
 https://www.digitalocean.com/community/tutorials/ssh-essentials-working-with-ssh-servers-clients-and-keys#:~:text=SSH%20keys%20are%20a%20matching,and%20never%20exposed%20to%20anyone. --> ssh working

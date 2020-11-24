@@ -1,6 +1,5 @@
-communication ssh etc;
-windows cmd line
-linux comands
+
+
 PYTHON - modules #notebook points to add in atom files
 AWS
 GAWK
@@ -9,7 +8,22 @@ moshell
 regular expressions
 
 Elevate courses pending
-ITA
+ITA -15th
+register in naukri
+create a resume
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Extra leave apply
 ===========================
