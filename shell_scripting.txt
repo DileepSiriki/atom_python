@@ -218,6 +218,8 @@ Do a similar steps for hardlinks checking.If you copy a file, it will just dupli
                 who am i gives more info than whoami . Also the date and time is printed .
                 who is used to show who is logged in at the moment . gives multiple names
 
+                Other commands include -> users , who , w
+
 22. Head :  print the top N number of data of the given input. By default, it prints the first 10 lines of the specified files. If more than one file name is provided then data from each file is preceded by its file name.
             head -n 5 state.txt -> print n lines
             head -c 6 state.txt -> print n bytes
@@ -238,7 +240,9 @@ Do a similar steps for hardlinks checking.If you copy a file, it will just dupli
 
 26. bg :
 
-27. ps and kill and jobs : https://www.linux.com/training-tutorials/and-ampersand-and-linux/
+27. ps and kill and jobs : PS stand for PROCESS STATES similar to task manager .
+                           https://www.linux.com/training-tutorials/and-ampersand-and-linux/
+                           https://www.guru99.com/managing-processes-in-linux.html
           jobs shows you the processes running in your current terminal, whether be it in the background or foreground. It also shows you a number associated with each job
 
           The fg brings a job from the background to the foreground so you can interact with it. You tell fg which process you want to bring to the foreground with a percentage symbol (%) followed by the number associated with the job that jobs gave you:
@@ -251,6 +255,9 @@ Do a similar steps for hardlinks checking.If you copy a file, it will just dupli
               $ bg %1
               [1]+ cp -i -R original/dir/* backup/dir/ &
 
+          In the foreground process , no other commands can be run because the prompt will be not available.
+          But a background process started with & will wait for a keyboard input .
+
           You can get the PID of any running process with the ps (short for processes) command. So, using
 
               ps | grep cp
@@ -259,8 +266,29 @@ Do a similar steps for hardlinks checking.If you copy a file, it will just dupli
               kill -s CONT 14444  -> To start the paused process again, you can use the CONT signal
               pgrep = ps + pgrep
 
-28: which : prints the executable path .
+           *** top command can be used to list the curent running processes in linux .
+           top allows you display of process statistics continuously until stopped vs. ps which gives you a single snapshot.
+           top enables you to see your processes ordered by the amount of processor power they use.
+           ps enables you to see all your processes, or just the processes used by certain users, for example root or yourself.
 
+           nice command can be used to start a process with a given priority . (b/w 1 to 20)
+           renice can be used to change priority of an already running process  .
+           df used to report free disk spaces
+           free used to report used and free RAM .
+
+
+28. which : prints the executable path .
+
+29. uniq : The uniq command in Linux is a command line utility that reports or filters out the repeated lines in a file.
+             In simple words, uniq is the tool that helps to detect the adjacent duplicate lines and also deletes the duplicate lines.
+             uniq filters out the adjacent matching lines from the input file(that is required as an argument) and writes the filtered data to the output file .
+
+             Note: uniq isn’t able to detect the duplicate lines unless they are adjacent.
+             The content in the file must be therefore sorted before using uniq or you can simply use sort -u instead f uniq.
+
+30. SOURCE : source is a shell built-in command which is used to read and execute the content of a file(generally set of commands), passed as an argument in the current shell script. The command after taking the content of the specified files passes it to the TCL interpreter as a text script which then gets executed. If any arguments are supplied, they become the positional parameters when filename is executed. Otherwise, the positional parameters remain unchanged. The entries in $PATH are used to find the directory containing FILENAME, however if the file is not present in $PATH it will search the file in the current directory
+
+31. df , free  :
 
 ========================================================================
 ========================================================================
@@ -269,10 +297,22 @@ Do a similar steps for hardlinks checking.If you copy a file, it will just dupli
 SHELL SCRIPTING :
 =======================
 
+SET Vs ENV :
+------------
+set is a shell command to set the value of a shell attribute variable; these are internal variables used by the shell.
+env is a program that runs another program with modified environment variables.
+The major difference is that the env command will never modify the shell's own environment (only that of the child process), while set will. Set can also change settings like brace expansion within the shell.
+You might also want to look at export, which changes the environment variables for all future commands.
+
+environmental variables are dynamic values that effect processes on a computer .
+create using SET and delete using UNSET .
+
+
 KERNAL :
 ----------
 Kernel is hart of an O/S say linux .. It manages resource of Linux O/S. Resources means facilities available in Linux.
 It is reasonable for communication between Hardware and Software.
+A system may have many shells but only one kernal .
 For eg. Facility to store data, print data on printer, memory, file management etc . Kernel decides who will use this resource, for how long and when.
 It runs your programs (or set up to execute binary files) It's Memory resident portion of Linux. It performance following task :-
 ● I/O management
@@ -341,15 +381,18 @@ SHELL SCRIPTING :	(called BATCH files in MS-DOS) ;
 --------------------------------------------------
 A shell script is a computer program designed to be run by the Unix shell, a command-line interpreter
 The biggest advantage of writing a shell script is that the commands and syntax are exactly the same as those directly entered at the command-line. The programmer does not have to switch to a totally different syntax, as they would if the script were written in a different language, or if a compiled language were used.
-Disadvantages -> rm -rf */ and rm -rf * / (deletes everything including root ) and also that commands vary by  a single wod -> cd cc df etc;
+Disadvantages -> rm -rf */ and rm -rf * / (deletes everything including root ) and also that commands vary by  a single word -> cd cc df etc;
 
 
-PROCESS :
+PROCESS : https://www.guru99.com/managing-processes-in-linux.html
 ----------
 Process is any kind of program or task carried out by your PC.
 For e.g. $ ls -lR , is command or a request to list files in a directory and all subdirectory in your current  directory. It is a process.
 A process is program (command given by user) to perform some Job. In Linux when you start process, it gives a number (called PID or process-id), PID starts from 0 to 65535.
 A DAEMON is a system related background process which requests services like printer daemon requesting printing instructions .
+
+  PID : process id
+  PPID : Parent PID
 
 TTY : (command tty)
     terminal = tty = text input/output environment
@@ -365,6 +408,33 @@ PTS :
 In laymen terms the primary difference between TTY and PTS is the type of connection to the computer.
 TTY ports are direct connections to the computer such as a keyboard/mouse or a serial connection to the device.
 PTS connections are SSH connections or telnet connections. All of these connections can connect to a shell which will allow you to issue commands to the computer.
+
+
+FILES IN UNIX :
+---------------
+In Unix, there are three basic types of files −
+
+Ordinary Files − An ordinary file is a file on the system that contains data, text, or program instructions.
+                 In this tutorial, you look at working with ordinary files.
+
+Directories − Directories store both special and ordinary files.
+              For users familiar with Windows or Mac OS, Unix directories are equivalent to folders.
+
+Special Files − Some special files provide access to hardware such as hard drives, CD-ROM drives, modems, and Ethernet adapters.
+                Other special files are similar to aliases or shortcuts and enable you to access a single file using different names.
+                These are located in /dev (device folder)
+
+
+
+
+STANDARD UNIX STREAMS :
+------------------------
+stdin  − This is referred to as the standard input and the associated file descriptor is 0. This is also represented as STDIN.
+         The Unix program will read the default input from STDIN.
+stdout − This is referred to as the standard output and the associated file descriptor is 1. This is also represented as STDOUT.
+         The Unix program will write the default output at STDOUT
+stderr − This is referred to as the standard error and the associated file descriptor is 2. This is also represented as STDERR.
+         The Unix program will write all the error messages at STDERR.
 
 
 Output Redirection :
@@ -421,7 +491,7 @@ $ echo "Todays date is `date`"  -> Todays date is TUE NOV 24 16:17:12 IST 2020
 $ echo `expr 3 + 5`    -> 8
 $ echo ` 2 + 3`   -> error
 
-COMMAND LINE ARGUMENTS :
+COMMAND LINE ARGUMENTS : https://www.grymoire.com/Unix/Quote.html
 ------------------------
 Consider a command : myfile foo bar
 Here $# will be 2 (Since foo and bar only two Arguments), Please note At a time such 9 arguments can be used from $0..$9.
@@ -438,6 +508,15 @@ $# = 5 ; $* = 1 2 3 4 5
 -> ./file.sh 1 2 3 4 5
 $# = 5 ; $* = 1 2 3 4 5
 
+######################################################
+
+# Select lines from the middle of a file.
+# Usage: bash middle.sh filename end_line num_lines
+head -n "$2" "$1" | tail -n "$3"
+(or)
+wc -l "$@" | sort -n    -> if we have more than 1 file to process .
+
+
 EXIT STATUS : ($?)
 -------------
 By default in Linux if particular command is executed, it return two type of values, (Values are used to see whether command is successful or not)
@@ -445,3 +524,107 @@ if return value is zero (0), command is successful,
 if return value is nonzero (>0), command is not successful
 or some sort of error executing command/shell script.
 This value is know as Exit Status of that command. To determine this exit Status we use $? variable of shell.
+
+if - then - fi  :
+---------------------
+
+if cat $1
+then
+ echo -e "\n\nFile $1, found and successfully echoed"
+fi
+
+if test $1 -gt 0
+then
+ echo "$1 number is positive"
+fi
+
+
+For Mathematical Operators :
+
+-eq ======== is equal to ======== (5 == 6) ======== if test 5 -eq 6 ======== if expr [ 5 -eq 6 ]
+-ne ======== is not equal to ======== 5 != 6 ======== if test 5 -ne 6  ======== if expr [ 5 -ne 6 ]
+-lt ======== is less than ======== 5 < 6 ======== if test 5 -lt 6 ======== if expr [ 5 -lt 6 ]
+-le ======== is less than or equal to ======== 5 <= 6 ======== if test 5 -le 6 ======== if expr [ 5 -le 6 ]
+-gt ======== is greater than ======== 5 > 6 ======== if test 5 -gt 6 ======== if expr [ 5 -gt 6 ]
+-ge ======== is greater than or equal to ======== 5 >= 6 ======== if test 5 -ge 6 ======== if expr [ 5 -ge 6 ]
+
+For string Comparisons use :
+
+string1 = string2              string1 is equal to string2
+string1 != string2             string1 is NOT equal to string2
+string1                        string1 is NOT NULL or not defined
+-n string1                     string1 is NOT NULL and does exist
+-z string1                     string1 is NULL and does exist
+
+Shell also test for file and directory types :
+
+-s file                        Non empty file
+-f file                        Is File exist or normal file and not a directory
+-d dir                         Is Directory exist and not a file
+-w file                        Is writeable file
+-r file                        Is read-only file
+-x file                        Is file is executable
+
+if - then - else - fi  :
+---------------------
+# Script to see whether argument is positive or negative
+if [ $# -eq 0 ]
+then
+ echo "$0 : You must give/supply one integers"
+ exit 1
+fi
+if test $1 -gt 0
+then
+ echo "$1 number is positive"
+else
+ echo "$1 number is negative"
+fi
+
+
+if - elif - else - fi  :
+----------------------------
+# Script to test if..elif...else
+if [ $1 -gt 0 ]
+then
+  echo "$1 is positive"
+elif [ $1 -lt 0 ]
+then
+    echo "$1 is negative"
+elif [ $1 -eq 0 ]
+then
+  echo "$1 is zero"
+else
+  echo "Opps! $1 is not number, give number"
+fi
+
+for loop :
+----------
+for { variable name } in { list }
+do
+ execute one for each item in the list until the list is
+ not finished (And repeat all statement between do and done)
+done
+
+for i in 1 2 3 4 5
+do
+ echo "Welcome $i times"
+done
+
+n=$1
+for i in 1 2 3 4 5 6 7 8 9 10
+do
+ echo "$n * $i = `expr $i \* $n`"
+done
+
+while loop :
+------------
+n=$1
+i=1
+while [ $i -le 10 ]
+do
+ echo "$n * $i = `expr $i \* $n`"
+ i=`expr $i + 1`
+done
+
+CASE statement :
+----------------
