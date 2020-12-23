@@ -4,6 +4,8 @@ PYTHON - modules #notebook points to add in atom files
 AWS
 GAWK
 shell scripting -> book & LINUX commands
+version control -Git
+AGILE
 moshell
 regular expressions
 

@@ -289,7 +289,7 @@ Do a similar steps for hardlinks checking.If you copy a file, it will just dupli
 30. SOURCE : source is a shell built-in command which is used to read and execute the content of a file(generally set of commands), passed as an argument in the current shell script. The command after taking the content of the specified files passes it to the TCL interpreter as a text script which then gets executed. If any arguments are supplied, they become the positional parameters when filename is executed. Otherwise, the positional parameters remain unchanged. The entries in $PATH are used to find the directory containing FILENAME, however if the file is not present in $PATH it will search the file in the current directory
 
 31. df , free  :
-
+32. APT-GET , UPGRADE ETC;
 ========================================================================
 ========================================================================
 
