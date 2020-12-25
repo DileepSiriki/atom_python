@@ -79,59 +79,218 @@ master
 Revision : Revision represents the version of the source code. Revisions in Git are represented by commits. These commits are identified by SHA1 secure hashes.
 URL : URL represents the location of the Git repository. Git URL is stored in config file.
 
+Tracked files : are files that were in the last snapshot; they can be unmodified, modified, or staged.
+Untracked files : are everything else – any files in your working directory that were not in your last snapshot and are not in your staging area.
+When you first clone a repository, all of your files will be tracked and unmodified because Git just checked them out and you haven’t edited anything
 
-==============
 
-git remote add <alias> <url> -> to add remote repository.
-git remote -v -> list remote repositories
-git remote rm <alias> -> remove remote
-git log -> show commit history in the current branch
-git log --oneline
+GIT LOG :
+==========
+git log           -> show commit history in the current branch
+git log --oneline -> single line prints
+git log -p        -> To view commit history and also the changes introduced
+git log --pretty=format:"%h - %an, %ar : %s" -> (sha -  author name - date - message)
+
+GIT DIFF :
+=-=========
 git show <commit-ID/SHA> -> to see the changes made
-git diff
-git commit --amend -m "<new commit message>"
-
+git diff      -> For a tracked file -> To see what you’ve changed but not yet staged.
+                 compares what is in your working directory with what is in your staging area.
+                 It doesn’t show all changes made since your last commit – only changes that are still unstaged.
+git difftool  -> open a GUI session to see changes.
 Do a "git log " and 'git show' before pushing , pulling , commiting atc;
 Do a 'git pull' before a "git push" to sync the local repository with the remote
 
-
-GIT Stash : In Git, the stash operation takes your modified tracked files, stages changes, and saves them on a stack of unfinished changes that you can reapply at any time.
+GIT Stash :
+==============
+In Git, the stash operation takes your modified tracked files, stages changes, and saves them on a stack of unfinished changes that you can reapply at any time.
 git stash -> to stash the working directory and staged changes
 git stash list -> to list all stashes
 git stash pop -> execute the git stash pop command, to remove the changes from the stack and place them in the current working directory.
 
+GIT REMOVE/MOVE :
+===================
+git rm <file> -> deletes from tracked files are and once committed , it is gone from next time . then do commit and push to reflect changes .
 git mv <source> <destination> -> To RENAME / MOVE files , once done we need to commit and push the changes to remote
-git rm <file> -> remove files then do commit and push
+                                 This is equalent to : 1-> mv <source> <destination>
+                                                       2-> git rm <source>
+                                                       3-> git add <destination>
+git push origin --delete <remote-branch> -> Delete a remote branches
 
-
+GIT RESET :
+================
 git reset --soft -> just resets the HEAD pointer to previous commit and does not change anything
 git reset --mixed -> reverts those changes from the staging area that have not been committed yet. It reverts the changes from the staging area only. The actual changes made to the working copy of the file are unaffected. The default Git reset is equivalent to the git reset -- mixed.
 git reset --hard  -> it will clear the staging area; it will reset the HEAD pointer to the latest commit of the specific commit ID and delete the local file changes too.
 
 GIT TAGGING :
+================
 Tag operation allows giving meaningful names to a specific version in the repository.
 git tag -a '<AlIAS>' -m '<Message>' <Commit-Id
 Now do : git push origin tag <alias>
 git tag -l -> list Tags
 git tag -d <alias> -> remove Tags
 
+GIT REMOTE :
+===============
+git remote add <alias> <url> -> to add remote repository.
+git remote -v -> list remote repositories
+git remote rm <alias> -> remove remote
+git remote rename <old> <new>
+Remote branches take the form of (remote)/(branch) as in origin/master
+
+GIT TAGGING :
+===============
+Git uses two main types of tags: lightweight and annotated.
+
+A lightweight tag is very much like a branch that doesn’t change – it’s just a pointer to a specific commit.
+git tag <tag>
+
+Annotated tags, however, are stored as full objects in the Git database. They’re checksummed; contain the tagger name, email, and date; have a tagging message
+git tag -a <tag> -m "message"
+
+git list               -> list Tags
+git show <tag>         -> show info about a tag
+git push origin <tag>  -> push a tag to server
+git push origin --tags -> push all tags to server
+git checkout -b <branch> <tag> -> we cannot checkut to tags but can create a branch and checkout to that branch having data of a tag.
+
+GIT ALIAS :
+==============
+$ git config --global alias.co checkout -> git co = git checkout
+$ git config --global alias.br branch   -> git br = git Branch
+$ git config --global alias.ci commit
+$ git config --global alias.st status
+
+$ git config --global alias.last 'log -1 HEAD'
+$ git last = git log -1 HEAD
+
+
+GIT COMMIT :
+=================
+git commit -m "commit message"
+git commit --amend -m "<new commit message>" -> to change the previous commit and not create a new commit
+gitk -> GUI of Commits
+
+Git doesn’t store data as a series of change sets or differences, but instead as a series of snapshots.
+When you make a commit, Git stores a commit object that contains a pointer to the snapshot of the content you staged
+This object also contains the author’s name and email, the message that you typed, and pointers to the commit or commits that directly came before this commit (its parent or parents):
+  zero parents for the initial commit, o
+  ne parent for a normal commit, and
+  multiple parents for a commit that results from a merge of two or more branches.
+
+EXAMPLE :
+$ git add README test.rb LICENSE
+$ git commit -m 'The initial commit of my project'
+
+When you create the commit by running git commit, Git checksums each subdirectory (in this case, just the root project directory) and stores those tree objects in the Git repository.
+Git then creates a commit object that has the metadata and a pointer to the root project tree so it can re-create that snapshot when needed.
+Your Git repository now contains five objects:
+    one blob for the contents of each of your three files,
+    one tree that lists the contents of the directory and specifies which file names are stored as which blobs, and
+    one commit with the pointer to that root tree and all the commit metadata.
+
+                                                                    5b1d3
+INITIAL COMMIT ->                                      blob                        size
+                                                       Testing library....
+                                                /      contains code about ...
+                                              /
+     98ce56                  92ec2                                  76tg0
+COMMIT     SIZE           TREE  SIZE                  blob                        size
+tree       92ec2          blob  5b1d3 README          MTM license ..
+author     scott  --->    blob  76tg0 LICENSE  ----   use of unauthorized ...
+committer  scott          blob  e34vg test.rb         written by Dileep ...
+[<commit message>]
+                                              \                     e34vg
+                                                \     blobs                       size
+                                                      #include<stdio.h>
+                                                      int 3,4;
+                                                      print("My name is :")
+
+FROM THE NEXT COMMIT ->
+
+     98ce56                            32bhu7                                  90ju78
+COMMIT     SIZE                    COMMIT     SIZE                        COMMIT     SIZE
+tree       92ec2                   tree       92ec2                       tree       92ec2
+parent      -          <----       parent     98ce56       <----          parent      32bhu7
+author     scott                   author     scott                       author     scott
+committer  scott                   committer  scott                       committer  scott
+[<commit message>]                 [<COMMIT MESSAGE>]                     [<COMMIT MESSAGE>]
+       |                                   |                                      |
+       V                                   V                                      V
+  SnapShot-1                         SnapShot-2                              SnapShot-3
+
+
 GIT BRANCHING :
+=================
 Branch operation allows creating another line of development.
-We can use this operation to fork off the development process into two different directions.
+we can use this operation to fork off the development process into two different directions.
+A branch in Git is simply a lightweight movable pointer to one of these commits. The default branch name in Git is MASTER.
+As you start making commits, you’re given a master branch that points to the last commit you made.
+Every time you commit, it moves forward automatically.
+
 git branch <branch-name> ->  creates a branch
 git branch -> list Branches
 git checkout <branch-name> ->  move to branch
 git checkout -b <branch-name> -> create a branch and move into it.
 git branch -m <old> <new> -> Rename a branches
+git branch -v -> To see the last commits in all branches
+git branch --merged
+git branch --no-merged -> check branches not merged as of now
 
 A branch can be deleted by providing –D option with git branch command.
 But before deleting the existing branch, switch to the other branch.
 git branch -D <branch-name>
-git branch -d <branch-name> -> make sures that a merge is done so that the complete code is available in master
-
+git branch -d <branch-name> -> makes sure that a merge is done so that the complete code is available in master
 git push origin <branch> -> to push to remote
+git push origin --delete <remote-branch> -> Delete a remote branches
+
+In Git, there is a pointer to the local branch you’re currently on -> heads
+
+1. git branch Testing                                             2. git checkout Testing
+  (creates a branch pointing to latest commit)                       (HEAD pointer moves to testing branch)
+
+                        HEAD                                                     MASTER
+                          |                                                         |
+                        MASTER                                23rt56 <- 456tgy <- 7yug8
+                          |                                                         |
+    23rt56 <- 456tgy <- 7yug8                                                    Testing
+                          |                                                         |
+                       Testing                                                    HEAD
+
+
+3. echo "Code is used to test CPP nodes " >> README
+   git add .
+   git checkout -m "updated README"
+   (A new commit moves HEAD and Testing to the new commit , leaving MASTER as it is )
+
+                   MASTER
+                     |
+23rt56 <- 456tgy <- 7yug8 <- 945gh3
+                               |
+                            Testing
+                               |
+                              HEAD
+
+4. git checkout master
+   (It’s important to note that when you switch branches in Git, files in your working directory will change.
+   If you switch to an older branch, your working directory will be reverted to look like it did the last time you
+   committed on that branch)
+
+                     HEAD
+                      |
+                    MASTER
+                      |
+23rt56 <- 456tgy <- 7yug8 <- 945gh3
+                                |
+                             Testing
+
+5. git checkout master
+   git merge testing
+   git branch -D testing
 
 GIT MERGE :
+===============
 Git merge will combine multiple sequences of commits into one unified history.
 In the most frequent use cases, git merge is used to combine two branches. The commands  merge into the current branch.
 The current branch will be updated to reflect the merge, but the target branch will be completely unaffected.
@@ -154,9 +313,18 @@ git merge --abort -> to abort a merge if there are conflicts
     git pull
     git merge <branch>
 
-  Fast-Forward_merge : linear paths and no new commit is generated
-  3-way merge : creates a new commit
+  Fast-Forward_merge : linear paths and no new commit is generated .
+      when you try to merge one commit with a commit that can be reached by following the first commit’s history,
+      Git simplifies things by moving the pointer forward because there is no divergent work to merge together
 
+  3-way merge : creates a new commit
+      Instead of just moving the branch pointer forward,
+      Git creates a new snapshot that results from this three-way merge and automatically creates a new commit that points to it.
+      This is referred to as a merge commit, and is special in that it has more than one parent.
+
+
+  GIT MERGE CONFLICTS : (git mergetool -> GUI tool)
+  ======================
   When you encounter a merge conflict, running the git status command shows you which files need to be resolved .
   Once you've identified conflicting sections, you can go in and fix up the merge to your liking.
   When you're ready to finish the merge, all you have to do is run git add on the conflicted file(s) to tell Git they're resolved.
@@ -165,7 +333,8 @@ git merge --abort -> to abort a merge if there are conflicts
 
 
 GIT REBASE :
-https://www.atlassian.com/git/tutorials/rewriting-history/git-rebase 
+==============
+https://www.atlassian.com/git/tutorials/rewriting-history/git-rebase
 https://www.atlassian.com/git/tutorials/merging-vs-rebasing
 -> rebasing is like saying, “I want to base my changes on what everybody has already done.”
 You have two options for integrating your feature into the master branch: merging directly or rebasing and then merging.
@@ -183,30 +352,3 @@ The Git rebase command tries to find out the common ancestor between the current
 It then pushes the commits to the local branch by modifying the order of commits in the current local branch.
 For example, if your local branch has commits A−>B−>C−>D and the merge branch has commits A−>B−>X−>Y,
 then Git rebase will convert the current local branch to something like A−>B−>X−>Y−>C−>D.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-What exactly happens when you do GIT commit :
-==========================
-https://dzone.com/articles/git-behind-the-curtain-what-happens-when-you-commi
-
-When you create the commit by running git commit, Git checksums each subdirectory and stores those tree objects in the Git repository.
-Git then creates a commit object that has the metadata and a pointer to the root project tree so it can re-create that snapshot when needed.
-Your Git repository now contains five objects:
-  one blob for the contents of each of your three files,
-  one tree that lists the contents of the directory and specifies which file names are stored as which blobs, and
-  one commit with the pointer to that root tree and all the commit metadata.
