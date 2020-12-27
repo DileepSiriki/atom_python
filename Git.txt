@@ -49,6 +49,18 @@ If a particular version of a file is in the Git directory, it’s considered com
 If it has been modified and was added to the staging area, it is staged. And
 if it was changed since it was checked out but has not been staged, it is modified.
 
+Git uses a series of configuration files to determine nondefault behaviour that you may want.
+Each of these “levels” (system, global, local) overwrites values in the previous level, so values in .git/config trump those in /etc/gitconfig, for instance.
+
+  The first place Git looks for these values is in an /etc/gitconfig file, which contains values for every user on the system and all of their repositories.
+  If you pass the option --system to git config, it reads and writes from this file specifically.
+
+  The next place Git looks is the ~/.gitconfig (or ~/.config/git/config) file, which is specific to each user.
+  You can make Git read and write to this file by passing the --global option.
+
+  Finally, Git looks for configuration values in the configuration file in the Git directory (.git/config) of whatever repository you’re currently using.
+  These values are specific to that single repository.
+
 $ git config --global user.name "esrkdlp"
 $ git config --global user.email dileep.siriki@ericsson.com
 $ git config --list -> to list all configuration settings
@@ -70,6 +82,10 @@ Clone : Clone operation creates the instance of the repository. Clone operation 
 Pull ; Pull operation copies the changes from a remote repository instance to a local one. The pull operation is used for synchronization between two repository instances. This is same as the update operation in Subversion.
 Push : Push operation copies changes from a local repository instance to a remote one. This is used to store the changes permanently into the Git repository. This is same as the commit operation in Subversion.
 HEAD : HEAD is a pointer, which always points to the latest commit in the branch. Whenever you make a commit, HEAD is updated with the latest commit. The heads of the branches are stored in .git/refs/heads/ directory.
+       It is the pointer to the current branch reference, which is in turn a pointer to the last commit made on that branch.
+       That means HEAD will be the parent of the next commit that is created.
+       It’s generally simplest to think of HEAD as the snapshot of your last commit.
+       HEAD~ = Parent of HEAD
 
 [CentOS]$ ls -1 .git/refs/heads/
 master
@@ -83,6 +99,11 @@ Tracked files : are files that were in the last snapshot; they can be unmodified
 Untracked files : are everything else – any files in your working directory that were not in your last snapshot and are not in your staging area.
 When you first clone a repository, all of your files will be tracked and unmodified because Git just checked them out and you haven’t edited anything
 
+SHA1: The SHA-1 digest is 20 bytes or 160 bits
+Git is smart enough to figure out what commit you meant to type if you provide the first few characters,
+as long as your partial SHA-1 is at least four characters long and unambiguous – that is, only one object in the current repository begins with that partial SHA-1.
+  ex: git show <40chars> = git show <20chars> = git show <4chars>
+
 
 GIT LOG :
 ==========
@@ -90,6 +111,36 @@ git log           -> show commit history in the current branch
 git log --oneline -> single line prints
 git log -p        -> To view commit history and also the changes introduced
 git log --pretty=format:"%h - %an, %ar : %s" -> (sha -  author name - date - message)
+
+a<-b<-c<-d<-e<----(master)
+    \f<-g<-h<---(branch)
+
+    DOUBLE DOT :
+      git log master..<branch(master)> -> commits that are reachable from branch but not from master.
+          Here it is f and g and h
+      git log <branch(master)>..master -> commits that are reachable from master but not from branch..
+          Here it is c and d and e
+      git log origin/master..HEAD
+           to see what you’re about to push to a remote
+
+    SINGLE BRANCH COMPARISON :
+      git log refA..refB
+      git log ^refA refB
+      git log refB --not refA
+
+    MULTIPLE BRANCH COMPARISON : (-> seeing what commits are in any of several branches that aren’t in the branch you’re currently on.)
+      git log refA refB ^refC
+      git log refA refB --not refC
+
+    TRIPLE DOT : commits that are reachable by either of two references but not by both of them
+      git log master...<branch(master)
+
+
+GIT REFLOG :
+============
+“git reflog” – a log of where your HEAD and branch references have been for the last few months.
+If you want to see the fith prior value of the HEAD of your repository, you can use the @{n} reference that you see in the reflog output
+
 
 GIT DIFF :
 =-=========
@@ -107,6 +158,8 @@ In Git, the stash operation takes your modified tracked files, stages changes, a
 git stash -> to stash the working directory and staged changes
 git stash list -> to list all stashes
 git stash pop -> execute the git stash pop command, to remove the changes from the stack and place them in the current working directory.
+ git stash apply stash@{2} -> unstash 2nd stash (by default 1st one without any option)
+
 
 GIT REMOVE/MOVE :
 ===================
@@ -117,11 +170,62 @@ git mv <source> <destination> -> To RENAME / MOVE files , once done we need to c
                                                        3-> git add <destination>
 git push origin --delete <remote-branch> -> Delete a remote branches
 
-GIT RESET :
+GIT RESET : ( *** Page 289 in GIT ***)
 ================
 git reset --soft -> just resets the HEAD pointer to previous commit and does not change anything
 git reset --mixed -> reverts those changes from the staging area that have not been committed yet. It reverts the changes from the staging area only. The actual changes made to the working copy of the file are unaffected. The default Git reset is equivalent to the git reset -- mixed.
 git reset --hard  -> it will clear the staging area; it will reset the HEAD pointer to the latest commit of the specific commit ID and delete the local file changes too.
+
+STEP 1: MOVE HEAD (GIT RESET --SOFT HEAD~)
+The first thing reset will do is move what HEAD points to.
+This isn’t the same  as changing HEAD itself (which is what checkout does);  reset moves the branch that HEAD is pointing to.
+This means if HEAD is set to the master branch (i.e. you’re currently on the master branch),
+running "git reset 9e5e6a4" will start by making master point to 9e5e6a4.
+  git reset --soft HEAD~ <===> git commit --amend
+  (Both moves the HEAD to the previous commit then we can do changes and do another commit)
+THIS WILL NOT UNSTAGE THE FILES .
+
+STEP 2: UPDATING THE INDEX (DEFAULT RESET) (GIT RESET --MIXED HEAD~)
+Note that if you run git status now you’ll see in green the diference between the Index and what the new HEAD is.
+The next thing reset will do is to update the Index with the contents of whatever snapshot HEAD now points to.
+It still undid your last commit, but also unstaged everything.  You rolled back to before you ran all your git add and git commit commands.
+THIS WILL UNSTAGE EVERYTHING.
+
+STEP 3: UPDATING THE WORKING DIRECTORY (GIT RESET --HARD HEAD~)
+The third thing that reset will do is to make the Working Directory look like the Index.
+Any other invocation of reset can be pretty easily undone, but the --hard option cannot, since it forcibly overwrites files in the Working Directory
+CHNAGES THE WORKING DIRECTORY AS WELL
+
+  HEAD = pointer to latest commit , INDEX = staging area
+  1. Move the branch HEAD points to (stop here if --soft)
+  2. Make the Index look like HEAD (stop here unless --hard)
+  3. Make the Working Directory look like the Index
+
+GIT RESET vs GIT CHECKOUT : (***fig 7.19 in book )
+===========================
+1. Unlike reset --hard, checkout is working-directory safe; it will check to make sure it’s not blowing away files that have changes to them.
+  Actually, it’s a bit smarter than that – it tries to do a trivial merge in the Working Directory, so all of the files you haven’t changed in will be updated.
+  reset -- hard, on the other hand, will simply replace everything across the board without checking.
+
+2. reset will move the branch that HEAD points to, checkout will move HEAD itself to point to another branch .
+  say we have master and develop branches which point at different commits, and we’re currently on develop (so HEAD points to it).
+  If we run git reset master, develop itself will now point to the same commit that master does.
+  If we instead run git checkout master, develop does not move, HEAD itself does. HEAD will now point to master
+
+The “HEAD” column reads “REF” if that command moves the reference (branch) that HEAD  points to, and “HEAD” if it moves HEAD itself
+
+                                  HEAD         Index         Workdir         WD-Safe?
+  COMMIT LEVEL
+  reset --soft [commit]            REF          NO              NO               YES
+  reset [commit]                   REF          YES             NO               YES
+  reset --hard [commit]            REF          YES             YES              NO
+  checkout [commit]                HEAD         YES             YES              YES
+
+  FILE LEVEL
+  reset (commit) [file]            NO           YES             NO               YES
+  checkout (commit) [file]         NO           YES             YES              NO
+
+
 
 GIT TAGGING :
 ================
@@ -170,7 +274,11 @@ GIT COMMIT :
 =================
 git commit -m "commit message"
 git commit --amend -m "<new commit message>" -> to change the previous commit and not create a new commit
-gitk -> GUI of Commits
+gitk -> gitk is a graphical history viewer.
+        Think of it like a powerful GUI shell over git log and git grep.
+        This is the tool to use when you’re trying to find something that happened in the past, or visualize your project’s history .
+        most useful is the --all flag, which tells gitk to show commits reachable from any ref, not just HEAD. 
+
 
 Git doesn’t store data as a series of change sets or differences, but instead as a series of snapshots.
 When you make a commit, Git stores a commit object that contains a pointer to the snapshot of the content you staged
@@ -228,6 +336,12 @@ we can use this operation to fork off the development process into two different
 A branch in Git is simply a lightweight movable pointer to one of these commits. The default branch name in Git is MASTER.
 As you start making commits, you’re given a master branch that points to the last commit you made.
 Every time you commit, it moves forward automatically.
+
+When you checkout a branch,
+    1. it changes HEAD to point to the new branch ref,
+    2. populates your Index with the snapshot of that commit,
+    3. then copies the contents of the Index into your Working Directory.
+
 
 git branch <branch-name> ->  creates a branch
 git branch -> list Branches
@@ -352,3 +466,99 @@ The Git rebase command tries to find out the common ancestor between the current
 It then pushes the commits to the local branch by modifying the order of commits in the current local branch.
 For example, if your local branch has commits A−>B−>C−>D and the merge branch has commits A−>B−>X−>Y,
 then Git rebase will convert the current local branch to something like A−>B−>X−>Y−>C−>D.
+
+GIT CLEAN :
+============
+it’s designed to remove files from your working directory that are not tracked.
+If you change your mind, there is often no retrieving the content of those files.
+A safer option is to run git stash --all to remove everything but save it in a stash
+the git clean command will only remove untracked files that are not ignored.
+Any file that matches a pattern in your .gitignore or other ignore files will not be removed. use "-x" to remove them.
+
+git clean -n -> to see what would be deleted (do it before doing a real delete)
+git clean -i -> interactive clean
+git clean -d -> recursive delete the directories as well
+git clean -x -> Also delete files specified in .gitignore file
+git clean -X -> Only remove files specified in .gitignore . Useful to remove files generated by a build and then do a new rebuild but keeping the manually created files intact .
+
+GIT GREP :
+===========
+git grep -n <snippet> -> show line numbers and paths
+git log -<snippet> --oneline -> does the same
+git log -L :<snippet>:<file> -> to see all changes done to that snippet in a file from beginning
+
+GIT BLAME :
+===========
+It shows you what commit was the last to modify each line of any file.
+So, if you see that a method in your code is buggy, you can annotate the file with git blame to see when each line of the method was last edited and by whom.
+This example uses the -L option to limit the output to lines 12 through 22:
+  git blame -L 12,22 simplegit.rb
+
+GIT HOOKS :
+===========
+Git has a way to fire of custom scripts when certain important actions occur.
+Example scripts in .git/hooks
+There are two groups of these hooks:
+  client-side : triggered by operations such as committing and merging
+  server-side : run on network operations such as receiving pushed commits
+
+GIT REFLOG: (.git/logs)
+===========
+As you’re working, Git silently records what your HEAD is every time you change it.
+Each time you commit or change branches, the reflog is updated.
+The reflog is also updated by the git update-ref command, which is another reason to use it instead of just writing the SHA-1 value to your ref files,
+
+If we did a "git reset --hard" and want to fetch the lost commits , use "git reflog" to list the history of HEAD moments .
+Then do a "git branch <branch-name> <required SHA from reflog output>"
+
+===================================================================================================
+===================================================================================================
+GIT INTERNALS :
+===================================================================================================
+===================================================================================================
+==> Files in .git folder :
+
+The description file is only used by the GitWeb program, so don’t worry about it.
+The config file contains your project specific configuration options, and the info directory keeps a global exclude file for ignored patterns that you don’t want to track in a .gitignore file.
+The hooks directory contains your client- or server-side hook scripts, which are discussed in detail in “Git Hooks”.
+
+objects directory stores all the content for your database,
+the refs directory stores pointers into commit objects in that data (branches),
+the HEAD file points to the branch you currently have checked out,
+the index file is where Git stores your staging area information
+
+. Git normally creates a tree by taking the state of your staging area or index and writing a series of tree objects from it.
+
+BLOB OBJECTS:
+=============
+$ echo 'test content' | git hash-object -w --stdin
+(-w to tell git to store in .git/objects and --stdin to tell git to read from standard input else specify a path)
+d670460b4b4aece5915caf5c68d12f560a9fe3e4
+
+This is how Git stores the content initially – as a single file per piece of content, named with the SHA-1 checksum of the content and its header.
+The subdirectory is named with the first 2 characters of the SHA-1, and the filename is the remaining 38 characters
+Use the "cat-file" to read the details of file
+Use -t option to know type of object : blob / tree / tag / commits
+
+$ git cat-file -p d670460b4b4aece5915caf5c68d12f560a9fe3e4
+test content
+
+TREE OBJECTS:
+==============
+solves the problem of storing the filename and also allows you to store a group of files together.
+All the content is stored as tree and blob objects, with trees corresponding to UNIX directory entries and blobs corresponding more or less to inodes or file contents.
+A single tree object contains one or more tree entries, each of which contains a SHA-1 pointer to a blob or subtree with its associated mode, type, and filename.
+
+COMMIT OBJECTS ->GIT REFS :
+===========================
+Found at .git/refs
+Used to store references to the commits .
+update-ref is used to update the commit ID refrences .
+
+git update-ref refs/heads/master 87hli0
+git update-ref refs/heads/test cac0ca
+
+So instead of doing "git <command> <cmmit-id>" , you can do "git <command> master" or "git <command> test"
+When you run commands like git branch (branchname), Git basically runs that update-ref command to add the SHA-1 of the last commit of the branch you’re on into whatever new reference you want to create.
+when you run git branch (branchname), how does Git know the SHA-1 of the last commit? The answer is the HEAD file (.git/HEAD) which is nothing but
+(.git/refs/heads/<branch>)

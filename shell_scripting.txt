@@ -288,8 +288,18 @@ Do a similar steps for hardlinks checking.If you copy a file, it will just dupli
 
 30. SOURCE : source is a shell built-in command which is used to read and execute the content of a file(generally set of commands), passed as an argument in the current shell script. The command after taking the content of the specified files passes it to the TCL interpreter as a text script which then gets executed. If any arguments are supplied, they become the positional parameters when filename is executed. Otherwise, the positional parameters remain unchanged. The entries in $PATH are used to find the directory containing FILENAME, however if the file is not present in $PATH it will search the file in the current directory
 
+31. find : Find command is used to search and locate the list of files and directories based on conditions you specify for files that match the arguments.
+           Find can be used in a variety of conditions like you can find files by permissions, users, groups, file type, date, size, and other possible criteria.
+           find <path> <options> <file/dir>
+           find /home -iname tecmint.txt (i for ignorecase)
+           find / -type d -name Tecmint (search for directory)
+           find . -type f -name tecmint.php (search for file)
+           
+
+
 31. df , free  :
 32. APT-GET , UPGRADE ETC;
+
 ========================================================================
 ========================================================================
 
