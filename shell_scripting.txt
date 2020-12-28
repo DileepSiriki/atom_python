@@ -22,17 +22,13 @@ BASIC LINUX COMMANDS & USAGE :
 
 4. cat  -> textfile.txt
            cat > textfile.txt -> opens a file to write content . press ctrl+D to save and exit
-                              -> if you do it to an already existing file , prevous contents will be deleted .
+                              -> if you do it to an already existing file , previous contents will be deleted .
            cat textfile.txt -> opens a file
 
            The touch command is a standard command used in UNIX/Linux operating system which is used to create, change and modify timestamps of a file.
            Basically, there are two different commands to create a file in the Linux system which is as follows:
            cat command: It is used to create the file with content.
            touch command: It is used to create a file without any content. The file created using touch command is empty. This command can be used when the user doesn’t have data to store at the time of file creation.
-
-cat command: It is used to create the file with content.
-touch command: It is used to create a file without any content. The file created using touch command is empty. This command can be used when the user doesn’t have data to store at the time of file creation.
-
 
 5. echo  ->  echo <string> -> display string on screen
              echo $var -> display value of variable if any
@@ -294,7 +290,7 @@ Do a similar steps for hardlinks checking.If you copy a file, it will just dupli
            find /home -iname tecmint.txt (i for ignorecase)
            find / -type d -name Tecmint (search for directory)
            find . -type f -name tecmint.php (search for file)
-           
+
 
 
 31. df , free  :
@@ -307,40 +303,39 @@ Do a similar steps for hardlinks checking.If you copy a file, it will just dupli
 SHELL SCRIPTING :
 =======================
 
-SET Vs ENV :
-------------
-set is a shell command to set the value of a shell attribute variable; these are internal variables used by the shell.
-env is a program that runs another program with modified environment variables.
-The major difference is that the env command will never modify the shell's own environment (only that of the child process), while set will. Set can also change settings like brace expansion within the shell.
-You might also want to look at export, which changes the environment variables for all future commands.
-
-environmental variables are dynamic values that effect processes on a computer .
-create using SET and delete using UNSET .
-
-
 KERNAL :
 ----------
-Kernel is hart of an O/S say linux .. It manages resource of Linux O/S. Resources means facilities available in Linux.
+Kernel is hart of an O/S say linux-OS .. It manages resource of Linux O/S. Resources means facilities available in Linux.
 It is reasonable for communication between Hardware and Software.
 A system may have many shells but only one kernal .
 For eg. Facility to store data, print data on printer, memory, file management etc . Kernel decides who will use this resource, for how long and when.
 It runs your programs (or set up to execute binary files) It's Memory resident portion of Linux. It performance following task :-
-● I/O management
-● Process management
-● Device management
-● File management
-● Memory management
+● I/O management          |
+● Process management      |
+● Device management       |   ---> F O D I M P
+● File management         |
+● Memory management       |
+
+Operating system is a system software. Kernel is a part of operating system.
+Operating system acts as an interface between user and hardware. When computer boots up Operating System is the first program that loads. It also provides protection and security.
+Kernel acts as an interface between applications and hardware, which coverts user command into machine language. When Operating System boots up Kernal is the first program that loads. It’s main purpose is memory management, disk management, process management and task management.
+
+USER -> TERMINAL -> SHELL -> KERNAL -> HARDWARE
+USER -> APPLICATIONS -> OS -> HARDWARE
 
 |---------------------------------------------------------------------|-------------------------|
 |                            ===============================          |                         |
-|    --------              ||   --------   ---    -------   ||        |        ---------        |
-|  | HARDWARE |   <<-->>   ||  | KERNAL | | OS | | SHELL |  ||      <<-->    || TERMINAL |      |
-|    --------              ||   --------   ---    -------   ||        |        ----------       |
+|    --------              ||   --------------------------  ||        |        ---------        |  <<-->>  | USER-1 |
+|  | HARDWARE |   <<-->>   ||  | [[ KERNAL ]] [[GNU-SW]]  | ||      <<-->>    | TERMINAL |      |  <<-->>  | USER-2 |
+|    --------              ||  |    OPERATING SYSTEM      | ||        |        ----------       |
+|                          ||   --------------------------  ||        |                         |
+|                          ||     ---------    ---------    ||        |                         |
+|                          ||    | SHELL-1 |  | Shell-2 |   ||        |                         |
+|                          ||     ---------    ---------    ||        |                         |
 |                            ===============================          |             ^           |
 |---------------------------------------------------------------------|----------   |  ---------|
-|                    Applications , cd , ls , grep , compilers etc ;                V           |    <<-->>  | USER-1 |
-|-----------------------------------------------------------------------------------------------|    <<-->>  | USER-2 |
-
+|                    Applications , cd , ls , grep , compilers etc ;                V           |  <<-->>  | USER-3 |
+|-----------------------------------------------------------------------------------------------|  <<-->>  | USER-4 |
 
 
 LINUX is a KERNAL , not an OS . Its a clone of UNIX KERNAL .
@@ -364,7 +359,24 @@ It is named a shell because it is the outermost layer around the operating syste
 A command-line interface (CLI) is an operating system shell that uses alphanumeric characters typed on a keyboard to provide instructions and data to the operating system.
 Including various services to their users, including file management, process management (running and terminating applications), batch processing, and operating system monitoring and configuration.
 MICROSOFT WINDOWS -> Windows Shell and Power shell
-LINUX/UNIX  -> Bourne again Shell (bash) , unix shell , Bourne shell (sh)
+LINUX/UNIX  -> Bourne again Shell (bash) , unix shell , Bourne shell (sh) , C SHELL (csh) , KORN SHELL(ksh)
+
+In Unix, there are two major types of shells −
+Bourne shell − If you are using a Bourne-type shell, the $ character is the default prompt.
+C shell − If you are using a C-type shell, the % character is the default prompt.
+
+The Bourne Shell has the following subcategories −
+    Bourne shell (sh)
+    Korn shell (ksh)
+    Bourne Again shell (bash)
+    POSIX shell (sh)
+
+The different C-type shells follow −
+    C shell (csh)
+    TENEX/TOPS C shell (tcsh)
+
+Users communicate with the kernel through a program known as the shell.
+The shell is a command line interpreter; it translates commands entered by the user and converts them into a language that is understood by the kernel.
 
 
 UNINX SHELL :
@@ -384,7 +396,7 @@ So in O/s there is special program called Shell. Shell accepts your instruction 
 
   $ls ; $date -> BASH -> 10001101 -> LINUX KERNAL
 
-  OS = KERNAL + SHELL [KERNAL handles everything and shell helps us interact with it .]
+  OS = GNU S/W + KERNAL + SHELL [KERNAL handles everything and shell helps us interact with it .]
 
 
 SHELL SCRIPTING :	(called BATCH files in MS-DOS) ;
@@ -434,9 +446,6 @@ Special Files − Some special files provide access to hardware such as hard dri
                 Other special files are similar to aliases or shortcuts and enable you to access a single file using different names.
                 These are located in /dev (device folder)
 
-
-
-
 STANDARD UNIX STREAMS :
 ------------------------
 stdin  − This is referred to as the standard input and the associated file descriptor is 0. This is also represented as STDIN.
@@ -465,10 +474,78 @@ You can see system variables by giving command like $ set. Just type in "set" co
 Also we can print them using " $ echo $USERNAME ".
 
 $ set -> prints all variables
-$ set dileep=1994 -> No spaces before after = .
+$ set dileep=1994 -> No spaces before & after = .
 $ echo dileep -> prints "dileep" , use $dileep instead .
 $ echo $dileep -> 1994
 
+ENVIRONMENT VARIABLES :
+========================
+These are available system-wide and are inherited by all spawned child processes and shells.
+Environment variables allow you to customize how the system works and the behaviour of the applications on the system.
+For example, the environment variable can store information about the default text editor or browser, the path to executable files, or the system locale and keyboard layout settings
+By convention, environment variables should have UPPER CASE names.
+When assigning multiple values to the variable they must be separated by the colon : character.
+
+SHELL VARIABLES :
+===================
+Shell variables are variables that apply only to the current shell instance.
+Each shell such as zsh and bash, has its own set of internal shell variables.
+
+MODIFYING VARIABLES :
+======================
+env – The command allows you to run another program in a custom environment without modifying the current one. When used without an argument it will print a list of the current environment variables.
+printenv – The command prints all or the specified environment variables.
+set – The command sets or unsets shell variables. When used without an argument it will print a list of all variables including environment and shell variables, and shell functions.
+unset – The command deletes shell and environment variables.
+export – The command sets environment variables
+
+The printenv and env commands print only the environment variables. If you want to get a list of all variables, including environment, shell and variables, and shell functions you can use the set command:
+Use the printenv command to check whether this variable is an environment variable or not.
+
+The export command is used to set Environment variables.
+To create an environment variable simply export the shell variable as an environment variable:
+
+You can also set environment variables in a single line:
+export MY_NEW_VAR="My New Var"
+
+export MY_VAR
+  printenv HOME == echo $HOME == /home/esrkdlp
+  printenv == env -> TO list all environment variables
+  set != SET -> SET is not the correct SYNTAX
+  set | grep user -> To find a variable value
+  env | grep HOME
+
+$ var="hello"   # create shell variable "var"
+$ bash          # start _new_ bash session
+$ echo "$var"   # no output
+$ exit          # back to original shell session
+$ echo "$var"   # "hello" is outputted
+$ unset var     # remove variable
+
+$ export VAR="hello"  # create environment variable "VAR"
+$ bash
+$ echo "$VAR"         # "hello" is outputted since it's exported
+$ exit                # back to original shell session
+$ unset VAR           # remove variable
+
+$ ( export VAR="hello"; echo "$VAR" )  # set env. var "VAR" to "hello" in subshell and echo it
+$ echo "$VAR"         # no output since a subshell has its own environment
+
+Persistent Environment Variables :
+  To make Environment variables persistent you need to define those variables in the bash configuration files. In most Linux distributions when you start a new session, environment variables are read from the following files:
+  /etc/environment - Use this file to set up system-wide environment variables. Variables in this file are set in the following format:
+  FOO=bar
+  VAR_TEST="Test Var"
+
+  /etc/profile - Variables set in this file are loaded whenever a bash login shell is entered. When declaring environment variables in this file you need to use the export command:
+  export JAVA_HOME="/path/to/java/home"
+  export PATH=$PATH:$JAVA_HOME/bin
+
+  Per-user shell specific configuration files. For example, if you are using Bash, you can declare the variables in the ~/.bashrc:
+  export PATH="$HOME/bin:$PATH"
+
+  To load the new environment variables into the current shell session use the source command:
+  source ~/.bashrc
 
 EXECUTING A SHELL SCRIPT: (#!/usr/bin/env bash) -> the code for all commands is available in /bin folder .
 some commands are shell-built_in like cd , others are written as programs in /bin . To check , execute "which <command>"
@@ -507,16 +584,43 @@ Consider a command : myfile foo bar
 Here $# will be 2 (Since foo and bar only two Arguments), Please note At a time such 9 arguments can be used from $0..$9.
 You can also refer all of them by using $* (which expand to `$0,$1,$2...$9`).
 
-echo "Total number of command line argument are $#"
-echo "$0 is script name"
-echo "$1 is first argument"
-echo $2 is second argument"
-echo "All of them are :- $*"
+$# :The number of arguments supplied to a script.
+$* :All the arguments are double quoted. If a script receives two arguments, $* is equivalent to $1 $2.
+$@ :All the arguments are individually double quoted. If a script receives two arguments, $@ is equivalent to $1 $2.
+$? :The exit status of the last command executed.
+$$ :The process number of the current shell. For shell scripts, this is the process ID under which they are executing.
+$! :The process number of the last background command.
+
+NOTE : https://unix.stackexchange.com/questions/129072/whats-the-difference-between-and
+There is no difference between $* and $@ but there is difference between "$*" and "$@" . Check below
+#!/bin/bash
+echo "With *:"
+for arg in "$*"; do echo "<$arg>"; done
+echo
+echo "With @:"
+for arg in "$@"; do echo "<$arg>"; done
+
+$ /tmp/test.sh 1  2 "3  4"
+With *:
+<1 2 3 4>
+
+With @:
+<1>
+<2>
+<3  4>
+
 
 -> bash file.sh 1 2 3 4 5
 $# = 5 ; $* = 1 2 3 4 5
 -> ./file.sh 1 2 3 4 5
 $# = 5 ; $* = 1 2 3 4 5
+
+ARRAYS :
+===========
+Syntax to access elements of an array : ${array_name[index]}
+You can access all the items in an array in one of the following ways −
+${array_name[*]}
+${array_name[@]}
 
 ######################################################
 
@@ -535,8 +639,38 @@ if return value is nonzero (>0), command is not successful
 or some sort of error executing command/shell script.
 This value is know as Exit Status of that command. To determine this exit Status we use $? variable of shell.
 
+CONDITIONAL OPERATORS:
+=======================
+All the conditional expressions should be inside square braces with spaces around them.
+For example [ $a == $b ] is correct whereas, [$a==$b] is incorrect.
+!	This is logical negation. This inverts a true condition into false and vice versa.	[ ! false ] is true.
+-o	This is logical OR. If one of the operands is true, then the condition becomes true.	[ $a -lt 20 -o $b -gt 100 ] is true.
+-a	This is logical AND. If both the operands are true, then the condition becomes true otherwise false.	[ $a -lt 20 -a $b -gt 100 ] is false.
+
+TEST COMMAND or [EXPR] :
+=========================
+test command or [ expr ] is used to see if an expression is true, and if it is true it return zero(0),
+otherwise returns nonzero(>0) for false. Syntax: test expression OR [ expression ]
+Now will write script that determine whether given argument number is positive. Write script as
+follows
+$ cat > ispostive
+#!/bin/sh
+#
+# Script to see whether argument is positive
+#
+if test $1 -gt 0
+then
+ echo "$1 number is positive"
+fi
+
+
+
 if - then - fi  :
 ---------------------
+Unix Shell supports following forms of if…else statement −
+if...fi statement
+if...else...fi statement
+if...elif...else...fi statement
 
 if cat $1
 then
@@ -551,12 +685,12 @@ fi
 
 For Mathematical Operators :
 
--eq ======== is equal to ======== (5 == 6) ======== if test 5 -eq 6 ======== if expr [ 5 -eq 6 ]
--ne ======== is not equal to ======== 5 != 6 ======== if test 5 -ne 6  ======== if expr [ 5 -ne 6 ]
--lt ======== is less than ======== 5 < 6 ======== if test 5 -lt 6 ======== if expr [ 5 -lt 6 ]
--le ======== is less than or equal to ======== 5 <= 6 ======== if test 5 -le 6 ======== if expr [ 5 -le 6 ]
--gt ======== is greater than ======== 5 > 6 ======== if test 5 -gt 6 ======== if expr [ 5 -gt 6 ]
--ge ======== is greater than or equal to ======== 5 >= 6 ======== if test 5 -ge 6 ======== if expr [ 5 -ge 6 ]
+-eq ======== is equal to ======================== (5 == 6) ======== if test 5 -eq 6 ======== if expr [ 5 -eq 6 ]
+-ne ======== is not equal to ==================== 5 != 6   ======== if test 5 -ne 6 ======== if expr [ 5 -ne 6 ]
+-lt ======== is less than ======================= 5 < 6    ======== if test 5 -lt 6 ======== if expr [ 5 -lt 6 ]
+-le ======== is less than or equal to =========== 5 <= 6   ======== if test 5 -le 6 ======== if expr [ 5 -le 6 ]
+-gt ======== is greater than ==================== 5 > 6    ======== if test 5 -gt 6 ======== if expr [ 5 -gt 6 ]
+-ge ======== is greater than or equal to ======== 5 >= 6   ======== if test 5 -ge 6 ======== if expr [ 5 -ge 6 ]
 
 For string Comparisons use :
 
@@ -638,3 +772,21 @@ done
 
 CASE statement :
 ----------------
+case $variable-name in
+ pattern1) command
+            ...
+            ..
+            command;;
+ pattern2) command
+            ...
+            ..
+            command;;
+ patternN) command
+            ...
+            ..
+            command;;
+ *) command
+            ...
+            ..
+            command;;
+ esac
