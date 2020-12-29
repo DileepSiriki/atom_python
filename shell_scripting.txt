@@ -1,6 +1,7 @@
 
 BASIC LINUX COMMANDS & USAGE :
 ======================================
+We can run two or more commands directly at one go using ";" as in "date;who;ls" .
 
 1. help :  a. command --help  -> help is a bash built-in, providing help for bash commands only.
            b. man command    -> A little less descriptive than info but straight to point .
@@ -35,6 +36,8 @@ BASIC LINUX COMMANDS & USAGE :
              echo <text> > textfile ->remove old contents in textfile and write <text> to it .
              echo <text> >> textfile -> append <text> to the textfile .
              echo * is is similar to ls command
+             echo -n $i -> to not print new line after each iteration (useful for pyramids printing)
+             echo -e "Value of a is $a \n" -> -e to interpret backslash escapes . else \n does not work
 
 INODE :  https://helpdeskgeek.com/linux-tips/what-are-inodes-in-linux-and-how-are-they-used/
 An inode is a data structure that stores various information about a file in Linux, such as the access mode (read, write, execute permissions), ownership, file type, file size, group, number of links, etc. Each inode is identified by an integer number. An inode is assigned to a file when it is created .
@@ -433,7 +436,7 @@ PTS connections are SSH connections or telnet connections. All of these connecti
 
 
 FILES IN UNIX :
----------------
+=================
 In Unix, there are three basic types of files −
 
 Ordinary Files − An ordinary file is a file on the system that contains data, text, or program instructions.
@@ -446,18 +449,23 @@ Special Files − Some special files provide access to hardware such as hard dri
                 Other special files are similar to aliases or shortcuts and enable you to access a single file using different names.
                 These are located in /dev (device folder)
 
-STANDARD UNIX STREAMS :
-------------------------
-stdin  − This is referred to as the standard input and the associated file descriptor is 0. This is also represented as STDIN.
-         The Unix program will read the default input from STDIN.
-stdout − This is referred to as the standard output and the associated file descriptor is 1. This is also represented as STDOUT.
-         The Unix program will write the default output at STDOUT
-stderr − This is referred to as the standard error and the associated file descriptor is 2. This is also represented as STDERR.
-         The Unix program will write all the error messages at STDERR.
+/     This is the root directory which should contain only the directories needed at the top level of the file structure
+/bin  This is where the executable files are located. These files are available to all users
+/dev  These are device drivers
+/etc  Supervisor directory commands, configuration files, disk configuration files, valid user lists, groups, ethernet, hosts, where to send critical messages
+/lib  Contains shared library files and sometimes other kernel-related files
+/boot Contains files for booting the system
+/home Contains the home directory for users and other accounts
+/mnt  Used to mount other temporary file systems, such as cdrom and floppy for the CD-ROM drive and floppy diskette drive, respectively
+/proc Contains all processes marked as a file by process number or other information that is dynamic to the system
+/tmp  Holds temporary files used between system boots
+/usr  Used for miscellaneous purposes, and can be used by many users. Includes administrative commands, shared files, library files, and others
+/var  Typically contains variable-length files such as log and print files and any other type of file that may contain a variable amount of data
+/sbin contains binary (executable) files, usually for system administration. For example, fdisk and ifconfig utlities
 
 
-Output Redirection :
---------------------
+OUTPUT REDIRECTION :
+======================
 1. ">"  : To redirect output of a command to a file as in    -> "ls -lrt > file" .
           If the file doesn't exist it is created automatically .
           Old data if any is lost .
@@ -467,7 +475,7 @@ Output Redirection :
 
 
 VARIABLES IN LINUX : (they are case -sensitive)
---------------------
+=======================
 1) System variables - Created and maintained by Linux itself. This type of variable defined in CAPITAL CASE LETTERS.
 2) User defined variables - Created and maintained by user. This type of variable defined in LOWER CASE LETTERS.
 You can see system variables by giving command like $ set. Just type in "set" command .
@@ -567,8 +575,10 @@ https://swcarpentry.github.io/shell-novice/06-script/index.html
         Then you can execute simply by doing "file"
 
 
-==> To execute a linux command, do "$(command)" as in $echo "current dir is $(pwd)"
-    Also you can use `date`. As in -> echo " today is `date` " .
+EXECUTE LINUX COMMANDS :
+==========================
+To execute a linux command, do "$(command)" as in $echo "current dir is $(pwd)"
+Also you can use `date`. As in -> echo " today is `date` "  or also as echo " today is $(date) " .
 
 
 $ echo 3 + 5 -> prints 3 + 5
@@ -579,9 +589,10 @@ $ echo `expr 3 + 5`    -> 8
 $ echo ` 2 + 3`   -> error
 
 COMMAND LINE ARGUMENTS : https://www.grymoire.com/Unix/Quote.html
-------------------------
+============================
 Consider a command : myfile foo bar
-Here $# will be 2 (Since foo and bar only two Arguments), Please note At a time such 9 arguments can be used from $0..$9.
+Here $# will be 2 (Since foo and bar only two Arguments),
+Please note At a time such 9 arguments can be used from $0..$9.
 You can also refer all of them by using $* (which expand to `$0,$1,$2...$9`).
 
 $# :The number of arguments supplied to a script.
@@ -632,14 +643,26 @@ wc -l "$@" | sort -n    -> if we have more than 1 file to process .
 
 
 EXIT STATUS : ($?)
--------------
+===================
 By default in Linux if particular command is executed, it return two type of values, (Values are used to see whether command is successful or not)
 if return value is zero (0), command is successful,
 if return value is nonzero (>0), command is not successful
 or some sort of error executing command/shell script.
 This value is know as Exit Status of that command. To determine this exit Status we use $? variable of shell.
 
-CONDITIONAL OPERATORS:
+ARITHEMATIC OPERATIONS : (for Multiplication it is \* , not *)
+==========================
++ (Addition)	Adds values on either side of the operator	`expr $a + $b` will give 30
+- (Subtraction)	Subtracts right hand operand from left hand operand	`expr $a - $b` will give -10
+* (Multiplication)	Multiplies values on either side of the operator	`expr $a \* $b` will give 200
+/ (Division)	Divides left hand operand by right hand operand	`expr $b / $a` will give 2
+% (Modulus)	Divides left hand operand by right hand operand and returns remainder	`expr $b % $a` will give 0
+= (Assignment)	Assigns right operand in left operand	a = $b would assign value of b into a
+== (Equality)	Compares two numbers, if both are same then returns true.	[ $a == $b ] would return false.
+!= (Not Equality)	Compares two numbers, if both are different then returns true.	[ $a != $b ] would return true.
+
+
+CONDITIONAL & BOOLEAN  OPERATORS:
 =======================
 All the conditional expressions should be inside square braces with spaces around them.
 For example [ $a == $b ] is correct whereas, [$a==$b] is incorrect.
@@ -647,26 +670,31 @@ For example [ $a == $b ] is correct whereas, [$a==$b] is incorrect.
 -o	This is logical OR. If one of the operands is true, then the condition becomes true.	[ $a -lt 20 -o $b -gt 100 ] is true.
 -a	This is logical AND. If both the operands are true, then the condition becomes true otherwise false.	[ $a -lt 20 -a $b -gt 100 ] is false.
 
-TEST COMMAND or [EXPR] :
+TEST COMMAND or [EXPR] : ( if test $i -eq 0   <===> if [ $i -eq 0 ] )
 =========================
+[[ … ]] double brackets are an alternate form of conditional expressions in ksh/bash/zsh with a few additional features,
+for example you can write [[ -L $file && -f $file ]] to test if a file is a symbolic link to a regular file
+whereas single brackets require [ -L "$file" ] && [ -f "$file" ]
+
 test command or [ expr ] is used to see if an expression is true, and if it is true it return zero(0),
 otherwise returns nonzero(>0) for false. Syntax: test expression OR [ expression ]
 Now will write script that determine whether given argument number is positive. Write script as
 follows
-$ cat > ispostive
-#!/bin/sh
-#
-# Script to see whether argument is positive
-#
+
 if test $1 -gt 0
 then
  echo "$1 number is positive"
 fi
 
+#which is similar to :
 
+if [ $1 -gt 0 ]
+then
+ echo "$1 number is positive"
+fi
 
-if - then - fi  :
----------------------
+IF-THEN-FI :
+================
 Unix Shell supports following forms of if…else statement −
 if...fi statement
 if...else...fi statement
@@ -709,8 +737,8 @@ Shell also test for file and directory types :
 -r file                        Is read-only file
 -x file                        Is file is executable
 
-if - then - else - fi  :
----------------------
+IF-THEN-ELSE-FI:
+=================
 # Script to see whether argument is positive or negative
 if [ $# -eq 0 ]
 then
@@ -725,8 +753,8 @@ else
 fi
 
 
-if - elif - else - fi  :
-----------------------------
+IF-THEN-ELIF-THEN-ELSE-FI:
+======================
 # Script to test if..elif...else
 if [ $1 -gt 0 ]
 then
@@ -741,8 +769,8 @@ else
   echo "Opps! $1 is not number, give number"
 fi
 
-for loop :
-----------
+FOR LOOPS:
+=============
 for { variable name } in { list }
 do
  execute one for each item in the list until the list is
@@ -760,8 +788,8 @@ do
  echo "$n * $i = `expr $i \* $n`"
 done
 
-while loop :
-------------
+WHILE LOOPS:
+==============
 n=$1
 i=1
 while [ $i -le 10 ]
@@ -770,8 +798,8 @@ do
  i=`expr $i + 1`
 done
 
-CASE statement :
-----------------
+CASE STATEMENT :
+==================
 case $variable-name in
  pattern1) command
             ...
@@ -790,3 +818,124 @@ case $variable-name in
             ..
             command;;
  esac
+
+#EXAMPLE
+
+while :
+do
+ clear
+ echo "-------------------------------------"
+ echo " Main Menu "
+ echo "-------------------------------------"
+ echo "[1] Show Todays date/time"
+ echo "[2] Show files in current directory"
+ echo "[3] Show calendar"
+ echo "[4] Start editor to write letters"
+ echo "[5] Exit/Stop"
+ echo "======================="
+ echo -n "Enter your menu choice [1-5]: "
+ read yourch
+ case $yourch in
+ 1) echo "Today is `date` , press a key. . ." ; read ;;
+ 2) echo "Files in `pwd`" ; ls -l ; echo "Press a key. . ." ; read ;;
+ 3) cal ; echo "Press a key. . ." ; read ;;
+ 4) vi ;;
+ 5) exit 0 ;;
+ *) echo "Opps!!! Please select choice 1,2,3,4, or 5";
+ echo "Press a key. . ." ; read ;;
+ esac
+done
+
+TAKING INPUT FROM USERS :
+===========================
+SYNTAX : read <variable1> <variable2> etc ;
+
+echo "Enter the user name: "
+read first_name
+echo "The Current User Name is $first_name"
+echo
+echo "Enter other users'names: "
+read name1 name2 name3
+echo "$name1, $name2, $name3 are the other users."
+
+-> If you do not want to pass a variable , you can catch it in variable REPLY
+echo "Enter name : "
+read
+echo "Name : $REPLY"
+
+-> To enter the input on the same PROMPT by using the -p command line option as follows:
+read -p "<Text>" <variable_name>
+-> To not expose the user response as in passwords , use-s option
+read -sp  "<Text>" <variable_name>
+
+-> To take array of values and access them as ${var[0]} and ${var[1]} etc ;
+read -a <var>
+
+OUTPUT REDIRECTION: ( I/O redirectors are used to send output of command to file or to read input from file.)
+====================
+stdin  − This is referred to as the standard input and the associated file descriptor is 0. This is also represented as STDIN.
+         The Unix program will read the default input from STDIN.
+stdout − This is referred to as the standard output and the associated file descriptor is 1. This is also represented as STDOUT.
+         The Unix program will write the default output at STDOUT
+stderr − This is referred to as the standard error and the associated file descriptor is 2. This is also represented as STDERR.
+         The Unix program will write all the error messages at STDERR.
+
+Sometimes you will need to execute a command, but you don't want the output displayed on the screen
+/dev/null - Use to send unwanted output of program
+This is special Linux file which is used to send any unwanted output from program/command.
+Syntax: command > /dev/null
+For e.g. $ ls > /dev/null , output of this command is not shown on screen its send to this special file.
+The /dev directory contains other device files. The files in this directory mostly represent peripheral devices such disks liks floppy disk, sound card, line printers etc.
+
+In Linux (And in C programming Language) your keyboard, screen etc are treated as files.
+
+Standard_File   File_Descriptors_number           Use                 Example
+  stdin                 0                   as Standard input         Keyboard
+  stdout                1                   as Standard output        Screen
+  stderr                2                   as Standard error         Screen
+
+You can redirect the output from a file descriptor directly to file with following
+Syntax: "file-descriptor-number>filename"
+
+$ rm bad_file_name111
+rm: cannot remove `bad_file_name111': No such file or directory ,is the output (error) of the above program. Now if we try to redirect this error-output to file, it can not be send to file
+$ rm bad_file_name111 > er
+Still it prints output on stderr as rm: cannot remove `bad_file_name111': No such file or directory, And if you see er file as $ cat er , This file is empty, since output is send to error device and you can not redirect it to copy this error-output to your file 'er'.
+$ rm bad_file_name111 2>er
+Note that no space are allowed between 2 and >, The 2>er directs the standard error output to file. 2 number is default number of stderr file.
+
+Syntax: "from>&destination"
+If we want to tell users they have not specified arguments or someother but we dont to print them in stdout rather in stderr , then :
+You can display a message on to STDERR by redirecting STDOUT into STDERR
+echo "Error : Number are not supplied" 1>&2
+echo "Usage : $0 number1 number2" 1>&2
+-> Here the 1>&2 at the end of echo statement, directs the standard output (stdout) to standard error (stderr) device.
+
+
+FUNCTIONS:
+===========
+function_name () {
+   list of commands
+}
+
+--> PASS arguments :
+# Define your function here
+Hello () {
+   echo "Hello World $1 $2"
+}
+# Invoke your function
+Hello Zara Ali
+
+Upon execution, you will receive the following result −
+$./test.sh
+Hello World Zara Ali
+
+TRAPS :
+==========
+if you press ctrl + c , while running this script, script get terminated. The ctrl + c here work as signal,
+When such signal occurs its send to all process currently running in your system
+
+GETOPS for WHILE loops:
+=======================
+getopts is a very convenient bash script utility, which helps you to conveniently and gracefully handle the passing of flags(short version), and arguments in a clean, standardized manner.
+Instead of having the developer manually handle the flags passed to a script
