@@ -1,0 +1,155 @@
+CLOUD INTRO :
+===============
+  # CLOUD
+    It provides us means by which we can access the applications as utilities over the internet.
+    It allows us to create, configure, and customize the business applications online
+    It provides services over public and private networks/Internet, i.e., WAN, LAN or VPN.
+
+  # CLOUD COMPUTING
+    Refers to manipulating, configuring, and accessing the hardware and software resources remotely.
+    It offers online data storage, infrastructure, and application.
+    It offers platform independency, as the software is not required to be installed locally on the PC.
+    Hence, the Cloud Computing is making our business applications mobile and collaborative.
+    It can be classified to two types ""
+      --> DEPLOYMENT MODELS
+        Deployment models define the type of access to the cloud, i.e., how the cloud is located?
+        Cloud can have any of the four types of access: PUBLIC, PRIVATE, HYBRID, COMMUNITY.
+      --> SERVICE MODELS
+        Cloud computing is based on service models : IAAS , PAAS , SAAS.
+
+PUBLIC CLOUD    : Allows systems and services to be easily accessible to the general public.
+  (BUS)           Public cloud may be less secure because of its openness. -> CHEAP & LESS SECURE
+
+PRIVATE CLOUD   : Allows systems and services to be accessible within an organization.
+  (BIKE)          It is more secured because of its private nature. ->
+
+HYBRID CLOUD    : Is a mixture of public and private cloud.
+  (CAB)           critical activities are performed using private cloud while the non-critical activities are performed using public cloud.
+
+COMMUNITY CLOUD : Allows systems and services to be accessible by a group of organizations.
+
+XAAS : Anything-as-a-Service is yet another service model, which includes :
+       Network-as-a-Service, Business-as-a-Service, Identity-as-a-Service, Database-as-a-Service or Strategy-as-a-Service.
+IaaS : Infrastructure-as-a-service provides access to fundamental resources such as:
+       physical machines, virtual machines, virtual storage, etc.
+PaaS : Platform-as-a-Service provides the runtime environment for applications, development and deployment tools, etc
+SaaS : Software-as-a-Service model allows to use software applications as a service to end-users.
+
+    Identity-as-a-Service -> Single Sign On Server to give users unique credentials and delete when he resigns.
+    ### Each of the service models inherit the security and management mechanism from the underlying model ###
+                                      ----------------------------------               ==
+                                      |       CLOUD CLIENTS            |                 | --> FRONT END
+                                      |   Web-Browser    Mobile etc;   |                 |
+                                      ----------------------------------               ==
+                                                    ^   ^
+                                          INTERNET  |   |  INTERNET
+                                                    v   v
+                            -------------------------------------------------------    ==
+      (Applications)        |   SAAS : CRM - Email - Games - Virtual Desktop etc; |      |
+                            -------------------------------------------------------      |
+                                                      ||                                 |
+                            -------------------------------------------------------      |
+      (Security , Mngmnt)   |   PAAS : Database - Web Server - Deployment Tools ; |      | --> BACK END
+                            -------------------------------------------------------      |
+                                                      ||                                 |
+                            -------------------------------------------------------      |
+      (Services)            |   IAAS : Virtual Machines - Servers - Storage - N/W |      |
+      (Most Basic Service)  -------------------------------------------------------    ==
+
+
+ADVANTAGES OF CLOUD :
+=======================
+One can access applications as utilities, over the Internet.
+One can manipulate and configure the applications online at any time.
+It does not require to install a software to access or manipulate cloud application.
+Cloud Computing offers online development and deployment tools, programming runtime environment through PaaS model.
+Cloud resources are available over the network in a manner that provide platform independent access to any type of clients.
+Cloud Computing offers on-demand self-service. The resources can be used without interaction with cloud service provider.
+Cloud Computing is highly cost effective because it operates at high efficiency with optimum utilization. It just requires an Internet connection
+Cloud Computing offers load balancing that makes it more reliable.
+
+Pay for what we use , cost efficient and load balancing
+No server space required
+No need of experts to maintain h/w and s/w
+better security and disaster recovery
+automatic software updates
+team collaboration across globe
+
+VIRTUALIZATION :
+==================
+A technique, which allows to share single physical instance of an application or resource among multiple organizations or tenants (customers).
+It does this by assigning a logical name to a physical resource and providing a pointer to that physical resource when demanded.
+
+    APPLICATION virtualization : A single m/c hosts one or more applications delivered to one or more users via internet.
+    HARDWARE virtualization    : A physical m/c hosting multiple virtual machines .
+
+                                               Virtual Machine -1 = (Applications + OS)
+N/W  &  storage --> Virtual Infrastructure --> Virtual Machine -2 = (Applications + OS)
+(MAIN MACHINE)                                 Virtual Machine -3 = (Applications + OS)
+
+HOST MACHINE :
+===============
+The host machine is the physical hardware upon which the virtualization takes place.
+This machine runs the virtualization software that allows virtual machines to exist.
+Its physical components such as memory, storage, and processor ultimately handle the needs of the virtual machines.
+Its physical components such as memory, storage, and processor ultimately handle the needs of the virtual machines.
+These resources are typically hidden or masked from the guest machines.
+
+GUEST MACHINE (virtual machine):
+================
+Virtual machines created from a host machine are called guest machines.
+These are supervised by HYPERVISORS .
+It emulates, or simulates, a single piece of physical hardware such as a desktop computer or server.
+However, everything is passed through the hypervisor, which makes the actual requests to the real hardware.
+
+HYPERVISOR : Type-1 and Type-2
+==============
+It's a software that exists to run, create and manage the virtual machines. It acts as a Virtual Machine Manager (VMM)
+VMM, is software that creates and runs virtual machines (VMs).
+A hypervisor allows one host computer to support multiple guest VMs by virtually sharing its resources, such as memory and processing.
+
+    Type-1, or bare-metal hypervisors, are installed directly onto the physical hardware.
+    As such, they must contain their own operating systems for booting, running the hardware, and connecting to the network.
+    Popular Type-1 hypervisors include Microsoft Hyper-V and VMware ESXi.
+    Because bare-metal hypervisors are isolated from the attack-prone operating system, they are extremely secure
+
+    Type-2, or hosted hypervisors, run on an operating system that is directly installed on the hardware.
+    In this case, a copy of Windows, or a Unix-based system must be installed to boot the system and access the hardware.
+    Once the operating system is running, the hosted hypervisor can launch. Type-2 hypervisors are often used to run multiple operating systems on a single machine, rather than to emulate numerous running systems on the hardware.
+    Popular Type-2 hypervisors include VMware Workstation, VirtualBox
+
+
+
+
+
+
+
+
+
+FIVE PILLARS OF AWS :
+=======================
+1. OPERATIONAL EXCELLENCE : -> Automation
+  Focuses on how you can continuously improve your ability to run systems, create better procedures, and gain insights.
+  Human error is the primary cause of defects and operational incidents. The more operations that can be automated, the less chance there is for human error.
+    Infrastructure as Code -> process of managing your infrastructure through machine-readable configuration files to automate your infrastructure -> CLOUD FORMATION
+    Observability -> Observability is the process of measuring the internal state of your system. This is usually done to optimize it to some desired end state.
+
+2. SECURITY : -> Policies (IAM) , Network Security (VPC) , Encryption (KMS)
+  Focuses on how to secure your infrastructure on the cloud. Security and compliance is a shared responsibility between AWS and the customer.
+    AWS -> responsible for physical infrastructure, software, and networking capabilities.
+    CUSTOMER -> configuration of specific cloud services, the application software, and the management of sensitive data.
+
+3. RELIABILITY :
+  Focuses on how you can build services that are resilient to both service and infrastructure disruptions.
+    Fault Isolation -> Resource and Request , Availability Zone , Region
+    Limits -> Limits are constraints that can be applied to protect your services from excessive load. (SERVICE QUOTAS)
+
+4. PERFORMANCE EFFICIENCY :
+  Focuses on how you can run services efficiently and scalably in the cloud to handle any amount of traffic.
+    Selection -> Ability to choose the service that most closely aligns with your workload. AWS has the broadest selection of services. (COMPUTE, STORAGE , DB ,N/W)
+    Scaling -> VERTICAL : say micro instance to a macro instance (increasing capacity of an instance)
+               HORIZONTAL : say 10 instances to 40 instances ( increasing number of instances)
+
+5. COST OPTIMIZATION : -> AWS Cost Explorer ,  AWS Cost & Usage Report
+  Focuses on achieving business outcomes while minimizing costs.
+  OpEx is an ongoing pay-as-you-go model whereas CapEx is a one-time purchase model.
