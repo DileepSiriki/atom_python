@@ -18,10 +18,10 @@ CLOUD INTRO :
         Cloud computing is based on service models : IAAS , PAAS , SAAS.
 
 PUBLIC CLOUD    : Allows systems and services to be easily accessible to the general public.
-  (BUS)           Public cloud may be less secure because of its openness. -> CHEAP & LESS SECURE
+  (BUS)           Public cloud may be less secure because of its openness. -> CHEAP & LESS SECURE & LOCATION INDEPENDENCE
 
 PRIVATE CLOUD   : Allows systems and services to be accessible within an organization.
-  (BIKE)          It is more secured because of its private nature. ->
+  (BIKE)          It is more secured because of its private nature. -> RELIABLE & MORE EFFICIENT & HIGHLY SECURE
 
 HYBRID CLOUD    : Is a mixture of public and private cloud.
   (CAB)           critical activities are performed using private cloud while the non-critical activities are performed using public cloud.
@@ -30,12 +30,23 @@ COMMUNITY CLOUD : Allows systems and services to be accessible by a group of org
 
 XAAS : Anything-as-a-Service is yet another service model, which includes :
        Network-as-a-Service, Business-as-a-Service, Identity-as-a-Service, Database-as-a-Service or Strategy-as-a-Service.
-IaaS : Infrastructure-as-a-service provides access to fundamental resources such as:
-       physical machines, virtual machines, virtual storage, etc.
-PaaS : Platform-as-a-Service provides the runtime environment for applications, development and deployment tools, etc
-SaaS : Software-as-a-Service model allows to use software applications as a service to end-users.
 
-    Identity-as-a-Service -> Single Sign On Server to give users unique credentials and delete when he resigns.
+IaaS : Infrastructure-as-a-service provides access to fundamental resources such as:
+       physical machines, virtual machines, virtual storage, VLAN's, Load balancers, Ip addresses  etc.
+
+PaaS : Platform-as-a-Service provides the runtime environment for applications, development and deployment tools, etc
+       It also offers development and deployment tools required to develop applications.
+       PaaS provides built-in security, scalability, and web service interfaces.
+
+SaaS : Software-as-a-Service model allows to use software applications as a service to end-users.
+       It refers to a software that is deployed on a host service and is accessible via Internet
+       Advamtage -> maintained by vendor & upgrades done automatically also not needed to install apps (drive/maps etc)
+       Ex : Billing systems , HR Solutions , Help Desk applications.
+
+Identity-as-a-Service -> Single Sign On Server to give users unique credentials and delete when he resigns.
+        To solve the problem of using different username and password combinations for different servers, companies now employ Single Sign-On software, which allows the user to login only one time and manage the access to other systems.
+        SSO has single authentication server, managing multiple accesses to other systems,
+
     ### Each of the service models inherit the security and management mechanism from the underlying model ###
                                       ----------------------------------               ==
                                       |       CLOUD CLIENTS            |                 | --> FRONT END
@@ -55,6 +66,11 @@ SaaS : Software-as-a-Service model allows to use software applications as a serv
                             -------------------------------------------------------      |
       (Services)            |   IAAS : Virtual Machines - Servers - Storage - N/W |      |
       (Most Basic Service)  -------------------------------------------------------    ==
+
+IAAS = H/W ( CPU - RAM - ROM ) + OS (LINUX - WINDOWS)        -----> ADMINISTARTORS
+PAAS = IAAS + APP:ICATIONS (Apache - Python - Node JS)       -----> DEVELOPERS
+SAAS = PAAS + USER APPS (Gmail  - Drive - O365 - Maps)       -----> EVERYONE
+BAAS = SAAS + Buiseness Processing (Accounting - Auditing)
 
 
 ADVANTAGES OF CLOUD :
@@ -82,7 +98,7 @@ It does this by assigning a logical name to a physical resource and providing a 
 
     APPLICATION virtualization : A single m/c hosts one or more applications delivered to one or more users via internet.
     HARDWARE virtualization    : A physical m/c hosting multiple virtual machines .
-
+    SERVER virtualization      : Used by IAAS .
                                                Virtual Machine -1 = (Applications + OS)
 N/W  &  storage --> Virtual Infrastructure --> Virtual Machine -2 = (Applications + OS)
 (MAIN MACHINE)                                 Virtual Machine -3 = (Applications + OS)
@@ -102,7 +118,7 @@ These are supervised by HYPERVISORS .
 It emulates, or simulates, a single piece of physical hardware such as a desktop computer or server.
 However, everything is passed through the hypervisor, which makes the actual requests to the real hardware.
 
-HYPERVISOR : Type-1 and Type-2
+HYPERVISOR : (Type-1 and Type-2)
 ==============
 It's a software that exists to run, create and manage the virtual machines. It acts as a Virtual Machine Manager (VMM)
 VMM, is software that creates and runs virtual machines (VMs).
@@ -117,13 +133,6 @@ A hypervisor allows one host computer to support multiple guest VMs by virtually
     In this case, a copy of Windows, or a Unix-based system must be installed to boot the system and access the hardware.
     Once the operating system is running, the hosted hypervisor can launch. Type-2 hypervisors are often used to run multiple operating systems on a single machine, rather than to emulate numerous running systems on the hardware.
     Popular Type-2 hypervisors include VMware Workstation, VirtualBox
-
-
-
-
-
-
-
 
 
 FIVE PILLARS OF AWS :
@@ -153,3 +162,174 @@ FIVE PILLARS OF AWS :
 5. COST OPTIMIZATION : -> AWS Cost Explorer ,  AWS Cost & Usage Report
   Focuses on achieving business outcomes while minimizing costs.
   OpEx is an ongoing pay-as-you-go model whereas CapEx is a one-time purchase model.
+
+  AWS - COMMAND LINE INTERFACE :  https://docs.aws.amazon.com/cli/latest/reference/ --> LIST OF COMMANDS
+  ===================================
+  Install the AWS-CLI - Version : 2.0
+  Once done open WIN -> cmd -> execute aws commands in the Windows Command Line .
+
+  $ aws configure
+  AWS Access Key ID [None]: AKIAIOSFODNN7EXAMPLE
+  AWS Secret Access Key [None]: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+  Default region name [None]: us-west-2
+  Default output format [None]: json
+
+  $ aws configure list --> list configuration details from (C:\Users\DileepKumar\.aws)
+  The AWS CLI stores this information in a profile (a collection of settings) named default in the credentials file
+  ~/.aws/credentials
+  ~/.aws/config
+
+    ACCESS KEY-ID & SECRET ACCESS KEY :
+              Generated while creating a user or afterwards using SECURITY CREDENTIALS tab in USERS.
+
+    REGIONS : US East (Ohio) 	us-east-2
+              US East (N. Virginia) 	us-east-1
+              US West (N. California) 	us-west-1
+              US West (Oregon) 	us-west-2
+
+    OUTPUT : json  – The output is formatted as a JSON
+             yaml  – The output is formatted as a YAML
+             text  – The output is formatted as multiple lines of tab-separated string values.
+                     This can be useful to pass the output to a text processor, like grep, sed, or awk.
+             table – The output is formatted as a table using the characters +|- to form the cell borders.
+                     It typically presents the information in a "human-friendly" format that is much easier to read than the others, but not as programmatically useful.
+
+    PROFILE : A collection of settings is called a profile. By default, the AWS CLI uses the default profile.
+              You can create and use additional named profiles with varying credentials and settings by specifying the --profile option and assigning a name.
+
+            $ aws configure --profile produser
+            AWS Access Key ID [None]: AKIAI44QH8DHBEXAMPLE
+            AWS Secret Access Key [None]: je7MtGbClwBF/2Zp9Utk/h3yCo8nvbEXAMPLEKEY
+            Default region name [None]: us-east-1
+            Default output format [None]: text
+
+            When you create using profile , the files in C:\Users\DileepKumar\.aws change as :
+              cred file :     [default]
+                              aws_access_key_id = AKIAXK7QGYUTLRNF7QGK
+                              aws_secret_access_key = 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
+                              [admin]
+                              aws_access_key_id = AKIAXK7QGYUTLRNF7QGK
+                              aws_secret_access_key = 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
+
+              config file : [default]
+                            region = us-east-1
+                            output = table
+                            [profile admin]
+                            region = us-east-1
+                            output = table
+
+              This file keeps on updating upon providing profiles and we can use the profile name as alias for a particular user  in future.
+              To use a named profile, add the --profile profile-name option to your command .
+              EX: $ aws ec2 describe-instances --profile user1 (to list ec2 instances for user1)
+              To make a profile as default : WINDOWS : setx AWS_PROFILE  user1  (set for that particular shell & setx if for all shells)
+                                             LINUX   : export AWS_PROFILE=user1
+
+             aws configure get/set <> --profile <> --> get/set values
+             aws configure import --csv file://credentials.csv
+             aws configure list
+             aws configure list-profiles
+             aws iam list-users -> list all IAM users.
+             aws --version
+             aws sts get-caller-Identity -> Details about the User - ID , keys and URL to login
+
+
+    HELP : aws help
+           aws command help
+           aws command subcommand help --> aws ec2 describe-instances help | more
+
+           If any command returns errors , then use the --debug flag to see logs
+           Use --debug option to see the debug logs for each step in a AWS command.
+
+          Do "setx aws_cli_auto_prompt on (WINDOWS)" or "export aws_cli_auto_prompt=on (LINUX)"
+            --> Press the <Enter> key to start autocomplete mode .
+            --> Use <Space Bar> to move from command to subcommand and then to options etc;
+            --> use <Arrow Keys> to navigate up and down
+            --> Once done , use <Enter> key to execute the command .
+
+    RETURN CODE :
+        A hidden code sent after running a AWS Command Line Interface (AWS CLI) command which describes the status of the command.
+        C:\> echo %errorlevel% --> WINDOWS
+        $ echo $? -> LINUX
+        0
+
+        CODE 0 : The command completed successfully. There were no errors generated by the AWS CLI and AWS service the request was sent to.
+   	    CODE 1 : (Only for S3) One or more Amazon S3 transfer operations failed.
+    	  CODE 2 : Applicable to all CLI commands – the command entered couldn't be parsed. Parsing failures can be caused by, but aren't limited to, missing required subcommands or arguments, or using unknown commands or arguments.
+                 Limited to S3 commands – One or more files marked for transfer were skipped during the transfer process. However, all other files marked for transfer were successfully transferred. Files that are skipped during the transfer process include: files that don't exist; files that are character special devices, block special device, FIFO queues, or sockets; and files that the user doesn't have read permissions to.
+
+Tasks that require root user credentials:
+  1. To change account details - email , name , root user password , root user access keys .
+  2. View Tax info (unless billing IAM is created)
+  3. Close your AWS ACCOUNT
+  4. Change AWS support plans
+
+AWS IDENTITY AND ACCESS MANAGEMENT : (IAM)
+==========================================
+AWS Identity and Access Management (IAM) is a web service that helps you securely control access to AWS resources.
+You use IAM to control who is authenticated (signed in) and authorized (has permissions)to use resources.
+  -> Share access to your account without sharing your credentials
+  -> Provide granular permissions to either an ec2 or S3 (to both users and tools)
+  -> Also use MFA along with credential-
+  -> Temporary creds to users using federations and Cross Account access
+
+         -------------------------------------------------------------------------
+        |                    |--> Group ADMINISTARTORS  --> user1, user2          |
+        | ROOT ACCOUNT --->  |--> Group DEVELOPERS      --> user3                 |
+        |                    |--> Group TESTERS         --> user4, user5, us      |
+         -------------------------------------------------------------------------
+
+GROUP : Group is a collection of users who have similar responsibilities.
+        Each group has multiple users. Each user can be in more than one group,
+        You can't put groups inside other groups. You use policies to grant permissions to groups.
+
+USERS : An IAM user is an entity that you create in AWS.
+        The IAM user represents the person or service who uses the IAM user to interact with AWS.
+        A primary use for IAM users is to give people the ability to sign in to the AWS Management Console for interactive tasks and to make programmatic requests to AWS services using the API or CLI
+        A user in AWS consists of a name, a password to sign into the AWS Management Console, and up to two access keys that can be used with the API or CLI
+
+ROLES : An IAM role is very similar to a user, in that it is an identity with permission policies that determine what the identity can and cannot do in AWS.
+        However, a role does not have any credentials (password or access keys) associated with it.
+        Instead of being uniquely associated with one person, a role is intended to be assumable by anyone who needs it.
+        An IAM role is an AWS Identity and Access Management (IAM) entity with permissions to make AWS service requests.
+        IAM roles cannot make direct requests to AWS services;
+        They are meant to be assumed by authorized entities, such as IAM users, applications, or AWS services such as EC2.
+
+TEMPORARY CREDS IN IAM :
+        Temporary credentials are primarily used with IAM roles, but there are also other uses.
+        You can request temporary credentials that have a more restricted set of permissions than your standard IAM user.
+        This prevents you from accidentally performing tasks that are not permitted by the more restricted credentials.
+        A benefit of temporary credentials is that they expire automatically after a set period of time.
+        You have control over the duration that the credentials are valid.
+
+When to create an IAM user (instead of a role):
+  You created an AWS account and you're the only person who works in your account.
+  Other people in your group need to work in your AWS account, and your group is using no other identity mechanism.
+
+When to create an IAM role (instead of a user):
+  You're creating an application that runs on an Amazon Elastic Compute Cloud (Amazon EC2) instance and that application makes requests to AWS.
+  You're creating an app that runs on a mobile phone and that makes requests to AWS.
+
+
+TAGS : IAM tags are key-value pairs you can add to your user.
+       Tags can include user information, such as an email address, or can be descriptive, such as a job title.
+       You can use the tags to organize, track, or control access for this user
+
+POLICIES :
+  IDENTITY-BASED Policies are permissions policies that you attach to an IAM identity, such as an IAM user, group, or role.
+
+      MANAGED POLICIES : Control what actions the identity can perform, on which resources, and under what conditions.
+              AWS MANAGED      --> Default policies in AWS
+              CUSTOMER MANAGED --> Customer Created by editing fields in Aws Policies.
+
+      INLINE POLICIES  : Policies that you create and manage and that are embedded directly into a single user, group, or role.
+
+  RESOURCE-BASED Policies are permissions policies that you attach to a resource such as an  Amazon S3 bucket or an IAM role trust policy.
+
+ A policy once created , can be attached to either a USER or a GROUP or a ROLE!!
+ Go to -> policies -> select the policy (click the circle on left) -> policy actions (on top) -> attach .
+
+ ALIASES :
+    Your AWS account can have only one alias. If you create a new alias for your AWS account, the newalias overwrites the previous alias, and the URL containing the previous alias stops working.•
+    The account alias must be unique across all Amazon Web Services products. It must contain only digits,lowercase letters, and hyphens.
+
+    FROM : https://Your_Account_ID.signin.aws.amazon.com/console TO : https://Your_Account_Alias.signin.aws.amazon.com/consol

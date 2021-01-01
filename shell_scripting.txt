@@ -1,3 +1,5 @@
+LIST WINDOWS BASIC COMMANDS TO NAVIGATE etc; -> cd - dir - more etc; - set , setx....
+ALSO ON HOW TO SET PATH VARIABLES IN BOTH WIN - LIN
 
 BASIC LINUX COMMANDS & USAGE :
 ======================================
