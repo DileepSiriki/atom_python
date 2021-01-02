@@ -165,6 +165,10 @@ FIVE PILLARS OF AWS :
 
   AWS - COMMAND LINE INTERFACE :  https://docs.aws.amazon.com/cli/latest/reference/ --> LIST OF COMMANDS
   ===================================
+  To generate KEYS , login to that IAM / ROOT -> select account name -> select MY security credentials -> Access keys .
+  Access keys : A combination of an access key ID and a secret access key. You can assign two to a user at a time.
+                we can generate new ones by deleting old ones.
+
   Install the AWS-CLI - Version : 2.0
   Once done open WIN -> cmd -> execute aws commands in the Windows Command Line .
 
@@ -278,6 +282,10 @@ You use IAM to control who is authenticated (signed in) and authorized (has perm
         |                    |--> Group TESTERS         --> user4, user5, us      |
          -------------------------------------------------------------------------
 
+       PASSWORD POLICIES :
+          Go to IAM -> Left section -> Account Settings -> Password Policies (edit / create / delete)
+          First we need to attach password poliy to IAM Admin to give him access to update password Policies.
+
 GROUP : Group is a collection of users who have similar responsibilities.
         Each group has multiple users. Each user can be in more than one group,
         You can't put groups inside other groups. You use policies to grant permissions to groups.
@@ -286,6 +294,25 @@ USERS : An IAM user is an entity that you create in AWS.
         The IAM user represents the person or service who uses the IAM user to interact with AWS.
         A primary use for IAM users is to give people the ability to sign in to the AWS Management Console for interactive tasks and to make programmatic requests to AWS services using the API or CLI
         A user in AWS consists of a name, a password to sign into the AWS Management Console, and up to two access keys that can be used with the API or CLI
+        To rename a user we can use only CLI . But we can delete from console and CLI as well.
+        If the user has a permissions boundary, then you cannot add more permissions/policies to a user thanare allowed by the permissions boundary
+
+POLICIES :
+        IDENTITY-BASED Policies are permissions policies that you attach to an IAM identity, such as an IAM user, group, or role.
+
+            MANAGED POLICIES : Control what actions the identity can perform, on which resources, and under what conditions.
+                      AWS MANAGED      --> Default policies in AWS
+                      CUSTOMER MANAGED --> Customer Created by editing fields in Aws Policies.
+
+            INLINE POLICIES  : Policies that you create and manage and that are embedded directly into a single user, group, or role.
+                                 Used when you want to assign a policy directly to a single user.
+
+        RESOURCE-BASED Policies are permissions policies that you attach to a resource such as an  Amazon S3 bucket or an IAM role trust policy.
+
+         A policy once created , can be attached to either a USER or a GROUP or a ROLE!!
+         Go to -> policies -> select the policy (click the circle on left) -> policy actions (on top) -> attach -> Select User/group to add .
+         OR -> Select user/group -> Permissions -> Attach Policy .
+         We use ARN of roles in policies to have effect to that particular role.
 
 ROLES : An IAM role is very similar to a user, in that it is an identity with permission policies that determine what the identity can and cannot do in AWS.
         However, a role does not have any credentials (password or access keys) associated with it.
@@ -294,42 +321,93 @@ ROLES : An IAM role is very similar to a user, in that it is an identity with pe
         IAM roles cannot make direct requests to AWS services;
         They are meant to be assumed by authorized entities, such as IAM users, applications, or AWS services such as EC2.
 
+            Roles can be used by the following:
+            • An IAM user in the same AWS account as the role
+            • An IAM user in a different AWS account than the role
+            • A web service offered by AWS such as Amazon Elastic Compute Cloud (Amazon EC2)
+            • An external user authenticated by an external identity provider (IdP) service that is compatiblewith SAML 2.0 or OpenID Connect, or a custom-built identity broker.
+
+         Delegation involves setting up a trust between two accounts.
+           The first is the account that owns the resource (thetrusting account).
+           The second is the account that contains the users that need to access the resource(the trusted account).
+           The trusted and trusting accounts can be any of the following:
+              • The same account.
+              • Separate accounts that are both under your organization's control.
+              • Two accounts owned by different organizations.
+
+        Federation  involves Creation of a trust relationship between an external identity provider and AWS.
+        Users can signin to a web identity provider, such as Login with Amazon, Facebook, Google, or any IdP that iscompatible with OpenID Connect (OIDC).
+
+SWITCHING ROLES : (click on account name and at the bottom , find "CHANGE ROLE")
+      You cannot switch to a role when you are signed in as the AWS account root user.
+      We need to SWITCH ROLES to get those permissions defined in the role.
+      Switching roles using the AWS Management Console works only with accounts that do not require an ExternalId.
+      For example, assume that you grant access to your account to a third party and require an ExternalId in a Condition element in your permissions policy. In thatcase, the third party can access your account only by using the AWS API or a command line tool.The third party cannot use the console because it cannot supply a value for ExternalId
+        There are two ways that David can use to enter the Switch Role page:
+            • David receives a link from his administrator that points to a pre-defined Switch Role configuration.
+              The link is provided to the administrator on the final page of the Create role wizard or on the Role Summary page for a cross-account role.
+              Choosing this link takes David to the Switch Role page with the Account ID and Role name fields already filled in.
+              All David needs to do is choose Switch Role and he's done.
+            • The administrator does not send the link in email, but instead sends the Account ID number and Role Name values.
+              David must manually type them to switch roles.
+     ASSUME ROLE : (AWS API)When David needs to make an update to the Production account from code, he makes an AssumeRolecall to assume the UpdateApp role.
+     The call returns temporary credentials that he can use to access the productionapp bucket in the Production account.
+     With those credentials, David can make API calls to update the production app bucket.
+
 TEMPORARY CREDS IN IAM :
-        Temporary credentials are primarily used with IAM roles, but there are also other uses.
-        You can request temporary credentials that have a more restricted set of permissions than your standard IAM user.
-        This prevents you from accidentally performing tasks that are not permitted by the more restricted credentials.
-        A benefit of temporary credentials is that they expire automatically after a set period of time.
-        You have control over the duration that the credentials are valid.
+      Temporary credentials are primarily used with IAM roles, but there are also other uses.
+      You can request temporary credentials that have a more restricted set of permissions than your standard IAM user.
+      This prevents you from accidentally performing tasks that are not permitted by the more restricted credentials.
+      A benefit of temporary credentials is that they expire automatically after a set period of time.
+      You have control over the duration that the credentials are valid.
 
-When to create an IAM user (instead of a role):
-  You created an AWS account and you're the only person who works in your account.
-  Other people in your group need to work in your AWS account, and your group is using no other identity mechanism.
+         When to create an IAM user (instead of a role):
+           You created an AWS account and you're the only person who works in your account.
+           Other people in your group need to work in your AWS account, and your group is using no other identity mechanism.
 
-When to create an IAM role (instead of a user):
-  You're creating an application that runs on an Amazon Elastic Compute Cloud (Amazon EC2) instance and that application makes requests to AWS.
-  You're creating an app that runs on a mobile phone and that makes requests to AWS.
-
+         When to create an IAM role (instead of a user):
+           You're creating an application that runs on an Amazon Elastic Compute Cloud (Amazon EC2) instance and that application makes requests to AWS.
+           You're creating an app that runs on a mobile phone and that makes requests to AWS.
 
 TAGS : IAM tags are key-value pairs you can add to your user.
        Tags can include user information, such as an email address, or can be descriptive, such as a job title.
        You can use the tags to organize, track, or control access for this user
+       Tag key–value pairs are not case sensitive, but case is preserved. This means that you cannothave separate Department and department tag keys.
+       If you have tagged a user with the Department=foo tag and you add the department=bar tag, it replaces the first tag. A second tag isnot added.
+       • You cannot create a tag key or value that begins with the text aws:. This tag prefix is reserved for AWSinternal use.
+       • You can create a tag with an empty value such as phoneNumber = . You cannot create an empty tagkey.
 
-POLICIES :
-  IDENTITY-BASED Policies are permissions policies that you attach to an IAM identity, such as an IAM user, group, or role.
 
-      MANAGED POLICIES : Control what actions the identity can perform, on which resources, and under what conditions.
-              AWS MANAGED      --> Default policies in AWS
-              CUSTOMER MANAGED --> Customer Created by editing fields in Aws Policies.
+ARN : AMAZOAN RESOURCE NAMES
+    Amazon Resource Names (ARNs) uniquely identify AWS resources.
+    We require an ARN when you need to specify a resource unambiguously across all of AWS, such as in IAM policies, Amazon Relational Database Service (Amazon RDS) tags, and API calls.
+    Click on users/groups/roles -> click on the particular entry you want ARN -> we find ARN in the summery (TOP)
 
-      INLINE POLICIES  : Policies that you create and manage and that are embedded directly into a single user, group, or role.
+    arn:partition:service:region:account-id:resource-id
+    arn:partition:service:region:account-id:resource-type/resource-id
+    arn:partition:service:region:account-id:resource-type:resource-id
 
-  RESOURCE-BASED Policies are permissions policies that you attach to a resource such as an  Amazon S3 bucket or an IAM role trust policy.
+    PARTITION   == The partition in which the resource is located -> aws , aws-cn (china)
+    SERVICE     == The service namespace that identifies the AWS product. For example, s3 for Amazon S3 resources.
+    PARTITION   == The Region. For example, us-east-2 for US East (Ohio).
+    ACCOUNT-ID  == The ID of the AWS account that owns the resource, without the hyphens. For example, 123456789012.
+    RESOURCE-ID == The resource identifier. This part of the ARN can be the name or ID of the resource or a resource path.
+                   For example, user/Bob for an IAM user or instance/i-1234567890abcdef0 for an EC2 instance.
+                   Some resource identifiers include a parent resource (sub-resource-type/parent-resource/sub-resource) or a qualifier such as a version (resource-type:resource-name:qualifier).
+    PATHS-IN-ARN : Resource ARNs can include a path. For example, in Amazon S3, the resource identifier is an object name that can include slashes (/) to form a path. Similarly, IAM user names and group names can include paths.
+          If you are writing an IAM policy, you can specify all IAM users that have the path product_1234 using a wildcard as follows:
+          arn:aws:iam::123456789012:user/Development/product_1234/*
 
- A policy once created , can be attached to either a USER or a GROUP or a ROLE!!
- Go to -> policies -> select the policy (click the circle on left) -> policy actions (on top) -> attach .
-
+          You can specify user/* to mean all users or group/* to mean all groups, as in the following examples:
+          "Resource":"arn:aws:iam::123456789012:user/*"
+          "Resource":"arn:aws:iam::123456789012:group/*"
  ALIASES :
-    Your AWS account can have only one alias. If you create a new alias for your AWS account, the newalias overwrites the previous alias, and the URL containing the previous alias stops working.•
-    The account alias must be unique across all Amazon Web Services products. It must contain only digits,lowercase letters, and hyphens.
+    Your AWS account can have only one alias. If you create a new alias for your AWS account, the new alias overwrites the previous alias, and the URL containing the previous alias stops working.•
+    The account alias must be unique across all Amazon Web Services products. It must contain only digits, lowercase letters, and hyphens.
 
     FROM : https://Your_Account_ID.signin.aws.amazon.com/console TO : https://Your_Account_Alias.signin.aws.amazon.com/consol
+
+
+MFA : MULTI FACTOR AUTHENTICATION
+    Go to -> account name -> My security credential-> MFA -> Assign MFA -> [Virtual app - Token - U2F Device]
+    Download Google Authenticator -> scan -> enter OTP twice -> Authenticate
