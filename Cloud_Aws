@@ -286,11 +286,15 @@ You use IAM to control who is authenticated (signed in) and authorized (has perm
           Go to IAM -> Left section -> Account Settings -> Password Policies (edit / create / delete)
           First we need to attach password poliy to IAM Admin to give him access to update password Policies.
 
-GROUP : Group is a collection of users who have similar responsibilities.
+GROUP :
+--------
+        Group is a collection of users who have similar responsibilities.
         Each group has multiple users. Each user can be in more than one group,
         You can't put groups inside other groups. You use policies to grant permissions to groups.
 
-USERS : An IAM user is an entity that you create in AWS.
+USERS :
+----------
+        An IAM user is an entity that you create in AWS.
         The IAM user represents the person or service who uses the IAM user to interact with AWS.
         A primary use for IAM users is to give people the ability to sign in to the AWS Management Console for interactive tasks and to make programmatic requests to AWS services using the API or CLI
         A user in AWS consists of a name, a password to sign into the AWS Management Console, and up to two access keys that can be used with the API or CLI
@@ -298,6 +302,7 @@ USERS : An IAM user is an entity that you create in AWS.
         If the user has a permissions boundary, then you cannot add more permissions/policies to a user thanare allowed by the permissions boundary
 
 POLICIES :
+-----------
         IDENTITY-BASED Policies are permissions policies that you attach to an IAM identity, such as an IAM user, group, or role.
 
             MANAGED POLICIES : Control what actions the identity can perform, on which resources, and under what conditions.
@@ -314,7 +319,9 @@ POLICIES :
          OR -> Select user/group -> Permissions -> Attach Policy .
          We use ARN of roles in policies to have effect to that particular role.
 
-ROLES : An IAM role is very similar to a user, in that it is an identity with permission policies that determine what the identity can and cannot do in AWS.
+ROLES :
+-----------
+        An IAM role is very similar to a user, in that it is an identity with permission policies that determine what the identity can and cannot do in AWS.
         However, a role does not have any credentials (password or access keys) associated with it.
         Instead of being uniquely associated with one person, a role is intended to be assumable by anyone who needs it.
         An IAM role is an AWS Identity and Access Management (IAM) entity with permissions to make AWS service requests.
@@ -339,6 +346,7 @@ ROLES : An IAM role is very similar to a user, in that it is an identity with pe
         Users can signin to a web identity provider, such as Login with Amazon, Facebook, Google, or any IdP that iscompatible with OpenID Connect (OIDC).
 
 SWITCHING ROLES : (click on account name and at the bottom , find "CHANGE ROLE")
+------------------------------------------------------------------------------------
       You cannot switch to a role when you are signed in as the AWS account root user.
       We need to SWITCH ROLES to get those permissions defined in the role.
       Switching roles using the AWS Management Console works only with accounts that do not require an ExternalId.
@@ -355,6 +363,7 @@ SWITCHING ROLES : (click on account name and at the bottom , find "CHANGE ROLE")
      With those credentials, David can make API calls to update the production app bucket.
 
 TEMPORARY CREDS IN IAM :
+--------------------------
       Temporary credentials are primarily used with IAM roles, but there are also other uses.
       You can request temporary credentials that have a more restricted set of permissions than your standard IAM user.
       This prevents you from accidentally performing tasks that are not permitted by the more restricted credentials.
@@ -369,16 +378,19 @@ TEMPORARY CREDS IN IAM :
            You're creating an application that runs on an Amazon Elastic Compute Cloud (Amazon EC2) instance and that application makes requests to AWS.
            You're creating an app that runs on a mobile phone and that makes requests to AWS.
 
-TAGS : IAM tags are key-value pairs you can add to your user.
-       Tags can include user information, such as an email address, or can be descriptive, such as a job title.
-       You can use the tags to organize, track, or control access for this user
-       Tag key–value pairs are not case sensitive, but case is preserved. This means that you cannothave separate Department and department tag keys.
-       If you have tagged a user with the Department=foo tag and you add the department=bar tag, it replaces the first tag. A second tag isnot added.
-       • You cannot create a tag key or value that begins with the text aws:. This tag prefix is reserved for AWSinternal use.
-       • You can create a tag with an empty value such as phoneNumber = . You cannot create an empty tagkey.
+TAGS :
+-------
+    IAM tags are key-value pairs you can add to your user.
+    Tags can include user information, such as an email address, or can be descriptive, such as a job title.
+    You can use the tags to organize, track, or control access for this user
+    Tag key–value pairs are not case sensitive, but case is preserved. This means that you cannothave separate Department and department tag keys.
+    If you have tagged a user with the Department=foo tag and you add the department=bar tag, it replaces the first tag. A second tag isnot added.
+     • You cannot create a tag key or value that begins with the text aws:. This tag prefix is reserved for AWSinternal use.
+     • You can create a tag with an empty value such as phoneNumber = . You cannot create an empty tagkey.
 
 
 ARN : AMAZOAN RESOURCE NAMES
+------------------------------
     Amazon Resource Names (ARNs) uniquely identify AWS resources.
     We require an ARN when you need to specify a resource unambiguously across all of AWS, such as in IAM policies, Amazon Relational Database Service (Amazon RDS) tags, and API calls.
     Click on users/groups/roles -> click on the particular entry you want ARN -> we find ARN in the summery (TOP)
@@ -402,6 +414,7 @@ ARN : AMAZOAN RESOURCE NAMES
           "Resource":"arn:aws:iam::123456789012:user/*"
           "Resource":"arn:aws:iam::123456789012:group/*"
  ALIASES :
+ -----------
     Your AWS account can have only one alias. If you create a new alias for your AWS account, the new alias overwrites the previous alias, and the URL containing the previous alias stops working.•
     The account alias must be unique across all Amazon Web Services products. It must contain only digits, lowercase letters, and hyphens.
 
@@ -409,6 +422,7 @@ ARN : AMAZOAN RESOURCE NAMES
 
 
 MFA : MULTI FACTOR AUTHENTICATION
+---------------------------------
     Go to -> account name -> My security credential-> MFA -> Assign MFA -> [Virtual app - Token - U2F Device]
     Download Google Authenticator -> scan -> enter OTP twice -> Authenticate
 
@@ -444,8 +458,198 @@ TYPES OF INSTANCES :
   RESERVED  : You can reduce your Amazon EC2 costs by making a commitment to a specific instance configuration, including instance type and Region, for a term of 1 or 3 years.
   SPOT      : Request unused EC2 instances, which can reduce your Amazon EC2 costs significantly.
 
+INSTANCES :
+------------
+Is a virtual server in the cloud. Its configuration at launch is a copy of the AMI that you specified when you launched the instance.
+An instance type essentially determines the hardware of the host computer used for your instance.
+Each instance type offers different compute and memory capabilities. Select an instance type based on the amount of memory and computing power that you need for the application or software that you plan to run on the instanc
+Your AWS account has a limit on the number of instances that you can have running.
+
+    STORAGE :
+    ----------
+    --> The root device for your instance contains the image used to boot the instance.
+
+    --> Your instance may include local storage volumes, known as instance store volumes, which you can configure at launch time with block device mapping.
+        One these are mapped to our instance , we can use them to mount and use . The data is lost if the instance fails (stopped or terminated).
+        So this is used for temporary data . We can overcome this by REPLICATION or using AMAZON S3 or EBS Volumes.
+
+    STOP & TERMINATE :
+    -------------------
+    --> STOP :
+        When an instance is stopped, the instance performs a normal shutdown, and then transitions to a stopped state.
+        All of its Amazon EBS volumes remain attached, and you can start the instance again at a later time.
+        When an instance is in a stopped state, you can attach or detach Amazon EBS volumes. You can also create an AMI from the instance, and you can change the kernel, RAM disk, and instance type.
+
+    --> TERMINATE :
+        hen an instance is terminated, the instance performs a normal shutdown.
+        The root device volume is deleted by default, but any attached Amazon EBS volumes are preserved by default.
+        The instance itself is also deleted, and you can't start the instance again at a later time.
+        To prevent accidental termination  ensure that the disableApiTermination attribute is set to true for the instance.
+
+REZIONS AND ZONES : open EC2 -> move to bottom -> SERVICE HEALTH & ZONE STATUS
+----------------------------------------------------------------------------------
+Amazon EC2 is hosted in multiple locations world-wide. These locations are composed of Regions, Availability Zones, Local Zones, AWS Outposts, and Wavelength Zones.
+
+    • Each Region is a separate geographic area.
+      Each Amazon EC2 Region is designed to be isolated from the other Amazon EC2 Regions. This achieves the greatest possible fault tolerance and stability.
+      When you view your resources, you see only the resources that are tied to the Region that you specified. This is because Regions are isolated from each other, and we don't automatically replicate resources across Regions.
+
+    • Availability Zones are multiple, isolated locations within each Region. Each Region has multiple, isolated locations known as Availability Zones.
+      An Availability Zone is represented by a Region code followed by a letter identifier; for example,us-east-1a --> AZ ID is unique for all accounts but us-east-1a might not be same for all.
+      When you launch an instance, you can select an Availability Zone or let us choose one for you.
+      If you distribute your instances across multiple Availability Zones and one instance fails, you can design your application so that an instance in another Availability Zone can handle requests.
+      You can also use Elastic IP addresses to mask the failure of an instance in one Availability Zone by rapidly remapping the address to an instance in another Availability Zone.
+      we can also migrate instances to another AZ --> make an AMI --> launch an instance --> configure
+
+    • Local Zones provide you the ability to place resources, such as compute and storage, in multiple locations closer to your end users.
+      Local Zones have their own connections to the internet and support AWS Direct Connect, so that resources created in aLocal Zone can serve local users with low-latency communications.
+      A Local Zone is represented by a Region code followed by an identifier that indicates the location, for example, us-west-2-lax-1a
+      We need to enable them in order to use , then create a subnet .
+
+    • AWS Outposts is a fully managed service that extends AWS infrastructure, services, APIs, and tools to customer premises.
+      By providing local access to AWS managed infrastructure, AWS Outposts enables customers to build and run applications on premises using the same programming interfaces as in AWSRegions, while using local compute and storage resources for lower latency and local data processing needs.
+
+
+    • Wavelength Zones allow developers to build applications that deliver ultra-low latencies to 5G devices and end users. Wavelength deploys standard AWS compute and storage services to the edge of telecommunication carriers' 5G networks.
+      A Wavelength Zone is represented by a Region code followed by an identifier that indicates the Wavelength Zone, for example, us-east-1-wl1-bos-wlz-1.
+
+
+EC2 ROOT DEVICE VOLUME : [ AMIs backed by Amazon EC2 instance store (OLDER) <===> AMIs backed by Amazon EBS.(LATEST) ]
+-------------------------
+    INSTANCE STRORE BACKED INSTANCES : (Do not support the Stop action)  --> Template stored in Amazon S3
+        Instances that use instance stores for the root device automatically have one or more instance store volumes available, with one volume serving as the root device volume.
+        When an instance is launched, the image that is used to boot the instance is copied to the root volume.
+        Any data on the instance store volumes persists as long as the instance is running, but this data is deleted when the instance is terminated
+
+        INSTANCE = [Instance store volume-1] + [Instance store volume-2] + [Instance store volume-3] etc;
+          root volume = one of the Instance store volume , which gets a copy of image when instance is booted from S3.
+
+                   [                    HOST - COMPUTER                      ]
+          [S3] --> [ [ Instance-store  (vol-1) (vol-2)... ] [Device Mapping] ]  -> No EBS , so a failure will delete everything.
+            v                              ^
+            |____lOADES AMI ->_____________|
+
+    EBS BACKED INSTANCES :
+        An Amazon EBS-backed instance can be stopped and later restarted without affecting data stored in the attached volumes.
+        There are various instance– and volume-related tasks you can do when an Amazon EBS-backed instance is in a stopped state.
+        For example, you can modify the properties of the instance, change its size, or update the kernel it is using, or you can attach your root volume to a different running instance for debugging
+              By default, the root volume for an AMI backed by Amazon EBS is deleted when the instance terminates.
+              You can change the default behaviour to ensure that the volume persists after the instance terminates.
+              To change the default behaviour, set the DeleteOnTermination attribute to false using a block device mapping.
+              --> Deselect DELETE ON TERMINATION option while creating Instance
+              --> For an already existing instance this can be done only from CLI.
+
+                                                [                    HOST - COMPUTER                      ]
+          [(EBS_vol-1) (EBS_vol-2) .... ] <---> [ [ Instance-store (vol-1) (vol-2) ... ] [Device Mapping] ] -> EBS is independent and hence fail proof.
+
+        RECOVERY UPON FAILURE :
+              1.Create a snapshot of the root volume.
+              2.Register a new AMI using the snapshot.
+              3.Launch a new instance from the new AMI.
+              4.Detach the remaining Amazon EBS volumes from the old instance.
+              5.Reattach the Amazon EBS volumes to the new instance.
+
+       Instances launched from an Amazon EBS-backed AMI launch faster than instances launched from an instance store-backed AMI.
+       When you launch an instance from an instance store-backed AMI, all the parts have to be retrieved from Amazon S3 before the instance is available.
+       With an Amazon EBS-backed AMI, only the parts required to boot the instance need to be retrieved from the snapshot before the instance is available.
+
+-->You can convert an instance store-backed Linux AMI that you own to an Amazon EBS-backed Linux AMI.
+   You can't convert an instance store-backed Windows AMI to an Amazon EBS-backed Windows AMI and you cannot convert an AMI that you do not own.
+
+
+CONNECTING TO A LINUX INSTANCE :
+---------------------------------
+--> In EC2 dashboard --> Instances --> top right Launch Instances -> select free tier eligible --> Security group (pre create a SG and attach - check below steps INBOUND RULES , as by default inbound is not allowed )
+
+--> A Linux instance has no password; you use a key pair to log in to your instance securely.
+    You specify the name of the key pair when you launch your instance, then provide the private key when you log in using SSH.
+    You can use the same keypair on multiple instances and you can also use multiple keypairs on the same user on an instance.
+
+--> When you ssh into a Linux instance, you supply a username and the private half of a keypair.
+    The Linux system will look in the nominated user's .ssh/authorized_keypairs file and will attempt to find the matching public half of the keypair.
+    If found, it will allow you to start the ssh session. Therefore, any keypair can be added to a user's .ssh/authorized_keys file.
+    It can include multiple keypairs, all of which would be permitted to login as that user.
+    When you launch an instance, its initial state is pending. After the instance starts, its state changes to running and it receives a public DNS name.
+
+--> File format
+      pem -- For use with OpenSSH
+      ppk -- For use with PuTTY
+      chmod 400 my-key-pair.pem -> change permissions so that only you can see it .
+
+--> If your local computer operating system is Linux or macOS X
+      •SSH client
+      •EC2 Instance Connect
+      •AWS Systems Manager Session Manager
+
+--> If your local computer operating system is Windows
+      •PuTTY
+      •SSH client
+      •AWS Systems Manager Session Manager
+      •Windows Subsystem for Linux (p. 620)
+
+--> Get information about your instance
+    --> Default USER NAMES :
+        •For Amazon Linux 2 or the Amazon Linux AMI, the user name is ec2-user.
+        •For a CentOS AMI, the user name is centos.
+        •For a Debian AMI, the user name is admin.
+        •For a Fedora AMI, the user name is ec2-user or fedora.
+        •For a RHEL AMI, the user name is ec2-user or root.
+        •For a SUSE AMI, the user name is ec2-user or root.
+        •For an Ubuntu AMI, the user name is ubuntu.
+
+--> Enable inbound traffic to your instance
+    --> Ensure that the security group associated with your instance allows incoming SSH traffic from your IP address.
+        The default security group for the VPC does not allow incoming SSH traffic by default.
+        Security groups are specific to aRegion, so you should select the same Region in which you created your key pair.
+        Inbound rules -> http & https --> 0.0.0.0/0 and ::/0
+                         ssh -> My-Ip or do a custom and add IP using CIDR notation
+   --> In security group selection , select both DEFAULT and the one you have created (check below details for rules before going next.)
+   If already created -> EC2 -> select instance -> security -> security groups -> select a group -> edit (add/delete)
+
+--> Locate the private key
+    --> chmod 400 my-key-pair.pem -> change permissions so that only you can see it .
+
+--> ONCE EVERYTHING IS SET-UP : Directly click on CONNECT
+    -> EC2 Instant Connect : Connecting in web browser directly .
+    -> Session Manager (SSM agent)
+    -> SSH client
+        1. check that SSH Client (Openssh) is installed
+        2. open WINDOWS+R -> cmd
+        3. ssh -i "C:\Users\DileepKumar\Desktop\AWS_keys\linux-ec2.pem" ec2-user@ec2-18-216-19-72.us-east-2.compute.amazonaws.com
+
+--> To terminate your instance
+    1.In the navigation pane, choose Instances. In the list of instances, select the instance.
+    2.Choose Instance state, Terminate instance.
+    3.Choose Terminate when prompted for confirmation.
+
 AMAZON MACHIENE IMAGE : AMI
----------------------------
+-----------------------------
 It is a template that contains a software configuration (for example, an operating system, an application server, and applications)
 From an AMI, you launch an instance, which is a copy of the AMI running as a virtual server in the cloud. You can also launch multiple instances of an AMI.
 Your instances keep running until you stop, hibernate, or terminate them, or until they fail.
+You can also create your own custom AMI or AMIs; doing so enables you to quickly and easily start new instances that have everything you need.
+      For example, if your application is a website or a web service, your AMI could include a web server, the associated static content, and the code for the dynamic pages.
+      As a result, after you launch an instance from this AMI, your web server starts, and your application is ready to accept requests
+
+--> An AMI includes the following:
+   • One or more Amazon Elastic Block Store (Amazon EBS) snapshots, or,
+        for instance-store-backed AMIs,a template for the root volume of the instance (for example, an operating system, an applicationserver, and applications).
+   • Launch permissions that control which AWS accounts can use the AMI to launch instances.
+   • A block device mapping that specifies the volumes to attach to the instance when it's launched.
+
+--> CUSTOM AMI :
+      You can launch an instance from an existing AMI, customize the instance (for example, install software on the instance), and then save this updated configuration as a custom AMI.
+      Instances launched from this new custom AMI include the customizations that you made when you created the AMI.
+
+-->AMIs that are backed by Amazon EBS snapshots can take advantage of Amazon EBS encryption.
+   Snapshots of both data and root volumes can be encrypted and attached to an AMI.
+
+<Page- 320 (331)>
+Instance purchasing optionsAmazon EC2 provides the following purchasing options to enable you to optimize your costs based onyour needs:•On-Demand Instances – Pay, by the second, for the instances that you launch.•Savings Plans – Reduce your Amazon EC2 costs by making a commitment to a consistent amount ofusage, in USD per hour, for a term of 1 or 3 years.•Reserved Instances – Reduce your Amazon EC2 costs by making a commitment to a consistentinstance configuration, including instance type and Region, for a term of 1 or 3 years.•Spot Instances – Request unused EC2 instances, which can reduce your Amazon EC2 costs significantly.•Dedicated Hosts – Pay for a physical host that is fully dedicated to running your instances, and bringyour existing per-socket, per-core, or per-VM software licenses to reduce costs.•Dedicated Instances – Pay, by the hour, for instances that run on single-tenant hardware.•Capacity Reservations – Reserve capacity for your EC2 instances in a specific Availability Zone for anyduration.
+
+<598 connect to linux instance>
+<804>
+networks
+storage-EBS
+
+<Windows instances document>
